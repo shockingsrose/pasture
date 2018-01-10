@@ -8,19 +8,30 @@
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 
-
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        
+       
     },
 
-   closeModal: function(){
-        console.log("removeFromParent");
-        // this.modalJs.closeModal();
-        // this.node.removeFromParent();
-   }
+    showAlertText: function () {
+        Alert.show("难道还有这种操作？");
+    },
+
+    showAlertCallBack: function () {
+        Alert.show("难道还有这种操作？", function(){
+            cc.log("确定按钮被点击！");
+        });
+    },
+
+    showAlertOnlayEnter: function () {
+        Alert.show("难道还有这种操作？", null, false);
+    },
+
+    showAlertAnimSpeed: function () {
+        Alert.show("难道还有这种操作？", null, null, 0.1);
+    },
 
     // update (dt) {},
 });

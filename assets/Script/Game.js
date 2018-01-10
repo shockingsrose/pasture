@@ -18,7 +18,8 @@ cc.Class({
 
     startGame: function(){
         cc.director.loadScene('index');
-    }
+    },
+    
     
     // update (dt) {},
 });
