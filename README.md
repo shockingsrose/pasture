@@ -1,2 +1,2 @@
-# pasture
-农场游戏 cocos-creator
+# hello-world
+Hello world new project template.

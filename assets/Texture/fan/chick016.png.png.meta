@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "aecc84f2-6fd5-4b4d-9b1a-de5a7635dc93",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "chick016.png": {
+      "ver": "1.0.3",
+      "uuid": "89bafcdd-2096-4606-90b0-8967592efaf1",
+      "rawTextureUuid": "aecc84f2-6fd5-4b4d-9b1a-de5a7635dc93",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 5,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 480,
+      "height": 560,
+      "rawWidth": 480,
+      "rawHeight": 570,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
