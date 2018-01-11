@@ -4,6 +4,8 @@ var Alert = {
     _cancelButton:  null,   // 确定按钮
     _enterButton:   null,   // 取消按钮
     _enterCallBack: null,   // 回调事件
+    _bgButton:      null,   // 黑色半透明背景（点击关闭）
+    _icon:          null,   // Alert头部图标
     _animSpeed:     0.3,    // 动画速度
 };
 
@@ -12,8 +14,10 @@ var Alert = {
  * enterCallBack:   确定点击事件回调  function 类型.
  * neeCancel:       是否展示取消按钮 bool 类型 default YES.
  * duration:        动画速度 default = 0.3.
+ * iconPic:         icon图标路径 
 */
-Alert.show = function (detailString, enterCallBack, needCancel, animSpeed) {
+// enterCallBack:   确定点击事件回调  function 类型.
+Alert.show = function (detailString, iconPic, enterCallBack, needCancel, animSpeed) {
 
     // 引用
     var self = this;
@@ -45,13 +49,19 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed) {
         self.actionFadeOut = cc.sequence(cc.spawn(cc.fadeTo(Alert._animSpeed, 0), cc.scaleTo(Alert._animSpeed, 2.0)), cbFadeOut);
 
         // 获取子节点
-        Alert._detailLabel = cc.find("detailLabel", alert);
-        Alert._cancelButton = cc.find("cancelButton", alert);
-        Alert._enterButton = cc.find("enterButton", alert);
+        Alert._detailLabel = cc.find("alertBackground/detailLabel", alert).getComponent(cc.Label);
+        Alert._cancelButton = cc.find("alertBackground/cancelButton", alert);
+        Alert._enterButton = cc.find("alertBackground/enterButton", alert);
+        Alert._bgButton = cc.find("bg",alert);
+        Alert._icon = cc.find("alertBackground/icon",alert).getComponent(cc.Sprite);
+
+        //设置图标
+        Alert._icon.spriteFrame = iconPic;
 
         // 添加点击事件
         Alert._enterButton.on('click', self.onButtonClicked, self);
         Alert._cancelButton.on('click', self.onButtonClicked, self);
+        Alert._bgButton.on('click', self.onButtonClicked, self);
 
         // 父视图
         Alert._alert.parent = cc.find("Canvas");

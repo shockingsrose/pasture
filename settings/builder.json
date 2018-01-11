@@ -1,5 +1,17 @@
 {
+  "appKey": "",
+  "appSecret": "",
+  "encryptJs": true,
   "excludeScenes": [],
+  "includeAnySDK": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
   "orientation": {
     "landscapeLeft": true,
     "landscapeRight": true,
@@ -7,7 +19,14 @@
     "upsideDown": false
   },
   "packageName": "org.cocos2d.helloworld",
-  "startScene": "2d2f792f-a40c-49bb-a189-ed176a246e49",
-  "title": "hello_world",
-  "webOrientation": "auto"
+  "privateKey": "",
+  "renderMode": "0",
+  "startScene": "7e1605c1-1252-44d6-a64d-57637763e3ad",
+  "title": "pasture",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "appid": "",
+    "orientation": "portrait"
+  },
+  "xxteaKey": "10e39616-1786-47"
 }

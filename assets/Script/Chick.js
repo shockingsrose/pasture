@@ -12,15 +12,25 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        anim: cc.Animation
+       
     },
+    anim_move: null,
+    anim_feed: null,
+    anim_treat: null,
 
+    init: function(){
+        this.anim_move = this.node.getComponent(cc.Animation)._clips[0];
+        this.anim_feed = this.node.getComponent(cc.Animation)._clips[1];
+        this.anim_treat = this.node.getComponent(cc.Animation)._clips[2];
+        
+    },
     
     playRun: function(){
-        this.anim.play('chick01');
+        
+
     },
     onLoad () {
-        
+        this.init();
     },
 
     
