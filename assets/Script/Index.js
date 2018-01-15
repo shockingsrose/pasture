@@ -9,11 +9,11 @@
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 
 //Chick.js 
-
+var Chick = require('Chick');
 
 cc.Class({
     extends: cc.Component,
-
+ 
     properties: {
         //Chick 节点 Node
         Chick: {
@@ -31,7 +31,7 @@ cc.Class({
 
     init: function(){
         this._chick = this.Chick.getComponent('Chick');
-        
+        var chickState = new Chick();
         
     },
     //点击治疗事件 弹出alert
@@ -47,12 +47,17 @@ cc.Class({
     //点击清理事件 弹出alert
     showClearAlert: function () {
         var self = this;
-        Alert.show("此次清理需要花费***元\n恢复**点成长值",this.clearIcon,function(){
-            self._chick._shitAnim.play('shit');
-            self._chick._shitCount = 0;
-            clearInterval(self._chick._timer);
-            self._chick._timer = setInterval(() => {self._chick._shitCount ++},5000);
-        });
+        if(this._chick._shitCount > 0){
+            Alert.show("此次清理需要花费***元\n恢复**点成长值",this.clearIcon,function(){
+                self._chick._shitAnim.play('shit');
+                self._chick._shitCount = 0;
+                clearInterval(self._chick._timer);
+                self._chick._timer = setInterval(() => {self._chick._shitCount ++},5000);
+            });
+        }else{
+            Alert.show("暂时不需要清理",this.clearIcon);
+        }
+       
     },
     //点击喂食事件 弹出alert
     showFeedAlert: function () {

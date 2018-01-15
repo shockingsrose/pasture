@@ -8,6 +8,7 @@
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 var Chick = cc.Class({
+    name: Chick,
     extends: cc.Component,
 
     properties: {
@@ -26,6 +27,7 @@ var Chick = cc.Class({
     _animMove: null,
     _animFeed: null,
     _animTreat: null,
+    //屎的属性
     _shitCount: null,
     _shitLabel: null,
     _shitNode: null,
@@ -60,7 +62,6 @@ var Chick = cc.Class({
         this._hpLabel =cc.find("Value",this._hpNode).getComponent(cc.Label);
         this.showHp();
         
-
 
         this.spawnNewShit();
     },
@@ -112,3 +113,5 @@ var Chick = cc.Class({
     }
 
 });
+
+var ji = new Chick();
