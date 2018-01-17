@@ -3,8 +3,8 @@
   "_name": "cloud",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 40,
-  "sample": 5,
+  "_duration": 98.5,
+  "sample": 2,
   "speed": 1,
   "wrapMode": 2,
   "curveData": {
@@ -13,22 +13,22 @@
         {
           "frame": 0,
           "value": [
-            6,
-            261
+            12,
+            347
           ]
         },
         {
-          "frame": 21,
+          "frame": 49.5,
           "value": [
-            376,
-            264
+            384,
+            353
           ]
         },
         {
-          "frame": 40,
+          "frame": 98.5,
           "value": [
-            -1,
-            258
+            11.99,
+            346.83
           ]
         }
       ]
