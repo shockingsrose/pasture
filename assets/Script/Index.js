@@ -23,6 +23,10 @@ cc.Class({
     MenuListNode: {
       default: null,
       type: cc.Node
+    },
+    btnMoreNode: {
+      default: null,
+      type: cc.Node
     }
   },
   //Chick.js
@@ -33,12 +37,14 @@ cc.Class({
   clearBar: null,
   //菜单 半透明背景 Modal_more
   MenuModal: null,
+  btnMoreSprite: null,
 
   init: function() {
     this._chick = this.Chick.getComponent("Chick");
     this.clearLabel = this.clearNode.getChildByName("Value").getComponent(cc.Label);
     this.clearBar = this.clearNode.getChildByName("heath_bar").getComponent(cc.ProgressBar);
-    this.MenuModal = cc.find("Modal_more", this.node);
+    this.MenuModal = cc.find("/div_menu/Modal_more", this.node);
+    this.btnMoreSprite = this.btnMoreNode.getComponent(cc.Sprite);
     // var chickState = new Chick();
     this.MenuListNode.active = false;
 
@@ -93,7 +99,12 @@ cc.Class({
   },
   showMenu: function() {
     var self = this;
+
     if (!this.MenuListNode.active) {
+      //弹出
+      cc.loader.loadRes("btn-retract", cc.SpriteFrame, function(err, spriteFrame) {
+        self.btnMoreSprite.spriteFrame = spriteFrame;
+      });
       var fadeIn = cc.fadeIn(0.3);
       this.MenuModal.runAction(fadeIn);
       this.MenuListNode.active = !this.MenuListNode.active;
@@ -101,6 +112,11 @@ cc.Class({
 
       this.MenuListNode.runAction(action);
     } else {
+      //收回
+      cc.loader.loadRes("btn-more", cc.SpriteFrame, function(err, spriteFrame) {
+        self.btnMoreSprite.spriteFrame = spriteFrame;
+      });
+
       var action = cc.sequence(
         cc.moveTo(0.3, cc.p(0, -800)),
         cc.callFunc(() => {
@@ -112,6 +128,9 @@ cc.Class({
       //菜单栏 半透明背景
       this.MenuModal.runAction(cc.fadeOut(0.3));
     }
+  },
+  rechargeEvent: function() {
+    cc.director.loadScene("recharge");
   },
 
   start: function() {
