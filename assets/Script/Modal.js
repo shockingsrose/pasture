@@ -28,7 +28,10 @@ var Modal = cc.Class({
       default: null,
       type: cc.Prefab
     },
-
+    signInModal_Prefab: {
+      default: null,
+      type: cc.Prefab
+    },
     Modal: {
       default: null,
       type: cc.Node
@@ -40,7 +43,7 @@ var Modal = cc.Class({
   showModal: function(event) {
     var name = event.currentTarget.name;
     this.setModal(name);
-    this.node.addChild(this._Modal);
+    this.node.addChild(this._Modal, 2);
 
     var action = cc.fadeIn(0.3);
     this._Modal.runAction(action);
@@ -70,6 +73,8 @@ var Modal = cc.Class({
       case "btn-friend":
         this._Modal = cc.instantiate(this.friendModal_Prefab);
         break;
+      case "sign":
+        this._Modal = cc.instantiate(this.signInModal_Prefab);
       //   case "message":
       //     this._Modal = cc.instantiate(this.messageModal_Prefab);
       //     break;

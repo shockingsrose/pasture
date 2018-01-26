@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "2a02a54e-5b5a-4fee-bc97-7363efca7d96",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Chick_sick": {
+      "ver": "1.0.3",
+      "uuid": "009d03ac-be78-4861-b6eb-aa914d4ee141",
+      "rawTextureUuid": "2a02a54e-5b5a-4fee-bc97-7363efca7d96",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": -29.5,
+      "trimX": 246,
+      "trimY": 142,
+      "width": 1517,
+      "height": 1035,
+      "rawWidth": 2010,
+      "rawHeight": 1260,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

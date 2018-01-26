@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "2639591b-072d-48b4-bc23-213beb44b311",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Chick_hungry": {
+      "ver": "1.0.3",
+      "uuid": "5298625b-7286-4e41-a56d-0458005df9a2",
+      "rawTextureUuid": "2639591b-072d-48b4-bc23-213beb44b311",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 23.5,
+      "offsetY": -22,
+      "trimX": 259,
+      "trimY": 127,
+      "width": 2879,
+      "height": 1050,
+      "rawWidth": 3350,
+      "rawHeight": 1260,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

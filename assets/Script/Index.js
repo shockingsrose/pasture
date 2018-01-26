@@ -28,6 +28,10 @@ cc.Class({
       default: null,
       type: cc.Node
     }
+    // hpNode: {
+    //   default: null,
+    //   type: cc.Prefab
+    // }
   },
   //Chick.js
   _chick: null,
@@ -56,7 +60,7 @@ cc.Class({
   showTreatAlert: function() {
     var self = this;
     Alert.show("此次治疗需要花费***元\n恢复**点成长值", this.treatIcon, function() {
-      self._chick._chickAnim.play("chick_treat");
+      self._chick._chickAnim.play("chick_move");
       setTimeout(() => {
         self._chick._chickAnim.play("chick_move");
       }, 5000);
@@ -129,10 +133,31 @@ cc.Class({
       this.MenuModal.runAction(cc.fadeOut(0.3));
     }
   },
+  showHP: function() {
+    this._chick._hpNode.active = true;
+    // this._chick._hpNode.runAction(cc.fadeIn(0.3));
+    setTimeout(() => {
+      this._chick._hpNode.active = false;
+      // this._chick._hpNode.runAction(cc.fadeOut(0.3));
+    }, 3000);
+  },
+  //点击充值 跳转场景
   rechargeEvent: function() {
     cc.director.loadScene("recharge");
   },
+  onLoad: function() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+        var response = xhr.responseText;
+        console.log(response);
+      }
+    };
 
+    xhr.open("GET", "http://192.168.42.88:4633/T_Base_User/GetWholeData?openID=o9AgowGKcD5MAuYIhedEX-4aHpJc", true);
+    xhr.setRequestHeader("Content-Type", "json");
+    xhr.send();
+  },
   start: function() {
     this.init();
   },

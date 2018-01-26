@@ -26,6 +26,9 @@ var Chick = cc.Class({
   _animMove: null,
   _animFeed: null,
   _animTreat: null,
+  _animHungry: null,
+  _animSick: null,
+
   //屎的属性
   _shitCount: null,
   _shitLabel: null,
@@ -44,12 +47,15 @@ var Chick = cc.Class({
     this._animMove = this.node.getComponent(cc.Animation)._clips[0];
     this._animFeed = this.node.getComponent(cc.Animation)._clips[1];
     this._animTreat = this.node.getComponent(cc.Animation)._clips[2];
+    this._animHungry = this.node.getComponent(cc.Animation)._clips[3];
+    this._animSick = this.node.getComponent(cc.Animation)._clips[4];
 
     this._parentNode = cc.find("Canvas");
     this._shitCount = 0;
 
     this._hpValue = 20;
     this._hpNode = this._parentNode.getChildByName("HP");
+    this._hpNode.active = false;
     this._hpBar = cc.find("hpBar", this._hpNode).getComponent(cc.ProgressBar);
     this._hpLabel = cc.find("Value", this._hpNode).getComponent(cc.Label);
     this.showHp();
@@ -66,6 +72,14 @@ var Chick = cc.Class({
   playChickTreat: function() {
     this._chickAnim.play("click_treat");
   },
+  playChickHungry: function() {
+    this._chickAnim.play("click_hungry");
+  },
+  playChickSick: function() {
+    this._chickAnim.play("click_sick");
+  },
+
+  //生成新的粪便
   spawnNewShit: function() {
     if (this._parentNode.getChildByName("shit") == null) {
       this._shitNode = cc.instantiate(this.shitPrefab);
@@ -99,5 +113,3 @@ var Chick = cc.Class({
     this.showHp();
   }
 });
-
-var ji = new Chick();
