@@ -58,6 +58,9 @@ var Chick = cc.Class({
     this._hpNode.active = false;
     this._hpBar = cc.find("hpBar", this._hpNode).getComponent(cc.ProgressBar);
     this._hpLabel = cc.find("Value", this._hpNode).getComponent(cc.Label);
+    this.function_ = function() {
+      this.playChickMove();
+    };
     this.showHp();
 
     this.spawnNewShit();
@@ -65,6 +68,7 @@ var Chick = cc.Class({
 
   playChickMove: function() {
     this._chickAnim.play("click_move");
+    console.log("clickMove");
   },
   playChickFeed: function() {
     this._chickAnim.play("click_feed");
@@ -113,3 +117,4 @@ var Chick = cc.Class({
     this.showHp();
   }
 });
+console.log(Chick);

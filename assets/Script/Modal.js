@@ -43,8 +43,11 @@ var Modal = cc.Class({
   showModal: function(event) {
     var name = event.currentTarget.name;
     this.setModal(name);
-    this.node.addChild(this._Modal, 2);
 
+    var modal_name = this._Modal.name;
+    if (!this.node.getChildByName(modal_name)) {
+      this.node.addChild(this._Modal, 2);
+    }
     var action = cc.fadeIn(0.3);
     this._Modal.runAction(action);
     console.log(this.node.getChildByName("modal"));
@@ -74,7 +77,11 @@ var Modal = cc.Class({
         this._Modal = cc.instantiate(this.friendModal_Prefab);
         break;
       case "sign":
-        this._Modal = cc.instantiate(this.signInModal_Prefab);
+        if (!this.node.getChildByName("signIn")) {
+          this._Modal = cc.instantiate(this.signInModal_Prefab);
+        } else {
+          this._Modal = this.node.getChildByName("signIn");
+        }
       //   case "message":
       //     this._Modal = cc.instantiate(this.messageModal_Prefab);
       //     break;

@@ -7,7 +7,7 @@ cc.Class({
       type: cc.Node
     }
   },
-
+  todayNode: null, //item 节点
   // use this for initialization
   onLoad: function() {
     var date = new Date();
@@ -17,48 +17,31 @@ cc.Class({
 
     // 获取这月有多少天
     var currentDay = this.getMonthsDay(newyear, newmonth);
-
     // 获取当月第一天星期几
     var firstDay = this.getMonthFirst(newyear, newmonth);
-
     var lastMonth = newmonth - 1 >= 0 ? newmonth - 1 : 12;
-
-    // this.node
-    //   .getChildByName("data")
-    //   .getChildByName(`year`)
-    //   .getComponent(cc.Label).string =
-    //   newyear + " 年";
-    // this.node
-    //   .getChildByName("data")
-    //   .getChildByName(`month`)
-    //   .getComponent(cc.Label).string =
-    //   newmonth + 1 + " 月";
-
     var lastDay = this.getMonthsDay(newyear, lastMonth);
     var newlastDay = lastDay;
-    // for (var i = firstDay - 1; i >= 0; i--) {
-    //   this.node.getChildByName("title1").getChildByName(`item${i}`).color = new cc.Color(192, 192, 192);
-    //   this.node
-    //     .getChildByName("title1")
-    //     .getChildByName(`item${i}`)
-    //     .getComponent(cc.Label).string = newlastDay--;
-    // }
-
-    console.log(
-      `lastMonth:${lastMonth} newmonth:${newmonth} firstDay:${firstDay} currentDay:${currentDay} lastDay:${lastDay}`
-    );
-
     var newCurrentDay = 1;
+    // 第一行赋值
     for (var i = firstDay; i <= 6; i++) {
-      if (newCurrentDay == newday) {
-        this.node.getChildByName("title1").getChildByName(`item${i}`).color = new cc.Color(65, 205, 225);
-      }
-      this.node
+      //第一行
+      var itemNode = this.node
         .getChildByName("title1")
         .getChildByName(`item${i}`)
-        .getComponent(cc.Label).string = newCurrentDay++;
+        .getChildByName("item_undo")
+        .getChildByName("day"); //日期节点(item) 第一行
+      if (newCurrentDay == newday) {
+        itemNode.color = new cc.Color(65, 205, 225);
+        this.todayNode = this.node.getChildByName("title1").getChildByName(`item${i}`);
+      }
+      itemNode.getComponent(cc.Label).string = newCurrentDay++;
+      //日期绑定签到事件
+      itemNode.on("touchend", function(event) {
+        console.log(event);
+      });
     }
-
+    // 第二、三、四行赋值
     var num = 1;
     var number = 0;
     for (var i = newCurrentDay; i <= currentDay; i++) {
@@ -67,25 +50,22 @@ cc.Class({
         number = 0;
       }
 
-      if (i == newday) {
-        this.node.getChildByName(`title${num}`).getChildByName(`item${number}`).color = new cc.Color(65, 205, 225);
-      }
-      this.node
+      var itemNode = this.node
         .getChildByName(`title${num}`)
-        .getChildByName(`item${number++}`)
-        .getComponent(cc.Label).string = i;
+        .getChildByName(`item${number}`)
+        .getChildByName("item_undo")
+        .getChildByName("day"); //日期节点(item) 第2、3、4 行
+      if (i == newday) {
+        itemNode.color = new cc.Color(65, 205, 225);
+        this.todayNode = this.node.getChildByName(`title${num}`).getChildByName(`item${number}`);
+      }
+      itemNode.getComponent(cc.Label).string = i;
+      //日期绑定签到事件
+      itemNode.on("touchend", function(event) {
+        console.log(event);
+      });
+      number++;
     }
-
-    // if (number <= 6) {
-    //   var index = 1;
-    //   for (var i = number; i <= 6; i++) {
-    //     this.node.getChildByName(`title${num}`).getChildByName(`item${number}`).color = new cc.Color(192, 192, 192);
-    //     this.node
-    //       .getChildByName(`title${num}`)
-    //       .getChildByName(`item${number++}`)
-    //       .getComponent(cc.Label).string = index++;
-    //   }
-    // }
   },
 
   // 获取那年那月有多少天
@@ -130,14 +110,20 @@ cc.Class({
     return newDate.getDay();
   },
 
+  // 关闭模态框
   closeModal() {
     var self = this;
     console.log("close modal");
     //删除 爷爷节点
-    var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(self.parentNode.removeFromParent, self.parentNode));
+    var action = cc.fadeOut(0.3);
     self.parentNode.runAction(action);
 
     // scrollView.removeFromParent();
     // this.node.removeChild(Modal);
+  },
+
+  signIn() {
+    this.todayNode.getChildByName("item_do").active = true;
+    this.todayNode.getChildByName("item_undo").active = false;
   }
 });

@@ -160,6 +160,7 @@ cc.Class({
   },
   start: function() {
     this.init();
+    // this._chick.function_();
   },
 
   update(dt) {}

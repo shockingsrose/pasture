@@ -2502,7 +2502,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 360,
+      "width": 80,
       "height": 65
     },
     "_rotationX": 0,
@@ -2676,7 +2676,7 @@
       "__id__": 70
     },
     "_N$mode": 0,
-    "_N$progress": 0.9,
+    "_N$progress": 0.2,
     "_N$reverse": false
   },
   {
