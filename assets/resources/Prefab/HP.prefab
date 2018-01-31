@@ -35,7 +35,7 @@
       "__id__": 20
     },
     "_id": "",
-    "_opacity": 225,
+    "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -233,7 +233,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 360,
+      "width": 80,
       "height": 65
     },
     "_rotationX": 0,
@@ -407,7 +407,7 @@
       "__id__": 5
     },
     "_N$mode": 0,
-    "_N$progress": 0.9,
+    "_N$progress": 0.2,
     "_N$reverse": false
   },
   {

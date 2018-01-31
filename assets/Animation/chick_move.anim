@@ -3,7 +3,7 @@
   "_name": "chick_move",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.3125,
+  "_duration": 0.31,
   "sample": 80,
   "speed": 0.5,
   "wrapMode": 2,
@@ -11,6 +11,12 @@
     "comps": {
       "cc.Sprite": {
         "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "61028f47-c305-43c0-818b-f8a218bb14a0"
+            }
+          },
           {
             "frame": 0.0625,
             "value": {

@@ -45,12 +45,18 @@ var Modal = cc.Class({
     this.setModal(name);
 
     var modal_name = this._Modal.name;
+    if (modal_name == "default") {
+      Alert.show("该功能还在开发中");
+      return;
+    }
     if (!this.node.getChildByName(modal_name)) {
+      //Modal如果不存在 将Modal预制资源添加到Canvas
       this.node.addChild(this._Modal, 2);
     }
+    this._Modal.active = true;
+    this._Modal.opacity = 0;
     var action = cc.fadeIn(0.3);
     this._Modal.runAction(action);
-    console.log(this.node.getChildByName("modal"));
   },
   closeModal: function() {
     var self = this;
@@ -66,10 +72,11 @@ var Modal = cc.Class({
 
   //判断要弹出哪个Modal 并赋值给this._Modal
   setModal: function(name) {
+    this._Modal = {}; //初始化
     switch (name) {
-      //   case "shop":
-      //     this._Modal = cc.instantiate(this.shopModal_Prefab);
-      //     break;
+      case "shop":
+        this._Modal.name = "default"; //开发中
+        break;
       case "repertory":
         this._Modal = cc.instantiate(this.repertoryModal_Prefab);
         break;
@@ -82,11 +89,18 @@ var Modal = cc.Class({
         } else {
           this._Modal = this.node.getChildByName("signIn");
         }
-      //   case "message":
-      //     this._Modal = cc.instantiate(this.messageModal_Prefab);
-      //     break;
+        break;
+      case "message":
+        this._Modal = cc.instantiate(this.messageModal_Prefab);
+        this._Modal.name = "default"; //开发中
+        break;
+      case "me":
+        this._Modal.name = "default"; //开发中
+        break;
+      case "activity":
+        this._Modal.name = "default"; //开发中
+        break;
     }
-    this._Modal.opacity = 0;
   },
   onLoad: function() {
     this.Modal.active = false;

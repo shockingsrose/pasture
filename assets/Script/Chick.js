@@ -18,6 +18,8 @@ var Chick = cc.Class({
     }
   },
 
+  // 鸡的状态
+
   _parentNode: null,
   _chickNode: null,
   // cc.Animation 动画实例
@@ -42,6 +44,14 @@ var Chick = cc.Class({
   _hpValue: 0,
 
   init: function() {
+    //鸡的状态初始化
+    this._chickStatus = {
+      sick: true,
+      hungry: true,
+      shit: true
+    };
+
+    //节点的绑定
     this._chickNode = this.node;
     this._chickAnim = this.node.getComponent(cc.Animation);
     this._animMove = this.node.getComponent(cc.Animation)._clips[0];
@@ -49,7 +59,6 @@ var Chick = cc.Class({
     this._animTreat = this.node.getComponent(cc.Animation)._clips[2];
     this._animHungry = this.node.getComponent(cc.Animation)._clips[3];
     this._animSick = this.node.getComponent(cc.Animation)._clips[4];
-
     this._parentNode = cc.find("Canvas");
     this._shitCount = 0;
 
@@ -58,29 +67,10 @@ var Chick = cc.Class({
     this._hpNode.active = false;
     this._hpBar = cc.find("hpBar", this._hpNode).getComponent(cc.ProgressBar);
     this._hpLabel = cc.find("Value", this._hpNode).getComponent(cc.Label);
-    this.function_ = function() {
-      this.playChickMove();
-    };
+
     this.showHp();
 
-    this.spawnNewShit();
-  },
-
-  playChickMove: function() {
-    this._chickAnim.play("click_move");
-    console.log("clickMove");
-  },
-  playChickFeed: function() {
-    this._chickAnim.play("click_feed");
-  },
-  playChickTreat: function() {
-    this._chickAnim.play("click_treat");
-  },
-  playChickHungry: function() {
-    this._chickAnim.play("click_hungry");
-  },
-  playChickSick: function() {
-    this._chickAnim.play("click_sick");
+    this.playAnim();
   },
 
   //生成新的粪便
@@ -110,11 +100,82 @@ var Chick = cc.Class({
     this._timer = setInterval(() => {
       this._shitCount++;
     }, 5000);
+
+    this.chickFunc = {
+      playChickAnim: this.playAnim
+    };
   },
 
   update(dt) {
-    this.showShit();
+    // this.showShit();
     this.showHp();
+  },
+
+  //小鸡的动画
+  playChickMove: function() {
+    this._chickAnim.play("chick_move");
+  },
+  playChickFeed: function() {
+    var anim = this._chickAnim.play("chick_feed");
+  },
+  playChickTreat: function() {
+    this._chickAnim.play("chick_treat");
+  },
+  playChickShit: function() {
+    this._chickAnim.play("chick_shit");
+  },
+  playChickHungry: function() {
+    this._chickAnim.play("chick_hungry");
+  },
+  playChickSick: function() {
+    this._chickAnim.play("chick_sick");
+  },
+  playChickSickHungry: function() {
+    this._chickAnim.play("chick_sick_hungry");
+  },
+  playChickSickShit: function() {
+    this._chickAnim.play("chick_shit_sick");
+  },
+  playChickShitHungry: function() {
+    this._chickAnim.play("chick_shit_hungry");
+  },
+  playChickShitHungrySick: function() {
+    this._chickAnim.play("chick_hungry_sick_shit");
+  },
+
+  //根据小鸡的状态 播放不同的动画
+  playAnim: function() {
+    if (this._chickStatus.sick && this._chickStatus.hungry && this._chickStatus.shit) {
+      this.playChickShitHungrySick();
+      return;
+    }
+    if (!this._chickStatus.sick && !this._chickStatus.hungry && !this._chickStatus.shit) {
+      this.playChickMove();
+      return;
+    }
+    if (this._chickStatus.sick) {
+      //生病状态
+      !this._chickStatus.hungry && !this._chickStatus.shit ? this.playChickSick() : false;
+      //生病+饥饿状态
+      this._chickStatus.hungry && !this._chickStatus.shit ? this.playChickSickHungry() : false;
+      //生病+肮脏状态
+      !this._chickStatus.hungry && this._chickStatus.shit ? this.playChickSickShit() : false;
+    }
+    if (this._chickStatus.hungry) {
+      //饥饿状态
+      !this._chickStatus.sick && !this._chickStatus.shit ? this.playChickHungry() : false;
+      //饥饿+肮脏状态
+      !this._chickStatus.sick && this._chickStatus.shit ? this.playChickShitHungry() : false;
+      //饥饿+生病状态
+      this._chickStatus.sick && this._chickStatus.shit ? this.playChickSickHungry() : false;
+    }
+    if (this._chickStatus.shit) {
+      //肮脏状态
+      !this._chickStatus.hungry && !this._chickStatus.sick ? this.playChickShit() : false;
+      //肮脏+饥饿状态
+      this._chickStatus.hungry && !this._chickStatus.sick ? this.playChickShitHungry() : false;
+      //肮脏+生病状态
+      !this._chickStatus.hungry && this._chickStatus.sick ? this.playChickSickShit() : false;
+    }
   }
 });
-console.log(Chick);

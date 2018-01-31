@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "c3165df5-1640-4dde-b092-add116685534",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "治疗": {
+      "ver": "1.0.3",
+      "uuid": "648fef8c-d11b-4fd3-8afe-27bc4da7e88d",
+      "rawTextureUuid": "c3165df5-1640-4dde-b092-add116685534",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 43,
+      "offsetY": -29.5,
+      "trimX": 246,
+      "trimY": 143,
+      "width": 2282,
+      "height": 617,
+      "rawWidth": 2688,
+      "rawHeight": 844,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -117,6 +117,9 @@ cc.Class({
     //删除 爷爷节点
     var action = cc.fadeOut(0.3);
     self.parentNode.runAction(action);
+    setTimeout(() => {
+      self.parentNode.active = false;
+    }, 400);
 
     // scrollView.removeFromParent();
     // this.node.removeChild(Modal);
