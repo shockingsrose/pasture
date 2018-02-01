@@ -6,7 +6,7 @@ var Alert = {
   _enterCallBack: null, // 回调事件
   _bgButton: null, // 黑色半透明背景（点击关闭）
   _icon: null, // Alert头部图标
-  _animSpeed: 0.3 // 动画速度
+  _animSpeed: 0.8 // 动画速度
 };
 
 /**
