@@ -10,7 +10,8 @@ var Alert = {
 };
 
 /**
- * detailString :   内容 string 类型.
+ * 更改更改更改更改更改
+ * detailString :   内容 string 类型 .
  * enterCallBack:   确定点击事件回调  function 类型.
  * neeCancel:       是否展示取消按钮 bool 类型 default YES.
  * duration:        动画速度 default = 0.3.
