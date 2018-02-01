@@ -43,7 +43,7 @@ cc.Class({
   handNode: null,
   handAnim: null,
 
-  init: function() {
+  init: function () {
     this._chick = this.Chick.getComponent("Chick");
     this.clearLabel = this.clearNode.getChildByName("Value").getComponent(cc.Label);
     this.clearBar = this.clearNode.getChildByName("heath_bar").getComponent(cc.ProgressBar);
@@ -61,7 +61,7 @@ cc.Class({
     this.chickFunc = this._chick.chickFunc;
   },
   //点击治疗事件 弹出alert
-  showTreatAlert: function() {
+  showTreatAlert: function () {
     var self = this;
     // Alert.show("暂时不需要治疗", this.treatIcon, function() {
     if (this._chick._chickStatus.sick) {
@@ -73,7 +73,7 @@ cc.Class({
     }
   },
   //点击清理事件 弹出alert
-  showClearAlert: function() {
+  showClearAlert: function () {
     var self = this;
     if (this._chick._chickStatus.shit) {
       //牧场肮脏 执行动画
@@ -90,7 +90,7 @@ cc.Class({
     }
   },
   //点击喂食事件 弹出alert
-  showFeedAlert: function() {
+  showFeedAlert: function () {
     var self = this;
     if (this._chick._chickStatus.hungry) {
       var anim = self._chick._chickAnim.play("chick_feed");
@@ -104,12 +104,12 @@ cc.Class({
     //成长值 +1
     self._chick._hpValue += 1;
   },
-  showMenu: function() {
+  showMenu: function () {
     var self = this;
 
     if (!this.MenuListNode.active) {
       //弹出
-      cc.loader.loadRes("btn-retract", cc.SpriteFrame, function(err, spriteFrame) {
+      cc.loader.loadRes("btn-retract", cc.SpriteFrame, function (err, spriteFrame) {
         self.btnMoreSprite.spriteFrame = spriteFrame;
       });
       var fadeIn = cc.fadeIn(0.3);
@@ -120,7 +120,7 @@ cc.Class({
       this.MenuListNode.runAction(action);
     } else {
       //收回
-      cc.loader.loadRes("btn-more", cc.SpriteFrame, function(err, spriteFrame) {
+      cc.loader.loadRes("btn-more", cc.SpriteFrame, function (err, spriteFrame) {
         self.btnMoreSprite.spriteFrame = spriteFrame;
       });
 
@@ -136,7 +136,7 @@ cc.Class({
       this.MenuModal.runAction(cc.fadeOut(0.3));
     }
   },
-  showHP: function() {
+  showHP: function () {
     this._chick._hpNode.active = true;
     var hpBar = cc.find("hpBar", this._chick._hpNode);
     //取消级联透明度的设置  不会继承父级opacity（不设置会导致Mask失效）
@@ -155,41 +155,41 @@ cc.Class({
     }, 1000);
   },
   //点击充值 跳转场景
-  rechargeEvent: function() {
+  rechargeEvent: function () {
     cc.director.loadScene("recharge");
   },
 
-  showSickAnim: function() {
+  showSickAnim: function () {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.hungry = false;
     this._chick._chickStatus.shit = false;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  showSickHungryAnim: function() {
+  showSickHungryAnim: function () {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.hungry = true;
     this._chick._chickStatus.shit = false;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  showShitSickAnim: function() {
+  showShitSickAnim: function () {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.shit = true;
     this._chick._chickStatus.hungry = false;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  showShitHungryAnim: function() {
+  showShitHungryAnim: function () {
     this._chick._chickStatus.hungry = true;
     this._chick._chickStatus.shit = true;
     this._chick._chickStatus.sick = false;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  showHungrySickShitAnim: function() {
+  showHungrySickShitAnim: function () {
     this._chick._chickStatus.hungry = true;
     this._chick._chickStatus.shit = true;
     this._chick._chickStatus.sick = true;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  onLoad: function() {
+  onLoad: function () {
     // var xhr = new XMLHttpRequest();
     // xhr.onreadystatechange = function() {
     //   if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
@@ -206,7 +206,7 @@ cc.Class({
     // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
     // xhr.send("openID=o9AgowGKcD5MAuYIhedEX&pageSize=9");
   },
-  start: function() {
+  start: function () {
     this.init();
   },
 
