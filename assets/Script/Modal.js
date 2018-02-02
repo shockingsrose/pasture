@@ -16,6 +16,10 @@ var Modal = cc.Class({
       default: null,
       type: cc.Prefab
     },
+    AlertTemp_Prefab: {
+      default: null,
+      type: cc.Prefab
+    },
     repertoryModal_Prefab: {
       default: null,
       type: cc.Prefab
@@ -76,6 +80,9 @@ var Modal = cc.Class({
     switch (name) {
       case "shop":
         this._Modal.name = "default"; //开发中
+        break;
+      case "telModel":
+        this._Modal.name = cc.instantiate(this.AlertTemp_Prefab);
         break;
       case "repertory":
         this._Modal = cc.instantiate(this.repertoryModal_Prefab);
