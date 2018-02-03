@@ -788,8 +788,8 @@
     "target": {
       "__id__": 2
     },
-    "component": "Modal",
-    "handler": "showModal",
+    "component": "Index",
+    "handler": "showUserCenter",
     "customEventData": ""
   },
   {
