@@ -11547,7 +11547,15 @@
       "__id__": 1
     },
     "_enabled": true,
-    "btnCloseNode": null
+    "itemTop3": {
+      "__uuid__": "bd130e0f-0679-436c-a0ae-08d44d61c5f6"
+    },
+    "itemFriend": {
+      "__uuid__": "60be436c-7aef-4a85-b954-2d9e32ce0f6c"
+    },
+    "itemSearch": {
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

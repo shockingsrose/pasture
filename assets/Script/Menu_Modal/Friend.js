@@ -7,14 +7,23 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
-
+var Data = require("Data");
+var Func = Data.func;
 cc.Class({
   extends: cc.Component,
 
   properties: {
-    btnCloseNode: {
+    itemTop3: {
       default: null,
-      type: cc.Node
+      type: cc.Prefab
+    },
+    itemFriend: {
+      default: null,
+      type: cc.Prefab
+    },
+    itemSearch: {
+      default: null,
+      type: cc.Prefab
     }
   },
   closeModal() {
@@ -25,6 +34,17 @@ cc.Class({
 
     // scrollView.removeFromParent();
     // this.node.removeChild(Modal);
+  },
+  onLoad() {
+    Func.GetFriendsList().then(data => {
+      console.log(data);
+      var friendList = data.List;
+      for (let i = 0; i < friendList.length; i++) {
+        const element = friendList[i];
+        var item = cc.instantiate(this.itemTop3);
+        this.node.addChild(item);
+      }
+    });
   },
   start() {}
 
