@@ -17,6 +17,10 @@ var Modal = cc.Class({
       default: null,
       type: cc.Prefab
     },
+    AlertTemp_Prefab: {
+      default: null,
+      type: cc.Prefab
+    },
     repertoryModal_Prefab: {
       default: null,
       type: cc.Prefab
@@ -33,6 +37,10 @@ var Modal = cc.Class({
       default: null,
       type: cc.Prefab
     },
+    shareModal_Prefab: {
+      default: null,
+      type: cc.Prefab
+    },
     Modal: {
       default: null,
       type: cc.Node
@@ -41,7 +49,9 @@ var Modal = cc.Class({
   _Modal: null,
   // 动画
 
-  showModal: function(event) {
+  showModal: function(event, data) {
+    //console.log(data); customEventData
+
     var name = event.currentTarget.name;
     this.setModal(name);
 
@@ -54,10 +64,7 @@ var Modal = cc.Class({
       //Modal如果不存在 将Modal预制资源添加到Canvas
       this.node.addChild(this._Modal, 2);
     }
-    this._Modal.active = true;
-    this._Modal.opacity = 0;
-    var action = cc.fadeIn(0.3);
-    this._Modal.runAction(action);
+    this.RunAction(data); //默认
   },
   closeModal: function() {
     var self = this;
@@ -76,14 +83,29 @@ var Modal = cc.Class({
     this._Modal = {}; //初始化
     switch (name) {
       case "shop":
-        this._Modal.name = "default"; //开发中
+        cc.director.loadScene("shop");
+        break;
+      case "telModel":
+        this._Modal.name = cc.instantiate(this.AlertTemp_Prefab);
         break;
       case "repertory":
         this._Modal = cc.instantiate(this.repertoryModal_Prefab);
         break;
       case "btn-friend":
-        this._Modal = cc.instantiate(this.friendModal_Prefab);
-
+        // 如果不存在 加载预制资源     存在 this._Modal等于该节点
+        if (!this.node.getChildByName("FriendView")) {
+          this._Modal = cc.instantiate(this.friendModal_Prefab);
+        } else {
+          this._Modal = this.node.getChildByName("FriendView");
+        }
+        break;
+      case "btn-share":
+        this._Modal = cc.instantiate(this.shareModal_Prefab);
+        var cancelButton = cc.find("bg-share/btn-cancel", this._Modal);
+        cancelButton.on("click", () => {
+          var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
+          this._Modal.runAction(action);
+        });
         break;
       case "sign":
         if (!this.node.getChildByName("signIn")) {
@@ -104,8 +126,33 @@ var Modal = cc.Class({
         break;
     }
   },
+  //弹出动画 （默认fadeIn）
+  RunAction(type) {
+    var action = null;
+    switch (type) {
+      case "fadeIn":
+        this._Modal.active = true;
+        this._Modal.opacity = 0;
+        action = cc.fadeIn(0.3);
+        this._Modal.runAction(action);
+        break;
+      case "moveIn":
+        var shareNode = cc.find("bg-share", this._Modal);
+        action = cc.moveTo(0.3, cc.p(0, -474));
+        shareNode.runAction(action);
+        break;
+      default:
+        this._Modal.active = true;
+        this._Modal.opacity = 0;
+        action = cc.fadeIn(0.3);
+        this._Modal.runAction(action);
+        break;
+    }
+
+    return action;
+  },
   onLoad: function() {
-    this.Modal.active = false;
+    // this.Modal.active = false;
   }
   // update (dt) {},
 });

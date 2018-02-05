@@ -45,7 +45,7 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        "http://192.168.42.88:4633/T_Base_User/GetFriendsList?openID=o9AgowGKcD5MAuYIhedEX-4aHpJc&startIndex=1&endIndex=9",
+        "http://192.168.42.88:4633/T_Base_User/GetFriendsList?openID=o9AgowGKcD5MAuYIhedEX-4aHpJc&startIndex=1&endIndex=9&orderby=Grade desc",
         true
       );
       xhr.setRequestHeader("Content-Type", "json");

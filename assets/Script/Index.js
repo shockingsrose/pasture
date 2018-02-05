@@ -56,7 +56,6 @@ cc.Class({
     this.handAnim = this.handNode.getComponent(cc.Animation);
     // var chickState = new Chick();
     this.MenuListNode.active = false;
-    this.chickFunc = this._chick.chickFunc;
   },
   initData(data) {
     //清洁度设置
@@ -70,6 +69,18 @@ cc.Class({
     moneyLabel.string = RanchMoney;
 
     //签到设置
+
+    //初始化鸡的状态
+    console.log(data.ChickenList[0]);
+
+    var shitStatus = data.ChickenList[0].Shit;
+    var sickStatus = data.ChickenList[0].Sick;
+    var hungryStatus = data.ChickenList[0].Hungry;
+    this._chick._chickStatus.shit = shitStatus;
+    this._chick._chickStatus.sick = sickStatus;
+    this._chick._chickStatus.hungry = hungryStatus;
+
+    this.chickFunc.playChickAnim.call(this._chick);
   },
   //点击治疗事件 弹出alert
   showTreatAlert: function() {
@@ -148,28 +159,30 @@ cc.Class({
     }
   },
   showHP: function() {
-    this._chick._hpNode.active = true;
-    var hpBar = cc.find("hpBar", this._chick._hpNode);
-    //取消级联透明度的设置  不会继承父级opacity（不设置会导致Mask失效）
-    hpBar.cascadeOpacity = false;
+    this._chick._stateNode.active = true;
+    // var hpBar = cc.find("hpBar", this._chick._stateNode);
+    // //取消级联透明度的设置  不会继承父级opacity（不设置会导致Mask失效）
+    // hpBar.cascadeOpacity = false;
 
-    this._chick._hpNode.opacity = 0;
-    this._chick._hpNode.runAction(cc.fadeIn(0.3));
+    this._chick._stateNode.opacity = 0;
+    this._chick._stateNode.runAction(cc.fadeIn(0.3));
     var action = cc.sequence(
       cc.fadeOut(0.3),
       cc.callFunc(() => {
-        this._chick._hpNode.active = false;
+        this._chick._stateNode.active = false;
       }, this)
     );
     setTimeout(() => {
-      this._chick._hpNode.runAction(action);
-    }, 1000);
+      this._chick._stateNode.runAction(action);
+    }, 2000);
   },
   //点击充值 跳转场景
   rechargeEvent: function() {
     cc.director.loadScene("recharge");
   },
-
+  showUserCenter: function() {
+    cc.director.loadScene("userCenter");
+  },
   showSickAnim: function() {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.hungry = false;
@@ -200,15 +213,15 @@ cc.Class({
     this._chick._chickStatus.sick = true;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  onLoad: function() {
+  onLoad: function() {},
+  start: function() {
     this.init();
-
+    this.chickFunc = this._chick.chickFunc;
     Func.GetWholeData().then(data => {
-      console.log(data);
+      // console.log(data);
       this.initData(JSON.parse(data));
     });
   },
-  start: function() {},
 
   update(dt) {}
 });
