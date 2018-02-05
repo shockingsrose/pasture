@@ -11,7 +11,12 @@
 cc.Class({
   extends: cc.Component,
 
-  properties: {},
+  properties: {
+    AlertTemp_Prefab: {
+      default: null,
+      type: cc.Prefab
+    }
+  },
 
   btnBackEvent() {
     cc.director.loadScene("index");

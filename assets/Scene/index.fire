@@ -5379,15 +5379,14 @@
     "shopModal_Prefab": {
       "__uuid__": "ce67ac48-c9e1-403e-8ca5-d044be311203"
     },
+    "AlertTemp_Prefab": null,
     "repertoryModal_Prefab": {
       "__uuid__": "f3bc236a-237b-4518-b7d7-450581136be0"
     },
     "friendModal_Prefab": {
       "__uuid__": "7f2f952f-8da3-4568-b0fd-2d778d818872"
     },
-    "messageModal_Prefab": {
-      "__uuid__": "47660f4e-9ca5-48a7-a3fc-cb8028972238"
-    },
+    "messageModal_Prefab": null,
     "signInModal_Prefab": {
       "__uuid__": "97d73a6b-36e9-4a92-b4a9-b77e157b59d1"
     },

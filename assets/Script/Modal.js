@@ -82,7 +82,7 @@ var Modal = cc.Class({
         this._Modal.name = "default"; //开发中
         break;
       case "telModel":
-        this._Modal.name = cc.instantiate(this.AlertTemp_Prefab);
+        this._Modal = cc.instantiate(this.AlertTemp_Prefab);
         break;
       case "repertory":
         this._Modal = cc.instantiate(this.repertoryModal_Prefab);
@@ -99,7 +99,11 @@ var Modal = cc.Class({
         break;
       case "message":
         this._Modal = cc.instantiate(this.messageModal_Prefab);
-        this._Modal.name = "default"; //开发中
+        var cancelButton = cc.find("close", this._Modal);
+        cancelButton.on("click", () => {
+          var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
+          this._Modal.runAction(action);
+        });
         break;
       case "me":
         this._Modal.name = "default"; //开发中
