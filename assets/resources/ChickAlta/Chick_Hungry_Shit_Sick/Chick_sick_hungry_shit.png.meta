@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "82507b39-9d82-4127-9502-fdf85e6932af",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Chick_sick_hungry_shit": {
+      "ver": "1.0.3",
+      "uuid": "2917a9ce-38aa-455c-9b0f-99d242708328",
+      "rawTextureUuid": "82507b39-9d82-4127-9502-fdf85e6932af",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 1911,
+      "height": 1238,
+      "rawWidth": 1911,
+      "rawHeight": 1238,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -37,12 +37,12 @@ var Chick = cc.Class({
   _shitNode: null,
   _shitAnim: null,
   _timer: null, //用于记录屎的生成时间（定时器）
-  //健康值
-  _hpNode: null,
+  //小鸡状态Node
+  _stateNode: null,
   _hpLabel: null,
   _hpBar: null,
   _hpValue: 0,
-
+  chickFunc: null,
   init: function() {
     //鸡的状态初始化
     this._chickStatus = {
@@ -63,14 +63,13 @@ var Chick = cc.Class({
     this._shitCount = 0;
 
     this._hpValue = 20;
-    this._hpNode = this._parentNode.getChildByName("HP");
-    this._hpNode.active = false;
-    this._hpBar = cc.find("hpBar", this._hpNode).getComponent(cc.ProgressBar);
-    this._hpLabel = cc.find("Value", this._hpNode).getComponent(cc.Label);
+    this._stateNode = this._parentNode.getChildByName("chickState");
+    this._stateNode.active = false;
+    // this._hpBar = cc.find("hpBar", this._stateNode).getComponent(cc.ProgressBar);
+    // this._hpLabel = cc.find("Value", this._stateNode).getComponent(cc.Label);
 
     this.showHp();
-
-    this.playAnim();
+    // this.playAnim();
   },
 
   //生成新的粪便
@@ -92,15 +91,13 @@ var Chick = cc.Class({
     }
   },
   showHp: function() {
-    this._hpLabel.string = "成长值" + this._hpValue + "%";
-    this._hpBar.progress = this._hpValue / 100;
+    // this._hpLabel.string = "成长值" + this._hpValue + "%";
+    // this._hpBar.progress = this._hpValue / 100;
   },
   onLoad() {
     this.init();
-    this._timer = setInterval(() => {
-      this._shitCount++;
-    }, 5000);
 
+    //方法导出给index.js
     this.chickFunc = {
       playChickAnim: this.playAnim
     };
@@ -108,7 +105,7 @@ var Chick = cc.Class({
 
   update(dt) {
     // this.showShit();
-    this.showHp();
+    // this.showHp();
   },
 
   //小鸡的动画
