@@ -85,9 +85,7 @@ var Modal = cc.Class({
       case "shop":
         cc.director.loadScene("shop");
         break;
-      case "telModel":
-        this._Modal.name = cc.instantiate(this.AlertTemp_Prefab);
-        break;
+
       case "telModel":
         this._Modal.name = cc.instantiate(this.AlertTemp_Prefab);
         break;
