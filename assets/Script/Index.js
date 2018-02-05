@@ -180,9 +180,11 @@ cc.Class({
   rechargeEvent: function() {
     cc.director.loadScene("recharge");
   },
+
   showUserCenter: function() {
     cc.director.loadScene("userCenter");
   },
+
   showSickAnim: function() {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.hungry = false;
@@ -213,7 +215,25 @@ cc.Class({
     this._chick._chickStatus.sick = true;
     this.chickFunc.playChickAnim.call(this._chick);
   },
+
   onLoad: function() {},
+  start: function() {
+    // var xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = function() {
+    //   if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+    //     var response = xhr.responseText;
+    //     console.log(response);
+    //   }
+    // };
+    // // GET方法
+    // xhr.open("GET", "http://192.168.42.88:4633/T_Base_User/GetWholeData?openID=o9AgowGKcD5MAuYIhedEX-4aHpJc", true);
+    // xhr.setRequestHeader("Content-Type", "json");
+    // xhr.send();
+    // POST方法
+    // xhr.open("POST", "http://192.168.42.88:4633/T_Base_User/POSTWholeData", true);
+    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+    // xhr.send("openID=o9AgowGKcD5MAuYIhedEX&pageSize=9");
+  },
   start: function() {
     this.init();
     this.chickFunc = this._chick.chickFunc;

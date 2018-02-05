@@ -88,6 +88,9 @@ var Modal = cc.Class({
       case "telModel":
         this._Modal.name = cc.instantiate(this.AlertTemp_Prefab);
         break;
+      case "telModel":
+        this._Modal.name = cc.instantiate(this.AlertTemp_Prefab);
+        break;
       case "repertory":
         this._Modal = cc.instantiate(this.repertoryModal_Prefab);
         break;
