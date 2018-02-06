@@ -47,7 +47,7 @@
                 <key>textureRect</key>
                 <string>{{1345,1},{670,420}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>2_05_0003_图层-10.png</key>
             <dict>
@@ -90,7 +90,7 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{1345,423},{670,420}}</string>
+                <string>{{1,845},{670,420}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -105,7 +105,7 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{1,845},{670,420}}</string>
+                <string>{{673,845},{670,420}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -120,26 +120,11 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{673,845},{670,420}}</string>
+                <string>{{1345,673},{670,420}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>2_05_0008_图层-5.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{670,420}</string>
-                <key>spriteSourceSize</key>
-                <string>{670,420}</string>
-                <key>textureRect</key>
-                <string>{{1345,845},{670,420}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>2_05_0009_图层-4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -154,7 +139,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0010_图层-3.png</key>
+            <key>2_05_0009_图层-4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -169,7 +154,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0011_图层-2.png</key>
+            <key>2_05_0010_图层-3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -180,11 +165,11 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{1345,1267},{670,420}}</string>
+                <string>{{1345,1345},{670,420}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>2_05_0012_图层-1.png</key>
+            <key>2_05_0011_图层-2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -199,6 +184,21 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>2_05_0012_图层-1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{670,420}</string>
+                <key>spriteSourceSize</key>
+                <string>{670,420}</string>
+                <key>textureRect</key>
+                <string>{{673,1689},{670,420}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -209,13 +209,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>饥饿+生病.png</string>
+            <string>Chick_Sick_Hungry.png</string>
             <key>size</key>
-            <string>{2016,2110}</string>
+            <string>{1766,2110}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4d0be5f52787b986d42516cd56e74459:4a95aa3568d9f3a95b7847cbc7bb7c9f:ebd24b1235dd8c6b04fac1986c63032b$</string>
+            <string>$TexturePacker:SmartUpdate:eef034c252ce4a32abc70cd7128c8d46:4a95aa3568d9f3a95b7847cbc7bb7c9f:15cd816b4b292a2c5293dc6965aa1546$</string>
             <key>textureFileName</key>
-            <string>饥饿+生病.png</string>
+            <string>Chick_Sick_Hungry.png</string>
         </dict>
     </dict>
 </plist>

@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "ddb6874c-835a-4fb4-83e6-f7ec48b7aa1d",
+  "uuid": "10b86fd8-a6a3-4d8d-ab90-793d495ee9c8",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "Chick_shit_sick": {
+    "btn-hasSign": {
       "ver": "1.0.3",
-      "uuid": "319aa1ad-abb3-46cc-b259-69b6aac97017",
-      "rawTextureUuid": "ddb6874c-835a-4fb4-83e6-f7ec48b7aa1d",
+      "uuid": "838847a0-f455-45df-b218-8e90320a8991",
+      "rawTextureUuid": "10b86fd8-a6a3-4d8d-ab90-793d495ee9c8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 1988,
-      "height": 1170,
-      "rawWidth": 1988,
-      "rawHeight": 1170,
+      "width": 466,
+      "height": 88,
+      "rawWidth": 466,
+      "rawHeight": 88,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

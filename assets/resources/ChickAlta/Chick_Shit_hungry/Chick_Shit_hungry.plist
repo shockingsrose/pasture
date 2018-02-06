@@ -614,13 +614,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>饥饿+肮脏.png</string>
+            <string>Chick_Shit_hungry.png</string>
             <key>size</key>
             <string>{4032,2954}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:49137d5f2c702629d1fcaabc71e9bfbc:d1f8272cacfafc851fc2cd731d62c743:f2a13f7af7c36fa92642b56340094eca$</string>
+            <string>$TexturePacker:SmartUpdate:9d82e9eaa97a39b84dba68d5ffb5a72a:d1f8272cacfafc851fc2cd731d62c743:a994af1311e54e28fc6e64ae48192174$</string>
             <key>textureFileName</key>
-            <string>饥饿+肮脏.png</string>
+            <string>Chick_Shit_hungry.png</string>
         </dict>
     </dict>
 </plist>

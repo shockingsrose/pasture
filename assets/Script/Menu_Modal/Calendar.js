@@ -1,3 +1,6 @@
+var Data = require("Data");
+var Func = Data.func;
+
 cc.Class({
   extends: cc.Component,
 
@@ -10,6 +13,28 @@ cc.Class({
   todayNode: null, //item 节点
   // use this for initialization
   onLoad: function() {
+    Func.GetSignList()
+      .then(data => {
+        if (data.Code === 1) {
+          this.signList = data.List;
+          this.renderCalendar();
+
+          if (this.todayNode.getChildByName("item_do").active) {
+            var signButton = cc.find("btn-sign", this.node.parent);
+            cc.loader.loadRes("btn-hasSign", cc.SpriteFrame, function(err, spriteFrame) {
+              signButton.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+            });
+          }
+        } else {
+          Alert.show(data.Message);
+        }
+      })
+      .catch(reason => {
+        Alert.show(reason.Message);
+      });
+  },
+  //渲染日历（）
+  renderCalendar() {
     var date = new Date();
     var newyear = date.getFullYear();
     var newmonth = date.getMonth();
@@ -22,49 +47,32 @@ cc.Class({
     var lastMonth = newmonth - 1 >= 0 ? newmonth - 1 : 12;
     var lastDay = this.getMonthsDay(newyear, lastMonth);
     var newlastDay = lastDay;
+    //几号
     var newCurrentDay = 1;
-    // 第一行赋值
-    for (var i = firstDay; i <= 6; i++) {
-      //第一行
-      var itemNode = this.node
-        .getChildByName("title1")
-        .getChildByName(`item${i}`)
-        .getChildByName("item_undo")
-        .getChildByName("day"); //日期节点(item) 第一行
+
+    for (var i = firstDay; i < currentDay + firstDay; i++) {
+      var itemNode = this.node.getChildByName(`item${i}`);
+      var dayNode = itemNode.getChildByName("item_undo").getChildByName("day"); //日期节点(item)
       if (newCurrentDay == newday) {
-        itemNode.color = new cc.Color(65, 205, 225);
-        this.todayNode = this.node.getChildByName("title1").getChildByName(`item${i}`);
+        dayNode.color = new cc.Color(65, 205, 225);
+        this.todayNode = this.node.getChildByName(`item${i}`);
       }
-      itemNode.getComponent(cc.Label).string = newCurrentDay++;
-      //日期绑定签到事件
-      itemNode.on("touchend", function(event) {
-        console.log(event);
-      });
-    }
-    // 第二、三、四行赋值
-    var num = 1;
-    var number = 0;
-    for (var i = newCurrentDay; i <= currentDay; i++) {
-      if ((i - newCurrentDay) % 7 === 0) {
-        num++;
-        number = 0;
+      dayNode.getComponent(cc.Label).string = newCurrentDay++;
+
+      for (let j = 0; j < this.signList.length; j++) {
+        //是否签到
+        const state = this.signList[j].IsSign;
+        //如果签到了 设置为签到状态
+        if (i == j + firstDay && state) {
+          itemNode.getChildByName("item_do").active = true;
+          itemNode.getChildByName("item_undo").active = false;
+        }
       }
 
-      var itemNode = this.node
-        .getChildByName(`title${num}`)
-        .getChildByName(`item${number}`)
-        .getChildByName("item_undo")
-        .getChildByName("day"); //日期节点(item) 第2、3、4 行
-      if (i == newday) {
-        itemNode.color = new cc.Color(65, 205, 225);
-        this.todayNode = this.node.getChildByName(`title${num}`).getChildByName(`item${number}`);
-      }
-      itemNode.getComponent(cc.Label).string = i;
       //日期绑定签到事件
       itemNode.on("touchend", function(event) {
         console.log(event);
       });
-      number++;
     }
   },
 
@@ -128,5 +136,8 @@ cc.Class({
   signIn() {
     this.todayNode.getChildByName("item_do").active = true;
     this.todayNode.getChildByName("item_undo").active = false;
+    Func.PostSign().then(data => {
+      console.log(data);
+    });
   }
 });

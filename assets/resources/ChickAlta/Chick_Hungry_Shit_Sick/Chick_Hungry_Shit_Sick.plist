@@ -92,7 +92,7 @@
                 <key>textureRect</key>
                 <string>{{3361,1},{670,420}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>2_05_0006_图层-34.png</key>
             <dict>
@@ -180,7 +180,7 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{3361,423},{670,420}}</string>
+                <string>{{1,845},{670,420}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -195,7 +195,7 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{1,845},{670,420}}</string>
+                <string>{{673,845},{670,420}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -210,7 +210,7 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{673,845},{670,420}}</string>
+                <string>{{1345,845},{670,420}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -225,7 +225,7 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{1345,845},{670,420}}</string>
+                <string>{{2017,845},{670,420}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -240,7 +240,7 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{2017,845},{670,420}}</string>
+                <string>{{2689,845},{670,420}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -255,26 +255,11 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{2689,845},{670,420}}</string>
+                <string>{{3361,673},{670,420}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>2_05_0017_图层-23.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{670,420}</string>
-                <key>spriteSourceSize</key>
-                <string>{670,420}</string>
-                <key>textureRect</key>
-                <string>{{3361,845},{670,420}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>2_05_0018_图层-22.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -289,7 +274,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0019_图层-21.png</key>
+            <key>2_05_0018_图层-22.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -304,7 +289,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0020_图层-20.png</key>
+            <key>2_05_0019_图层-21.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -319,7 +304,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0021_图层-19.png</key>
+            <key>2_05_0020_图层-20.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -334,7 +319,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0022_图层-18.png</key>
+            <key>2_05_0021_图层-19.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -349,7 +334,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0023_图层-17.png</key>
+            <key>2_05_0022_图层-18.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -360,11 +345,11 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{3361,1267},{670,420}}</string>
+                <string>{{3361,1345},{670,420}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>2_05_0024_图层-16.png</key>
+            <key>2_05_0023_图层-17.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -379,7 +364,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0025_图层-15.png</key>
+            <key>2_05_0024_图层-16.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -394,7 +379,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0026_图层-14.png</key>
+            <key>2_05_0025_图层-15.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -409,7 +394,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0027_图层-13.png</key>
+            <key>2_05_0026_图层-14.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -424,7 +409,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0028_图层-12.png</key>
+            <key>2_05_0027_图层-13.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -439,22 +424,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0029_图层-11.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{670,420}</string>
-                <key>spriteSourceSize</key>
-                <string>{670,420}</string>
-                <key>textureRect</key>
-                <string>{{3361,1689},{670,420}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>2_05_0030_图层-10.png</key>
+            <key>2_05_0028_图层-12.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -469,7 +439,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0031_图层-9.png</key>
+            <key>2_05_0029_图层-11.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -484,7 +454,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0032_图层-8.png</key>
+            <key>2_05_0030_图层-10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -499,7 +469,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0033_图层-7.png</key>
+            <key>2_05_0031_图层-9.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -514,7 +484,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0034_图层-6.png</key>
+            <key>2_05_0032_图层-8.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -529,7 +499,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0035_图层-5.png</key>
+            <key>2_05_0033_图层-7.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -540,26 +510,11 @@
                 <key>spriteSourceSize</key>
                 <string>{670,420}</string>
                 <key>textureRect</key>
-                <string>{{3361,2111},{670,420}}</string>
+                <string>{{3361,2017},{670,420}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>2_05_0036_图层-4.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{670,420}</string>
-                <key>spriteSourceSize</key>
-                <string>{670,420}</string>
-                <key>textureRect</key>
-                <string>{{3361,2111},{670,420}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>2_05_0037_图层-3.png</key>
+            <key>2_05_0034_图层-6.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -574,7 +529,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0038_图层-2.png</key>
+            <key>2_05_0035_图层-5.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -589,7 +544,22 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2_05_0039_图层-1.png</key>
+            <key>2_05_0036_图层-4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{670,420}</string>
+                <key>spriteSourceSize</key>
+                <string>{670,420}</string>
+                <key>textureRect</key>
+                <string>{{673,2533},{670,420}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>2_05_0037_图层-3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -604,6 +574,36 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>2_05_0038_图层-2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{670,420}</string>
+                <key>spriteSourceSize</key>
+                <string>{670,420}</string>
+                <key>textureRect</key>
+                <string>{{2017,2533},{670,420}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>2_05_0039_图层-1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{670,420}</string>
+                <key>spriteSourceSize</key>
+                <string>{670,420}</string>
+                <key>textureRect</key>
+                <string>{{2689,2533},{670,420}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -614,13 +614,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>饥饿+肮脏+生病.png</string>
+            <string>Chick_hungry_shit_sick.png</string>
             <key>size</key>
-            <string>{4032,2954}</string>
+            <string>{3782,2954}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f88fcfce19b46d1064fe617b50e66509:ec09abda23bb347f998f0a0fcd9bbd11:f6c337a7659fe78fe6bb5d514f6a0512$</string>
+            <string>$TexturePacker:SmartUpdate:e33b0ccb054f12b0ea12bc4b80506154:ec09abda23bb347f998f0a0fcd9bbd11:5f64d56c6b804a089544261712fc2528$</string>
             <key>textureFileName</key>
-            <string>饥饿+肮脏+生病.png</string>
+            <string>Chick_hungry_shit_sick.png</string>
         </dict>
     </dict>
 </plist>

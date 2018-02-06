@@ -7,6 +7,7 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
+
 var Chick = cc.Class({
   name: Chick,
   extends: cc.Component,
@@ -68,7 +69,7 @@ var Chick = cc.Class({
     // this._hpBar = cc.find("hpBar", this._stateNode).getComponent(cc.ProgressBar);
     // this._hpLabel = cc.find("Value", this._stateNode).getComponent(cc.Label);
 
-    this.showHp();
+    this.assignChickState();
     // this.playAnim();
   },
 
@@ -90,16 +91,24 @@ var Chick = cc.Class({
       this._shitLabel.string = "x" + this._shitCount;
     }
   },
-  showHp: function() {
-    // this._hpLabel.string = "成长值" + this._hpValue + "%";
-    // this._hpBar.progress = this._hpValue / 100;
+  assignChickState: function(sp, hp) {
+    var spBar = cc.find("pd-20/sp/spBar", this._stateNode).getComponent(cc.ProgressBar);
+    var spLabel = cc.find("pd-20/sp/value", this._stateNode).getComponent(cc.Label);
+    var hpBar = cc.find("pd-20/hp/hpBar", this._stateNode).getComponent(cc.ProgressBar);
+    var hpLabel = cc.find("pd-20/hp/value", this._stateNode).getComponent(cc.Label);
+
+    spBar.progress = sp / 100;
+    spLabel.string = sp + "/100";
+    hpBar.progress = hp / 100;
+    hpLabel.string = hp + "/100";
   },
   onLoad() {
     this.init();
 
     //方法导出给index.js
     this.chickFunc = {
-      playChickAnim: this.playAnim
+      playChickAnim: this.playAnim,
+      assignChickState: this.assignChickState
     };
   },
 
