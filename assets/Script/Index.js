@@ -81,6 +81,10 @@ cc.Class({
     this._chick._chickStatus.hungry = hungryStatus;
 
     this.chickFunc.playChickAnim.call(this._chick);
+
+    //初始化鸡的饱腹度及健康值
+    var sp = data.ChickenList[0].StarvationValue;
+    var hp = data.ChickenList[0].HealthValue;
   },
   //点击治疗事件 弹出alert
   showTreatAlert: function() {
