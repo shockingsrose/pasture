@@ -88,6 +88,11 @@ var Modal = cc.Class({
 
       case "telModel":
         this._Modal = cc.instantiate(this.AlertTemp_Prefab);
+        var cancelButton = cc.find("close", this._Modal);
+        cancelButton.on("click", () => {
+          var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
+          this._Modal.runAction(action);
+        });
         break;
       case "repertory":
         this._Modal = cc.instantiate(this.repertoryModal_Prefab);

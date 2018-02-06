@@ -73,6 +73,9 @@
       },
       {
         "__id__": 338
+      },
+      {
+        "__id__": 339
       }
     ],
     "_prefab": null,
@@ -1221,7 +1224,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "UserCenter",
+    "component": "Modal",
     "handler": "showModal",
     "customEventData": ""
   },
@@ -12410,8 +12413,8 @@
       "width": 750,
       "height": 1334
     },
-    "_fitWidth": false,
-    "_fitHeight": true
+    "_fitWidth": true,
+    "_fitHeight": false
   },
   {
     "__type__": "cc.Widget",
@@ -12446,9 +12449,25 @@
     "node": {
       "__id__": 2
     },
+    "_enabled": true
+  },
+  {
+    "__type__": "3351fOJ7RpH57+DD7tTVHBd",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
     "_enabled": true,
+    "shopModal_Prefab": null,
     "AlertTemp_Prefab": {
       "__uuid__": "79e21b96-1fe9-4303-9b00-787477afd499"
-    }
+    },
+    "repertoryModal_Prefab": null,
+    "friendModal_Prefab": null,
+    "messageModal_Prefab": null,
+    "signInModal_Prefab": null,
+    "shareModal_Prefab": null,
+    "Modal": null
   }
 ]
