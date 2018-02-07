@@ -112,10 +112,7 @@ var Chick = cc.Class({
     };
   },
 
-  update(dt) {
-    // this.showShit();
-    // this.showHp();
-  },
+  update(dt) {},
 
   //小鸡的动画
   playChickMove: function() {
@@ -125,7 +122,8 @@ var Chick = cc.Class({
     var anim = this._chickAnim.play("chick_feed");
   },
   playChickTreat: function() {
-    this._chickAnim.play("chick_treat");
+    let anim = this._chickAnim.play("chick_treat");
+    anim.repeatCount = 3;
   },
   playChickShit: function() {
     this._chickAnim.play("chick_shit");

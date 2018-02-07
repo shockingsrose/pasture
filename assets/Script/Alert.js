@@ -18,7 +18,7 @@ var Alert = {
  * iconPic:         icon图标路径
  */
 // enterCallBack:   确定点击事件回调  function 类型.
-Alert.show = function(detailString, iconPic, enterCallBack, needCancel, animSpeed) {
+Alert.show = function(detailString, enterCallBack, iconPic, needCancel, animSpeed) {
   // 引用
   var self = this;
 

@@ -141,25 +141,25 @@ var func = {
       xhr.send("id=1");
     });
   },
-  PostFeeds() {
+  PostOwnFeeds() {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("清理成功");
+            console.log("喂食成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("签到失败");
+            console.log("喂食失败");
             reject(response);
           }
         }
       };
       // POST方法
-      xhr.open("POST", "http://192.168.42.88:4633/T_Chicken_Feed/PostFeeds", true);
+      xhr.open("POST", "http://192.168.42.88:4633/T_Chicken_Feed/POSTOwnFeeds", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("id=1");
     });
@@ -206,6 +206,82 @@ var func = {
       };
       // POST方法
       xhr.open("GET", "http://192.168.42.88:4633/T_Base_SignFlow/GetList?openId=o9AgowGKcD5MAuYIhedEX-4aHpJc", true);
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
+  //获得商城的商品
+  GetGoodList() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("获取商城数据失败");
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open("GET", "http://192.168.42.88:4633/T_Base_Property/GetListByPage?page=1", true);
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
+  //购买商品接口
+  PostBuy(prId, count) {
+    count = count || 1;
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            console.log("购买成功");
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("购买失败");
+            reject(response);
+          }
+        }
+      };
+      // POST方法
+      xhr.open("POST", "http://192.168.42.88:4633/T_Base_Property/PostBuy", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("openID=o9AgowGKcD5MAuYIhedEX-4aHpJc&count=" + count + "&prId=" + prId);
+    });
+  },
+  //获得仓库列表
+  GetRepertoryList() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("获取仓库数据失败");
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "GET",
+        "http://192.168.42.88:4633/T_Base_Warehouse/GetListByPage?openId=" + this.openID + "&page=1",
+        true
+      );
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });

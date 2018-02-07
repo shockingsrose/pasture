@@ -7,7 +7,8 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
-
+var Data = require("Data");
+var Func = Data.func;
 cc.Class({
   extends: cc.Component,
 
@@ -15,6 +16,10 @@ cc.Class({
     btnCloseNode: {
       default: null,
       type: cc.Node
+    },
+    goods_Prefab: {
+      default: null,
+      type: cc.Prefab
     }
   },
   closeModal() {
@@ -26,9 +31,43 @@ cc.Class({
     // scrollView.removeFromParent();
     // this.node.removeChild(Modal);
   },
-  // LIFE-CYCLE CALLBACKS:
+  goShop() {
+    cc.director.loadScene("shop");
+  },
+  onLoad() {
+    this.goodsListNode = cc.find("bg-repertory/scrollview/view/goodsList", this.node);
+    Func.GetRepertoryList().then(data => {
+      let list = data.List;
+      // var list = [{ Type: 1, Count: 1 }, { Type: 4, Count: 13 }];
+      for (let i = 0; i < list.length; i++) {
+        const goods = list[i];
+        var goodsNode = cc.instantiate(this.goods_Prefab);
+        var goodSprite = cc.find("img", goodsNode).getComponent(cc.Sprite);
+        let countLabel = cc.find("count", goodsNode).getComponent(cc.Label);
+        switch (goods.Type) {
+          case 1:
+            (function(goodSprite) {
+              cc.loader.loadRes("Modal/Repertory/img-egg", cc.SpriteFrame, function(err, spriteFrame) {
+                goodSprite.spriteFrame = spriteFrame;
+              });
+            })(goodSprite);
+            break;
+          case 3:
+            break;
+          case 4:
+            (function(goodSprite) {
+              cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {
+                goodSprite.spriteFrame = spriteFrame;
+              });
+            })(goodSprite);
+            break;
+        }
+        countLabel.string = "x " + goods.Count;
 
-  // onLoad () {},
+        this.goodsListNode.addChild(goodsNode);
+      }
+    });
+  },
 
   start() {}
 

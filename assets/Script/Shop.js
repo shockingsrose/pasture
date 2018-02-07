@@ -1,35 +1,67 @@
-// Learn cc.Class:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/class.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/class/index.html
-// Learn Attribute:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/reference/attributes/index.html
-// Learn life-cycle callbacks:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
+var Data = require("Data");
+var Func = Data.func;
 
 cc.Class({
   extends: cc.Component,
 
   properties: {
-    // foo: {
-    //     // ATTRIBUTES:
-    //     default: null,        // The default value will be used only when the component attaching
-    //                           // to a node for the first time
-    //     type: cc.SpriteFrame, // optional, default is typeof default
-    //     serializable: true,   // optional, default is true
-    // },
-    // bar: {
-    //     get () {
-    //         return this._bar;
-    //     },
-    //     set (value) {
-    //         this._bar = value;
-    //     }
-    // },
+    goods_Prefab: {
+      default: null,
+      type: cc.Prefab
+    }
   },
+  goodsListNode: null,
 
-  // onLoad () {},
+  onLoad() {
+    this.goodsListNode = cc.find("bg/PageView/view/content/page_1/goodsList", this.node);
+
+    Func.GetGoodList().then(data => {
+      var goodsList = data.List;
+      for (let i = 0; i < goodsList.length; i++) {
+        const goods = goodsList[i];
+        if (!goods.IsDelete) {
+          let goodsNode = cc.instantiate(this.goods_Prefab);
+          // goodsNode.name = goods.PropName;
+          var goodSprite = cc.find("pic-box/pic", goodsNode).getComponent(cc.Sprite);
+          var goodsLabel = cc.find("price-box/goods_label", goodsNode).getComponent(cc.Label);
+          var priceLabel = cc.find("price-box/bg-price/price", goodsNode).getComponent(cc.Label);
+          switch (goods.PropName) {
+            case "鸡蛋":
+              (function(goodSprite) {
+                cc.loader.loadRes("Shop/icon-egg", cc.SpriteFrame, function(err, spriteFrame) {
+                  goodSprite.spriteFrame = spriteFrame;
+                });
+              })(goodSprite);
+              break;
+            case "饲料":
+              (function(goodSprite) {
+                cc.loader.loadRes("Shop/icon-1", cc.SpriteFrame, function(err, spriteFrame) {
+                  goodSprite.spriteFrame = spriteFrame;
+                });
+              })(goodSprite);
+
+              break;
+          }
+          goodsLabel.string = goods.PropName;
+          priceLabel.string = goods.PropValue;
+
+          this.goodsListNode.addChild(goodsNode);
+
+          goodsNode.on("click", event => {
+            console.log(this);
+
+            Alert.show("是否确认购买该商品？", function() {
+              Func.PostBuy(goods.ID).then(data => {
+                if (data.Code === 1) {
+                } else {
+                }
+              });
+            });
+          });
+        }
+      }
+    });
+  },
   backEvent() {
     cc.director.loadScene("index");
   },

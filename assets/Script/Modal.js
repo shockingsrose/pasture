@@ -13,10 +13,10 @@ var Modal = cc.Class({
   extends: cc.Component,
 
   properties: {
-    shopModal_Prefab: {
-      default: null,
-      type: cc.Prefab
-    },
+    // shopModal_Prefab: {
+    //   default: null,
+    //   type: cc.Prefab
+    // },
     AlertTemp_Prefab: {
       default: null,
       type: cc.Prefab

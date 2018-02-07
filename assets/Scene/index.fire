@@ -3313,7 +3313,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 300,
-      "height": 42.978799999713274
+      "height": 42.9787999996535
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3322,7 +3322,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -51.98939999985663
+      "y": -51.989399999826745
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -3713,7 +3713,7 @@
     "_left": 0,
     "_right": 0,
     "_top": 110,
-    "_bottom": 6.021200000286733,
+    "_bottom": 6.021200000346504,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -6515,9 +6515,6 @@
       "__id__": 2
     },
     "_enabled": true,
-    "shopModal_Prefab": {
-      "__uuid__": "ce67ac48-c9e1-403e-8ca5-d044be311203"
-    },
     "AlertTemp_Prefab": {
       "__uuid__": "79e21b96-1fe9-4303-9b00-787477afd499"
     },
@@ -6593,7 +6590,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 224

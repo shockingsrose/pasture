@@ -133,7 +133,7 @@ cc.Class({
   //点击喂食事件 弹出alert
   showFeedAlert: function() {
     var self = this;
-    Func.PostFeeds()
+    Func.PostOwnFeeds()
       .then(data => {
         if (data.Code === 1) {
           var anim = self._chick._chickAnim.play("chick_feed");

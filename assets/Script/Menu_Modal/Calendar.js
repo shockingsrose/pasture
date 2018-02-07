@@ -138,6 +138,10 @@ cc.Class({
     this.todayNode.getChildByName("item_undo").active = false;
     Func.PostSign().then(data => {
       console.log(data);
+      var signButton = cc.find("btn-sign", this.node.parent);
+      cc.loader.loadRes("btn-hasSign", cc.SpriteFrame, function(err, spriteFrame) {
+        signButton.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+      });
     });
   }
 });
