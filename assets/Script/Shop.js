@@ -16,29 +16,30 @@ cc.Class({
     this.goodsListNode = cc.find("bg/PageView/view/content/page_1/goodsList", this.node);
 
     Func.GetGoodList().then(data => {
-      var goodsList = data.List;
+      const goodsList = data.List;
       for (let i = 0; i < goodsList.length; i++) {
         const goods = goodsList[i];
         if (!goods.IsDelete) {
           let goodsNode = cc.instantiate(this.goods_Prefab);
           // goodsNode.name = goods.PropName;
-          var goodSprite = cc.find("pic-box/pic", goodsNode).getComponent(cc.Sprite);
-          var goodsLabel = cc.find("price-box/goods_label", goodsNode).getComponent(cc.Label);
-          var priceLabel = cc.find("price-box/bg-price/price", goodsNode).getComponent(cc.Label);
+          let goodSprite = cc.find("pic-box/pic", goodsNode).getComponent(cc.Sprite);
+          let goodsLabel = cc.find("price-box/goods_label", goodsNode).getComponent(cc.Label);
+          let priceLabel = cc.find("price-box/bg-price/price", goodsNode).getComponent(cc.Label);
           switch (goods.PropName) {
             case "鸡蛋":
-              (function(goodSprite) {
-                cc.loader.loadRes("Shop/icon-egg", cc.SpriteFrame, function(err, spriteFrame) {
-                  goodSprite.spriteFrame = spriteFrame;
-                });
-              })(goodSprite);
+              // (function(goodSprite) {
+              //   cc.loader.loadRes("Shop/icon-egg", cc.SpriteFrame, function(err, spriteFrame) {
+              //     goodSprite.spriteFrame = spriteFrame;
+              //   });
+              // })(goodSprite);
+              cc.loader.loadRes("Shop/icon-egg", cc.SpriteFrame, function(err, spriteFrame) {
+                goodSprite.spriteFrame = spriteFrame;
+              });
               break;
             case "饲料":
-              (function(goodSprite) {
-                cc.loader.loadRes("Shop/icon-1", cc.SpriteFrame, function(err, spriteFrame) {
-                  goodSprite.spriteFrame = spriteFrame;
-                });
-              })(goodSprite);
+              cc.loader.loadRes("Shop/icon-1", cc.SpriteFrame, function(err, spriteFrame) {
+                goodSprite.spriteFrame = spriteFrame;
+              });
 
               break;
           }

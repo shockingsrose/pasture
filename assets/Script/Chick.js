@@ -7,7 +7,8 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
-
+var Data = require("Data");
+var Func = Data.func;
 var Chick = cc.Class({
   name: Chick,
   extends: cc.Component,
@@ -73,24 +74,7 @@ var Chick = cc.Class({
     // this.playAnim();
   },
 
-  //生成新的粪便
-  spawnNewShit: function() {
-    if (this._parentNode.getChildByName("shit") == null) {
-      this._shitNode = cc.instantiate(this.shitPrefab);
-      this._parentNode.addChild(this._shitNode);
-      this._shitNode.setPosition(cc.p(200, -200));
-      this._shitAnim = this._shitNode.getComponent(cc.Animation);
-      this._shitLabel = this._shitNode.getChildByName("count").getComponent(cc.Label);
-      this._shitNode.active = false;
-    }
-  },
-  showShit: function() {
-    if (this._shitCount > 0) {
-      this._shitNode.opacity = 255;
-      this._shitNode.active = true;
-      this._shitLabel.string = "x" + this._shitCount;
-    }
-  },
+  //给小鸡状态赋值
   assignChickState: function(sp, hp) {
     var spBar = cc.find("pd-20/sp/spBar", this._stateNode).getComponent(cc.ProgressBar);
     var spLabel = cc.find("pd-20/sp/value", this._stateNode).getComponent(cc.Label);
@@ -111,7 +95,47 @@ var Chick = cc.Class({
       assignChickState: this.assignChickState
     };
   },
+  //显示小鸡的状态
+  showChickState: function() {
+    Func.GetChickValue()
+      .then(data => {
+        if (data.Code == 1) {
+          var sp = data.StarvationValue;
+          var hp = data.HealthValue;
+          //给小鸡的饥饿度和健康值赋值
+          this.assignChickState(sp, hp);
 
+          //给小鸡的状态赋值
+          var spLabel = cc.find("pd-20/state/state-box/sp_label", this._stateNode).getComponent(cc.Label);
+          var hpLabel = cc.find("pd-20/state/state-box/hp_label", this._stateNode).getComponent(cc.Label);
+          spLabel.string = data.Hungry ? "饥饿" : "饱腹";
+          hpLabel.string = data.Sick ? "生病" : "健康";
+
+          //显示节点（动画）
+          clearTimeout(this.timer);
+          this._stateNode.active = true;
+          // var hpBar = cc.find("hpBar", this._chick._stateNode);
+          // //取消级联透明度的设置  不会继承父级opacity（不设置会导致Mask失效）
+          // hpBar.cascadeOpacity = false;
+          this._stateNode.opacity = 0;
+          this._stateNode.runAction(cc.fadeIn(0.3));
+          var action = cc.sequence(
+            cc.fadeOut(0.3),
+            cc.callFunc(() => {
+              this._stateNode.active = false;
+            }, this)
+          );
+          this.timer = setTimeout(() => {
+            this._stateNode.runAction(action);
+          }, 2000);
+        } else {
+          Alert.show(data.Message);
+        }
+      })
+      .catch(reason => {
+        Alert.show("failed:" + reason);
+      });
+  },
   update(dt) {},
 
   //小鸡的动画

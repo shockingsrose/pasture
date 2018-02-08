@@ -20,7 +20,9 @@ cc.Class({
     goods_Prefab: {
       default: null,
       type: cc.Prefab
-    }
+    },
+    sceneNode: null,
+    chickNode: null
   },
   closeModal() {
     var self = this;
@@ -35,36 +37,69 @@ cc.Class({
     cc.director.loadScene("shop");
   },
   onLoad() {
+    this.sceneNode = cc.find("Canvas");
+    this.chickNode = cc.find("Chick", this.sceneNode);
     this.goodsListNode = cc.find("bg-repertory/scrollview/view/goodsList", this.node);
     Func.GetRepertoryList().then(data => {
       let list = data.List;
       // var list = [{ Type: 1, Count: 1 }, { Type: 4, Count: 13 }];
       for (let i = 0; i < list.length; i++) {
         const goods = list[i];
-        var goodsNode = cc.instantiate(this.goods_Prefab);
-        var goodSprite = cc.find("img", goodsNode).getComponent(cc.Sprite);
+        let goodsNode = cc.instantiate(this.goods_Prefab);
+        let goodSprite = cc.find("img", goodsNode).getComponent(cc.Sprite);
         let countLabel = cc.find("count", goodsNode).getComponent(cc.Label);
-        switch (goods.Type) {
-          case 1:
-            (function(goodSprite) {
-              cc.loader.loadRes("Modal/Repertory/img-egg", cc.SpriteFrame, function(err, spriteFrame) {
+        let modalNode = cc.find("img/modal", goodsNode);
+        let hatchButton = cc.find("btn-hatch", modalNode);
+        let cancelButton = cc.find("btn-cancel", modalNode);
+
+        if (goods.Count > 0) {
+          switch (goods.Type) {
+            //1 代表可孵化的鸡蛋
+            case 1:
+              //加载图片
+              cc.loader.loadRes("Modal/Repertory/img-hatchEgg", cc.SpriteFrame, function(err, spriteFrame) {
                 goodSprite.spriteFrame = spriteFrame;
               });
-            })(goodSprite);
-            break;
-          case 3:
-            break;
-          case 4:
-            (function(goodSprite) {
+              //绑定弹出Modal
+              goodsNode.on("click", event => {
+                modalNode.active = true;
+                modalNode.opacity = 0;
+                modalNode.runAction(cc.fadeIn(0.3));
+              });
+              //绑定孵化、取消事件
+              hatchButton.on("click", event => {
+                Func.HatchEgg().then(data => {
+                  if (data.Code === 1) {
+                    this.chickNode.active = true;
+                    this.closeModal();
+                  } else {
+                    Alert.show(data.Message);
+                  }
+                });
+              });
+              cancelButton.on("click", event => {
+                var action = cc.sequence(
+                  cc.fadeOut(0.3),
+                  cc.callFunc(() => {
+                    modalNode.active = false;
+                  })
+                );
+                modalNode.runAction(action);
+              });
+              break;
+            case 3:
+              break;
+            case 4:
               cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {
                 goodSprite.spriteFrame = spriteFrame;
               });
-            })(goodSprite);
-            break;
-        }
-        countLabel.string = "x " + goods.Count;
+              break;
+          }
 
-        this.goodsListNode.addChild(goodsNode);
+          countLabel.string = "x " + goods.Count;
+
+          this.goodsListNode.addChild(goodsNode);
+        }
       }
     });
   },

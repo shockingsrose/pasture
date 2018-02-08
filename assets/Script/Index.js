@@ -70,20 +70,24 @@ cc.Class({
     var moneyLabel = cc.find("div_header/gold/money", this.node).getComponent(cc.Label);
     moneyLabel.string = RanchMoney;
 
-    //初始化鸡的状态
-    var shitStatus = data.ChickenList[0].Shit;
-    var sickStatus = data.ChickenList[0].Sick;
-    var hungryStatus = data.ChickenList[0].Hungry;
-    this._chick._chickStatus.shit = shitStatus;
-    this._chick._chickStatus.sick = sickStatus;
-    this._chick._chickStatus.hungry = hungryStatus;
+    //初始化鸡是否显示
+    this.Chick.active = data.ChickenList.length > 0 ? true : false;
+    if (this.Chick.active) {
+      //初始化鸡的状态
+      var shitStatus = data.ChickenList[0].Shit;
+      var sickStatus = data.ChickenList[0].Sick;
+      var hungryStatus = data.ChickenList[0].Hungry;
+      this._chick._chickStatus.shit = shitStatus;
+      this._chick._chickStatus.sick = sickStatus;
+      this._chick._chickStatus.hungry = hungryStatus;
 
-    this.chickFunc.playChickAnim.call(this._chick);
+      this.chickFunc.playChickAnim.call(this._chick);
 
-    //初始化鸡的饱腹度及健康值
-    var sp = data.ChickenList[0].StarvationValue;
-    var hp = data.ChickenList[0].HealthValue;
-    this.chickFunc.assignChickState.call(this._chick, sp, hp);
+      //初始化鸡的饱腹度及健康值
+      var sp = data.ChickenList[0].StarvationValue;
+      var hp = data.ChickenList[0].HealthValue;
+      this.chickFunc.assignChickState.call(this._chick, sp, hp);
+    }
   },
   //点击治疗事件 弹出alert
   showTreatAlert: function() {
@@ -180,47 +184,7 @@ cc.Class({
       this.MenuModal.runAction(cc.fadeOut(0.3));
     }
   },
-  //显示小鸡的状态
-  showChickState: function() {
-    Func.GetChickValue()
-      .then(data => {
-        if (data.Code == 1) {
-          var sp = data.StarvationValue;
-          var hp = data.HealthValue;
-          //给小鸡的饥饿度和健康值赋值
-          this.chickFunc.assignChickState.call(this._chick, sp, hp);
 
-          //给小鸡的状态赋值
-          var spLabel = cc.find("pd-20/state/state-box/sp_label", this._chick._stateNode).getComponent(cc.Label);
-          var hpLabel = cc.find("pd-20/state/state-box/hp_label", this._chick._stateNode).getComponent(cc.Label);
-          spLabel.string = data.Hungry ? "饥饿" : "饱腹";
-          hpLabel.string = data.Sick ? "生病" : "健康";
-
-          //显示节点（动画）
-          clearTimeout(this.timer);
-          this._chick._stateNode.active = true;
-          // var hpBar = cc.find("hpBar", this._chick._stateNode);
-          // //取消级联透明度的设置  不会继承父级opacity（不设置会导致Mask失效）
-          // hpBar.cascadeOpacity = false;
-          this._chick._stateNode.opacity = 0;
-          this._chick._stateNode.runAction(cc.fadeIn(0.3));
-          var action = cc.sequence(
-            cc.fadeOut(0.3),
-            cc.callFunc(() => {
-              this._chick._stateNode.active = false;
-            }, this)
-          );
-          this.timer = setTimeout(() => {
-            this._chick._stateNode.runAction(action);
-          }, 2000);
-        } else {
-          Alert.show(data.Message);
-        }
-      })
-      .catch(reason => {
-        Alert.show("failed:" + reason);
-      });
-  },
   //点击充值 跳转场景
   rechargeEvent: function() {
     cc.director.loadScene("recharge");
@@ -261,8 +225,11 @@ cc.Class({
     this.chickFunc.playChickAnim.call(this._chick);
   },
 
-  onLoad: function() {},
-  start: function() {},
+  onLoad: function() {
+    var openID = window.location.href.split("=")[1];
+    Func.openID = "dedbc83d62104d6da8d4a3c0188dc419";
+  },
+
   start: function() {
     this.init();
     this.chickFunc = this._chick.chickFunc;

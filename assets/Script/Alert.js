@@ -44,14 +44,8 @@ Alert.show = function(detailString, enterCallBack, iconPic, needCancel, animSpee
     // 动画
     var cbFadeOut = cc.callFunc(self.onFadeOutFinish, self);
     var cbFadeIn = cc.callFunc(self.onFadeInFinish, self);
-    self.actionFadeIn = cc.sequence(
-      cc.spawn(cc.fadeTo(Alert._animSpeed, 255), cc.scaleTo(Alert._animSpeed, 1.0)),
-      cbFadeIn
-    );
-    self.actionFadeOut = cc.sequence(
-      cc.spawn(cc.fadeTo(Alert._animSpeed, 0), cc.scaleTo(Alert._animSpeed, 2.0)),
-      cbFadeOut
-    );
+    self.actionFadeIn = cc.sequence(cc.fadeTo(Alert._animSpeed, 255), cbFadeIn);
+    self.actionFadeOut = cc.sequence(cc.fadeTo(Alert._animSpeed, 0), cbFadeOut);
 
     // 获取子节点
     Alert._detailLabel = cc.find("alertBackground/detailLabel", alert).getComponent(cc.Label);
@@ -102,7 +96,6 @@ Alert.show = function(detailString, enterCallBack, iconPic, needCancel, animSpee
   self.startFadeIn = function() {
     cc.eventManager.pauseTarget(Alert._alert, true);
     Alert._alert.position = cc.p(0, 0);
-    Alert._alert.setScale(2);
     Alert._alert.opacity = 0;
     Alert._alert.runAction(self.actionFadeIn);
   };
