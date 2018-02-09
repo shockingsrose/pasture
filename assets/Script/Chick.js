@@ -21,7 +21,7 @@ var Chick = cc.Class({
   },
 
   // 鸡的状态
-
+  _Id: null,
   _parentNode: null,
   _chickNode: null,
   // cc.Animation 动画实例
@@ -64,27 +64,53 @@ var Chick = cc.Class({
     this._parentNode = cc.find("Canvas");
     this._shitCount = 0;
 
-    this._hpValue = 20;
     this._stateNode = this._parentNode.getChildByName("chickState");
     this._stateNode.active = false;
     // this._hpBar = cc.find("hpBar", this._stateNode).getComponent(cc.ProgressBar);
     // this._hpLabel = cc.find("Value", this._stateNode).getComponent(cc.Label);
 
+    //获得小鸡的ID （小鸡列表点击小鸡 把Id赋值过来）
+
     this.assignChickState();
     // this.playAnim();
   },
+  setId(Id) {
+    this._Id = Id;
+    this.initData();
+  },
+  //初始化鸡的状态 播放不同的动画
+  initData() {
+    Func.GetChickById(this._Id).then(data => {
+      if (data.Code === 1) {
+        let chick_data = data.Model;
+        let shitStatus = chick_data.Shit;
+        let sickStatus = chick_data.Sick;
+        let hungryStatus = chick_data.Hungry;
+        this._chickStatus.shit = shitStatus;
+        this._chickStatus.sick = sickStatus;
+        this._chickStatus.hungry = hungryStatus;
 
+        this.playAnim();
+      } else {
+        Msg.show("服务器忙");
+      }
+    });
+  },
   //给小鸡状态赋值
-  assignChickState: function(sp, hp) {
+  assignChickState: function(sp, hp, hungryState, sickState) {
     var spBar = cc.find("pd-20/sp/spBar", this._stateNode).getComponent(cc.ProgressBar);
     var spLabel = cc.find("pd-20/sp/value", this._stateNode).getComponent(cc.Label);
     var hpBar = cc.find("pd-20/hp/hpBar", this._stateNode).getComponent(cc.ProgressBar);
     var hpLabel = cc.find("pd-20/hp/value", this._stateNode).getComponent(cc.Label);
+    var spStateLabel = cc.find("pd-20/state/state-box/sp_label", this._stateNode).getComponent(cc.Label);
+    var hpStateLabel = cc.find("pd-20/state/state-box/hp_label", this._stateNode).getComponent(cc.Label);
 
     spBar.progress = sp / 100;
     spLabel.string = sp + "/100";
     hpBar.progress = hp / 100;
     hpLabel.string = hp + "/100";
+    spStateLabel.string = hungryState ? "饥饿" : "饱腹";
+    hpStateLabel.string = sickState ? "生病" : "健康";
   },
   onLoad() {
     this.init();
@@ -92,24 +118,25 @@ var Chick = cc.Class({
     //方法导出给index.js
     this.chickFunc = {
       playChickAnim: this.playAnim,
-      assignChickState: this.assignChickState
+      assignChickState: this.assignChickState,
+      setId: this.setId
     };
   },
   //显示小鸡的状态
   showChickState: function() {
-    Func.GetChickValue()
+    Func.GetChickValueById(this._Id)
       .then(data => {
         if (data.Code == 1) {
           var sp = data.StarvationValue;
           var hp = data.HealthValue;
           //给小鸡的饥饿度和健康值赋值
-          this.assignChickState(sp, hp);
+          this.assignChickState(sp, hp, data.Hungry, data.Sick);
 
-          //给小鸡的状态赋值
-          var spLabel = cc.find("pd-20/state/state-box/sp_label", this._stateNode).getComponent(cc.Label);
-          var hpLabel = cc.find("pd-20/state/state-box/hp_label", this._stateNode).getComponent(cc.Label);
-          spLabel.string = data.Hungry ? "饥饿" : "饱腹";
-          hpLabel.string = data.Sick ? "生病" : "健康";
+          // //给小鸡的状态赋值
+          // var spLabel = cc.find("pd-20/state/state-box/sp_label", this._stateNode).getComponent(cc.Label);
+          // var hpLabel = cc.find("pd-20/state/state-box/hp_label", this._stateNode).getComponent(cc.Label);
+          // spLabel.string = data.Hungry ? "饥饿" : "饱腹";
+          // hpLabel.string = data.Sick ? "生病" : "健康";
 
           //显示节点（动画）
           clearTimeout(this.timer);

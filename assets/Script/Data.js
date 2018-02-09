@@ -2,7 +2,7 @@ var func = {
   //获取所有数据（index页面）
   openID: "dedbc83d62104d6da8d4a3c0188dc419",
   GetWholeData() {
-    Loading.show();
+    // Loading.show();
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -65,10 +65,8 @@ var func = {
     });
   },
 
-  //签到接口
-
-  //获取小鸡当前的健康值及饥饿度
-  GetChickValue() {
+  //通过Id获取小鸡当前的健康值及饥饿度
+  GetChickValueById(Id) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -85,10 +83,10 @@ var func = {
           }
         }
       };
-      // POST方法
+      // POST方法1
       xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_Chicken/GetModelValue", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
-      xhr.send("cid=1");
+      xhr.send("cid=" + Id);
     });
   },
   //获得当月签到的记录数组
@@ -107,7 +105,7 @@ var func = {
           }
         }
       };
-      // POST方法
+      // Get方法
       xhr.open("GET", "http://www.jingongbao.com:4633/T_Base_SignFlow/GetList?openId=" + this.openID, true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
@@ -139,7 +137,7 @@ var func = {
   },
   //获得仓库列表
   GetRepertoryList() {
-    Loading.show();
+    // Loading.show();
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -165,6 +163,7 @@ var func = {
       xhr.send();
     });
   },
+  //签到接口
   PostSign() {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
@@ -188,7 +187,7 @@ var func = {
       xhr.send("openID=" + this.openID);
     });
   },
-  //小鸡清理
+  //牧场清理 type=1 自己清理
   PostClean() {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
@@ -213,7 +212,7 @@ var func = {
     });
   },
   //小鸡治疗
-  PostTreat() {
+  PostTreat(Id) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -231,11 +230,11 @@ var func = {
       // POST方法
       xhr.open("POST", "http://www.jingongbao.com:4633/T_Chicken_Treatment/POSTOneTreatment", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
-      xhr.send("id=1");
+      xhr.send("id=" + Id);
     });
   },
   //小鸡喂食
-  PostOwnFeeds() {
+  PostOwnFeeds(Id) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -255,7 +254,7 @@ var func = {
       // POST方法
       xhr.open("POST", "http://www.jingongbao.com:4633/T_Chicken_Feed/POSTOwnFeeds", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
-      xhr.send("id=1");
+      xhr.send("id=" + Id);
     });
   },
   //购买商品接口
@@ -304,6 +303,54 @@ var func = {
       xhr.open("POST", "http://www.jingongbao.com:4633/T_Chicken_Egg/EggHatch", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
+    });
+  },
+  //获得该用户的鸡的列表
+  GetChickList() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            console.log("清理成功");
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("签到失败");
+            reject(response);
+          }
+        }
+      };
+      // POST方法
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_Chicken/GetModelList", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("openID=" + this.openID);
+    });
+  },
+  //通过Id找到鸡对象（状态及相应的值）
+  GetChickById(Id) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            console.log("清理成功");
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("签到失败");
+            reject(response);
+          }
+        }
+      };
+      // POST方法1
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_Chicken/ChickenAndRanch", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("cid=" + Id);
     });
   }
 };

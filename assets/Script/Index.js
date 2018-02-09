@@ -72,28 +72,16 @@ cc.Class({
 
     //初始化鸡是否显示
     this.Chick.active = data.ChickenList.length > 0 ? true : false;
+    //调用setId接口 给鸡传Id 默认第一只鸡
     if (this.Chick.active) {
-      //初始化鸡的状态
-      var shitStatus = data.ChickenList[0].Shit;
-      var sickStatus = data.ChickenList[0].Sick;
-      var hungryStatus = data.ChickenList[0].Hungry;
-      this._chick._chickStatus.shit = shitStatus;
-      this._chick._chickStatus.sick = sickStatus;
-      this._chick._chickStatus.hungry = hungryStatus;
-
-      this.chickFunc.playChickAnim.call(this._chick);
-
-      //初始化鸡的饱腹度及健康值
-      var sp = data.ChickenList[0].StarvationValue;
-      var hp = data.ChickenList[0].HealthValue;
-      this.chickFunc.assignChickState.call(this._chick, sp, hp);
+      this._chick.setId(data.ChickenList[0].ID);
     }
   },
   //点击治疗事件 弹出alert
   showTreatAlert: function() {
     var self = this;
     //调用接口
-    Func.PostTreat()
+    Func.PostTreat(this._chick._Id)
       .then(data => {
         if (data.Code === 1) {
           var animState = self._chick._chickAnim.play("chick_treat");
@@ -137,7 +125,7 @@ cc.Class({
   //点击喂食事件 弹出alert
   showFeedAlert: function() {
     var self = this;
-    Func.PostOwnFeeds()
+    Func.PostOwnFeeds(this._chick._Id)
       .then(data => {
         if (data.Code === 1) {
           var anim = self._chick._chickAnim.play("chick_feed");
@@ -227,7 +215,7 @@ cc.Class({
 
   onLoad: function() {
     var openID = window.location.href.split("=")[1];
-    Func.openID = "dedbc83d62104d6da8d4a3c0188dc419";
+    Func.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
   },
 
   start: function() {
@@ -237,7 +225,7 @@ cc.Class({
       // console.log(data);
       if (data.Code === 1) {
         this.initData(data);
-        Loading.hide();
+        // Loading.hide();
       } else {
         console.log("首页数据加载失败");
       }

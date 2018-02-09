@@ -30,11 +30,13 @@
 //   // update (dt) {},
 // });
 
+"use strict";
+
 var Loading = {
   loadNode: null,
   loadEnd: false,
-  show() {
-    return new Promise((resolve, reject) => {
+  show: function show() {
+    return new Promise(function(resolve, reject) {
       cc.loader.loadRes("Prefab/loading", cc.Prefab, function(error, prefab) {
         if (error) {
           reject(error);
@@ -48,14 +50,14 @@ var Loading = {
       });
     });
   },
-  hide() {
-    this.show().then(data => {
+  hide: function hide() {
+    this.show().then(function(data) {
       if (data) {
         data.destroy();
       }
     });
   },
-  init() {
+  init: function init() {
     cc.loader.loadRes("Prefab/loading", cc.Prefab, function(error, prefab) {
       if (error) {
         cc.error(error);
