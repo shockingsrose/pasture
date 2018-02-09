@@ -49,12 +49,12 @@ cc.Class({
           this.goodsListNode.addChild(goodsNode);
 
           goodsNode.on("click", event => {
-            console.log(this);
-
             Alert.show("是否确认购买该商品？", function() {
               Func.PostBuy(goods.ID).then(data => {
                 if (data.Code === 1) {
+                  Msg.show("购买成功");
                 } else {
+                  Msg.show(data.Message);
                 }
               });
             });

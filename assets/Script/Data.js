@@ -2,27 +2,30 @@ var func = {
   //获取所有数据（index页面）
   openID: null,
   GetWholeData() {
+    Loading.show();
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("成功获取数据");
+            response = JSON.parse(response);
+
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取数据失败");
+            response = JSON.parse(response);
+
             reject(response);
           }
         }
       };
       // GET方法
-      xhr.open("GET", "http://192.168.42.88:4633/T_Base_User/GetWholeData?openID=" + this.openID, true);
+      xhr.open("GET", "http://www.jingongbao.com:4633/T_Base_User/GetWholeData?openID=" + this.openID, true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
       // POST方法
-      // xhr.open("POST", "http://192.168.42.88:4633/T_Base_User/POSTWholeData", true);
+      // xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_User/POSTWholeData", true);
       // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       // xhr.send("openID=o9AgowGKcD5MAuYIhedEX&pageSize=9");
     });
@@ -48,7 +51,7 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        "http://192.168.42.88:4633/T_Base_User/GetFriendsList?openID=" +
+        "http://www.jingongbao.com:4633/T_Base_User/GetFriendsList?openID=" +
           this.openID +
           "&startIndex=1&endIndex=9&orderby=Grade desc",
         true
@@ -56,7 +59,7 @@ var func = {
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
       // POST方法
-      // xhr.open("POST", "http://192.168.42.88:4633/T_Base_User/POSTWholeData", true);
+      // xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_User/POSTWholeData", true);
       // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       // xhr.send("openID=o9AgowGKcD5MAuYIhedEX&pageSize=9");
     });
@@ -83,7 +86,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", "http://192.168.42.88:4633/T_Base_Chicken/GetModelValue", true);
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_Chicken/GetModelValue", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("cid=1");
     });
@@ -105,7 +108,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("GET", "http://192.168.42.88:4633/T_Base_SignFlow/GetList?openId=" + this.openID, true);
+      xhr.open("GET", "http://www.jingongbao.com:4633/T_Base_SignFlow/GetList?openId=" + this.openID, true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
@@ -129,13 +132,14 @@ var func = {
         }
       };
       // GET方法
-      xhr.open("GET", "http://192.168.42.88:4633/T_Base_Property/GetListByPage?page=1", true);
+      xhr.open("GET", "http://www.jingongbao.com:4633/T_Base_Property/GetListByPage?page=1", true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
   },
   //获得仓库列表
   GetRepertoryList() {
+    Loading.show();
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -154,7 +158,7 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        "http://192.168.42.88:4633/T_Base_Warehouse/GetListByPage?openId=" + this.openID + "&page=1",
+        "http://www.jingongbao.com:4633/T_Base_Warehouse/GetListByPage?openId=" + this.openID + "&page=1",
         true
       );
       xhr.setRequestHeader("Content-Type", "json");
@@ -179,7 +183,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", "http://192.168.42.88:4633/T_Base_SignFlow/PostSign", true);
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_SignFlow/PostSign", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });
@@ -203,7 +207,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", "http://192.168.42.88:4633/T_Ranch_Clean/PostClean", true);
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Ranch_Clean/PostClean", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID + "&type=1");
     });
@@ -225,7 +229,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", "http://192.168.42.88:4633/T_Chicken_Treatment/POSTOneTreatment", true);
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Chicken_Treatment/POSTOneTreatment", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("id=1");
     });
@@ -249,7 +253,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", "http://192.168.42.88:4633/T_Chicken_Feed/POSTOwnFeeds", true);
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Chicken_Feed/POSTOwnFeeds", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("id=1");
     });
@@ -274,7 +278,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", "http://192.168.42.88:4633/T_Base_Property/PostBuy", true);
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_Property/PostBuy", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID + "&count=" + count + "&prId=" + prId);
     });
@@ -297,7 +301,7 @@ var func = {
           }
         }
       };
-      xhr.open("POST", "http://192.168.42.88:4633/T_Chicken_Egg/EggHatch", true);
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Chicken_Egg/EggHatch", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });

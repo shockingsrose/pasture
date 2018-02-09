@@ -4137,9 +4137,7 @@
     "root": {
       "__id__": 109
     },
-    "asset": {
-      "__uuid__": "0e60349e-7a7e-4bea-845f-f1c8cf5ce885"
-    },
+    "asset": null,
     "fileId": "89j25VzwZOP5NoBlR/ofJf",
     "sync": false
   },
@@ -6656,7 +6654,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 226

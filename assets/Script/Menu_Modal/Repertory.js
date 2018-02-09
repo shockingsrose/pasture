@@ -73,7 +73,7 @@ cc.Class({
                     this.chickNode.active = true;
                     this.closeModal();
                   } else {
-                    Alert.show(data.Message);
+                    Msg.show(data.Message);
                   }
                 });
               });
@@ -101,6 +101,7 @@ cc.Class({
           this.goodsListNode.addChild(goodsNode);
         }
       }
+      Loading.hide();
     });
   },
 

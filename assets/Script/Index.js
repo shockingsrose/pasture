@@ -100,11 +100,11 @@ cc.Class({
           this._chick._chickStatus.sick = false;
           this._chick._chickAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
         } else {
-          Alert.show(data.Message);
+          Msg.show(data.Message);
         }
       })
       .catch(reason => {
-        Alert.show("failed:" + reason);
+        Msg.show("failed:" + reason);
       });
   },
   //点击清理事件 弹出alert
@@ -127,11 +127,11 @@ cc.Class({
           this.handAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
         } else {
           //牧场不脏 弹出提示框
-          Alert.show(data.Message);
+          Msg.show(data.Message);
         }
       })
       .catch(reason => {
-        Alert.show("failed:" + reason);
+        Msg.show("failed:" + reason);
       });
   },
   //点击喂食事件 弹出alert
@@ -145,11 +145,11 @@ cc.Class({
           this._chick._chickStatus.hungry = false;
           this._chick._chickAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
         } else {
-          Alert.show(data.Message);
+          Msg.show(data.Message);
         }
       })
       .catch(reason => {
-        Alert.show("failed:" + reason);
+        Msg.show("failed:" + reason);
       });
   },
   showMenu: function() {
@@ -235,7 +235,12 @@ cc.Class({
     this.chickFunc = this._chick.chickFunc;
     Func.GetWholeData().then(data => {
       // console.log(data);
-      this.initData(JSON.parse(data));
+      if (data.Code === 1) {
+        this.initData(data);
+        Loading.hide();
+      } else {
+        console.log("首页数据加载失败");
+      }
     });
   },
 
