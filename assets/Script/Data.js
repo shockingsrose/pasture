@@ -1,6 +1,6 @@
 var func = {
   //获取所有数据（index页面）
-  openID: null,
+  openID: "dedbc83d62104d6da8d4a3c0188dc419",
   GetWholeData() {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
