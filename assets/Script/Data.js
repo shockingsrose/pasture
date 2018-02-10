@@ -1,6 +1,6 @@
 var func = {
   //获取所有数据（index页面）
-  openID: "dedbc83d62104d6da8d4a3c0188dc419",
+  openID: null,
   GetWholeData() {
     // Loading.show();
     return new Promise((resolve, reject) => {
@@ -351,6 +351,41 @@ var func = {
       xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_Chicken/ChickenAndRanch", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("cid=" + Id);
+    });
+  },
+  //获取用户中心数据
+  GetUserData(pageIndex, pageSize) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // POST方法
+
+      xhr.open(
+        "POST",
+        "http://www.jingongbao.com:4633/T_Base_User/PersonalCore?openId=" +
+          this.openID +
+          "&page=" +
+          pageIndex +
+          "&pagesize=" +
+          pageSize,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("openID=" + this.openID);
     });
   }
 };
