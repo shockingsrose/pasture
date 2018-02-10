@@ -71,6 +71,10 @@ cc.Class({
                 Func.HatchEgg().then(data => {
                   if (data.Code === 1) {
                     this.chickNode.active = true;
+                    var chickJs = this.chickNode.getComponent("Chick");
+                    chickJs.setId(data.Model);
+                    chickJs._chickAnim.play("chick_born");
+                    chickJs._chickAnim.on("finished", chickJs.chickFunc.initData, chickJs);
                     this.closeModal();
                   } else {
                     Msg.show(data.Message);
@@ -101,7 +105,7 @@ cc.Class({
           this.goodsListNode.addChild(goodsNode);
         }
       }
-      Loading.hide();
+      //Loading.hide();
     });
   },
 

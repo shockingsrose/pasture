@@ -75,6 +75,7 @@ cc.Class({
     //调用setId接口 给鸡传Id 默认第一只鸡
     if (this.Chick.active) {
       this._chick.setId(data.ChickenList[0].ID);
+      this._chick.initData();
     }
   },
   //点击治疗事件 弹出alert
@@ -87,8 +88,10 @@ cc.Class({
           var animState = self._chick._chickAnim.play("chick_treat");
           this._chick._chickStatus.sick = false;
           this._chick._chickAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
-        } else {
+        } else if (data.Code == "000") {
           Msg.show(data.Message);
+        } else if (data.Code === 3333) {
+          Alert.show(data.Message, this.rechargeEvent, this.treatIcon, "剩余的牧场币不足");
         }
       })
       .catch(reason => {
@@ -132,13 +135,25 @@ cc.Class({
           anim.repeatCount = 4;
           this._chick._chickStatus.hungry = false;
           this._chick._chickAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
-        } else {
+        } else if (data.Code == "000") {
           Msg.show(data.Message);
+        } else if (data.Code === 333) {
+          Alert.show(data.Message, this.loadSceneShop, this.feedIcon, "剩余的饲料不足");
         }
       })
       .catch(reason => {
         Msg.show("failed:" + reason);
       });
+  },
+  //将饲料放入饲料槽中
+  putFeed() {
+    let handFeedNode = cc.find("hand_feed", this.node);
+    handFeedNode.active = true;
+    let hanfFeedAnim = handFeedNode.getComponent(cc.Animation);
+    hanfFeedAnim.play("hand_feed");
+    hanfFeedAnim.on("finished", () => {
+      handFeedNode.active = false;
+    });
   },
   showMenu: function() {
     var self = this;
@@ -176,6 +191,11 @@ cc.Class({
   //点击充值 跳转场景
   rechargeEvent: function() {
     cc.director.loadScene("recharge");
+  },
+
+  //
+  loadSceneShop() {
+    cc.director.loadScene("shop");
   },
 
   showUserCenter: function() {

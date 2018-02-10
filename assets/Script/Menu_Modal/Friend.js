@@ -111,6 +111,7 @@ cc.Class({
   //搜索功能(搜索好友)
   search() {
     //输入框的值
-    var str = this.inputNode.string;
+    let str = this.inputNode.string;
+    Func.GetFriendsListByName().then(data => {});
   }
 });

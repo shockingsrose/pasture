@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "8295d3f7-354b-4265-be72-00aaf8abdcf2",
+  "uuid": "c26e9aac-2bd8-4f2c-9a09-4da602c97a86",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "确定": {
+    "icon-feed": {
       "ver": "1.0.3",
-      "uuid": "19f1a64b-4a4b-4cc6-8bc4-9bbdcef5e60c",
-      "rawTextureUuid": "8295d3f7-354b-4265-be72-00aaf8abdcf2",
+      "uuid": "a93f076d-aa68-486f-9769-4f8aeaab150e",
+      "rawTextureUuid": "c26e9aac-2bd8-4f2c-9a09-4da602c97a86",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 211,
-      "height": 74,
-      "rawWidth": 211,
-      "rawHeight": 74,
+      "width": 141,
+      "height": 140,
+      "rawWidth": 141,
+      "rawHeight": 140,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

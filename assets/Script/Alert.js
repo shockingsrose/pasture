@@ -6,7 +6,8 @@ var Alert = {
   _enterCallBack: null, // 回调事件
   _bgButton: null, // 黑色半透明背景（点击关闭）
   _icon: null, // Alert头部图标
-  _animSpeed: 0.3 // 动画速度
+  _animSpeed: 0.3, // 动画速度
+  _titleLabel: null
 };
 
 /**
@@ -18,12 +19,12 @@ var Alert = {
  * iconPic:         icon图标路径
  */
 // enterCallBack:   确定点击事件回调  function 类型.
-Alert.show = function(detailString, enterCallBack, iconPic, needCancel, animSpeed) {
+Alert.show = function(detailString, enterCallBack, iconPic, title, needCancel, animSpeed) {
   // 引用
   var self = this;
 
   // 判断
-  if (Alert._alert != undefined) return;
+  if (Alert._alert != undefined) Alert._alert.destroy();
 
   //
   Alert._animSpeed = animSpeed ? animSpeed : Alert._animSpeed;
@@ -53,6 +54,7 @@ Alert.show = function(detailString, enterCallBack, iconPic, needCancel, animSpee
     Alert._enterButton = cc.find("alertBackground/enterButton", alert);
     Alert._bgButton = cc.find("bg", alert);
     Alert._icon = cc.find("alertBackground/icon", alert).getComponent(cc.Sprite);
+    Alert._titleLabel = cc.find("alertBackground/title", alert).getComponent(cc.Label);
 
     //设置图标
     if (iconPic) {
@@ -71,16 +73,17 @@ Alert.show = function(detailString, enterCallBack, iconPic, needCancel, animSpee
     self.startFadeIn();
 
     // 参数
-    self.configAlert(detailString, enterCallBack, needCancel, animSpeed);
+    self.configAlert(detailString, title, enterCallBack, needCancel, animSpeed);
   });
 
   // 参数
-  self.configAlert = function(detailString, enterCallBack, needCancel, animSpeed) {
+  self.configAlert = function(detailString, title, enterCallBack, needCancel, animSpeed) {
     // 回调
     Alert._enterCallBack = enterCallBack;
 
     // 内容
     Alert._detailLabel.string = detailString;
+    Alert._titleLabel.string = title || "标题";
     // 是否需要取消按钮
     if (needCancel || needCancel == undefined) {
       // 显示

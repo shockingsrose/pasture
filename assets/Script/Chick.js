@@ -76,7 +76,8 @@ var Chick = cc.Class({
   },
   setId(Id) {
     this._Id = Id;
-    this.initData();
+
+    // this.initData();
   },
   //初始化鸡的状态 播放不同的动画
   initData() {
@@ -119,8 +120,26 @@ var Chick = cc.Class({
     this.chickFunc = {
       playChickAnim: this.playAnim,
       assignChickState: this.assignChickState,
-      setId: this.setId
+      setId: this.setId,
+      initData: this.initData
     };
+  },
+  //小鸡说话
+  sayHello() {
+    let words = [
+      "我饿了，我要吃饭饭",
+      "我可以找朋友玩吗？",
+      "不要吃我不要吃我，我会下蛋！",
+      "心情不好，我能吃个烤串吗？",
+      "悄悄告诉你，隔壁老王家的小母鸡好漂亮！",
+      "主人是大傻瓜！",
+      "祝你天天开心，恭喜发财！",
+      "要过节了，我明天吃点什么呢？",
+      "过年了，我好想穿新衣服啊！]"
+    ];
+    let n = Math.floor(Math.random() * words.length + 1) - 1;
+    let str = words[n];
+    Msg.show(str);
   },
   //显示小鸡的状态
   showChickState: function() {
@@ -131,19 +150,11 @@ var Chick = cc.Class({
           var hp = data.HealthValue;
           //给小鸡的饥饿度和健康值赋值
           this.assignChickState(sp, hp, data.Hungry, data.Sick);
-
-          // //给小鸡的状态赋值
-          // var spLabel = cc.find("pd-20/state/state-box/sp_label", this._stateNode).getComponent(cc.Label);
-          // var hpLabel = cc.find("pd-20/state/state-box/hp_label", this._stateNode).getComponent(cc.Label);
-          // spLabel.string = data.Hungry ? "饥饿" : "饱腹";
-          // hpLabel.string = data.Sick ? "生病" : "健康";
-
+          this.sayHello();
           //显示节点（动画）
           clearTimeout(this.timer);
           this._stateNode.active = true;
-          // var hpBar = cc.find("hpBar", this._chick._stateNode);
-          // //取消级联透明度的设置  不会继承父级opacity（不设置会导致Mask失效）
-          // hpBar.cascadeOpacity = false;
+
           this._stateNode.opacity = 0;
           this._stateNode.runAction(cc.fadeIn(0.3));
           var action = cc.sequence(
