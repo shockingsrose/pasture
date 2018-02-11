@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "arrow_up",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.06666666666666667,
+  "sample": 60,
+  "speed": 0.1,
+  "wrapMode": 2,
+  "curveData": {
+    "props": {
+      "y": [
+        {
+          "frame": 0,
+          "value": -56
+        },
+        {
+          "frame": 0.016666666666666666,
+          "value": -66
+        },
+        {
+          "frame": 0.03333333333333333,
+          "value": -79
+        },
+        {
+          "frame": 0.05,
+          "value": -66
+        },
+        {
+          "frame": 0.06666666666666667,
+          "value": -56
+        }
+      ]
+    }
+  },
+  "events": []
+}
