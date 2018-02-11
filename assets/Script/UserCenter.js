@@ -17,6 +17,9 @@ cc.Class({
   btnBackEvent() {
     cc.director.loadScene("index");
   },
+  btnGoTradeEvent() {
+    cc.director.loadScene("tradelist");
+  },
   onLoad() {
     Data.func.GetUserData(1, 4).then(data => {
       this.setData(data);
@@ -89,7 +92,7 @@ cc.Class({
         PrefabParent.addChild(RepertoryByCenter);
       }
     } else {
-      console.log(model.Message);
+      console.log(data.Message);
     }
   },
   setBuyPropertyList(data) {
@@ -136,7 +139,7 @@ cc.Class({
         PrefabParent.addChild(PropertyList);
       }
     } else {
-      console.log(model.Message);
+      console.log(data.Message);
     }
   },
 
