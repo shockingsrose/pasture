@@ -59,15 +59,12 @@
         "__id__": 3
       },
       {
-        "__id__": 174
+        "__id__": 175
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
-      {
-        "__id__": 181
-      },
       {
         "__id__": 182
       },
@@ -76,6 +73,9 @@
       },
       {
         "__id__": 184
+      },
+      {
+        "__id__": 185
       }
     ],
     "_prefab": null,
@@ -134,13 +134,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 172
+        "__id__": 173
       },
       {
         "__id__": 8
       },
       {
-        "__id__": 173
+        "__id__": 174
       }
     ],
     "_prefab": null,
@@ -199,10 +199,10 @@
         "__id__": 7
       },
       {
-        "__id__": 170
+        "__id__": 171
       },
       {
-        "__id__": 171
+        "__id__": 172
       }
     ],
     "_prefab": null,
@@ -392,13 +392,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 167
-      },
-      {
         "__id__": 168
       },
       {
         "__id__": 169
+      },
+      {
+        "__id__": 170
       }
     ],
     "_prefab": null,
@@ -6170,7 +6170,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "退出",
+    "_N$string": "返回",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
@@ -6233,7 +6233,11 @@
     "hoverSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
     },
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 167
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$normalColor": {
@@ -6259,6 +6263,15 @@
     "_N$target": {
       "__id__": 162
     }
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 2
+    },
+    "component": "UserCenter",
+    "handler": "btnBackEvent",
+    "customEventData": ""
   },
   {
     "__type__": "cc.Sprite",
@@ -6457,20 +6470,20 @@
     "_active": false,
     "_components": [
       {
-        "__id__": 175
-      },
-      {
         "__id__": 176
       },
       {
         "__id__": 177
       },
       {
-        "__id__": 179
+        "__id__": 178
+      },
+      {
+        "__id__": 180
       }
     ],
     "_prefab": {
-      "__id__": 180
+      "__id__": 181
     },
     "_id": "8dBCFQiHpCMrI28udvyL55",
     "_opacity": 0,
@@ -6513,7 +6526,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 174
+      "__id__": 175
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -6539,7 +6552,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 174
+      "__id__": 175
     },
     "_enabled": true,
     "_layoutSize": {
@@ -6570,7 +6583,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 174
+      "__id__": 175
     },
     "_enabled": true,
     "transition": 0,
@@ -6594,7 +6607,7 @@
     "hoverSprite": null,
     "clickEvents": [
       {
-        "__id__": 178
+        "__id__": 179
       }
     ],
     "_N$interactable": true,
@@ -6616,7 +6629,7 @@
     "_N$normalSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 174
+      "__id__": 175
     }
   },
   {
@@ -6633,7 +6646,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 174
+      "__id__": 175
     },
     "_enabled": true,
     "isAlignOnce": true,
@@ -6657,7 +6670,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 174
+      "__id__": 175
     },
     "asset": null,
     "fileId": "a6jdfYxXZMOoyw4mi3EuiX",
