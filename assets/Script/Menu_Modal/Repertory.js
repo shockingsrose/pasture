@@ -91,6 +91,11 @@ cc.Class({
                 modalNode.runAction(action);
               });
               break;
+            case 2:
+              cc.loader.loadRes("Modal/Repertory/img-egg", cc.SpriteFrame, function(err, spriteFrame) {
+                goodSprite.spriteFrame = spriteFrame;
+              });
+              break;
             case 3:
               break;
             case 4:

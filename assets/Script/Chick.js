@@ -42,7 +42,7 @@ var Chick = cc.Class({
   //小鸡状态Node
   _stateNode: null,
   _hpLabel: null,
-  _hpBar: null,
+  _hpProgressBar: null,
   _hpValue: 0,
   chickFunc: null,
   init: function() {
@@ -62,11 +62,12 @@ var Chick = cc.Class({
     this._animHungry = this.node.getComponent(cc.Animation)._clips[3];
     this._animSick = this.node.getComponent(cc.Animation)._clips[4];
     this._parentNode = cc.find("Canvas");
+    this.feedStateNode = cc.find("feedState", this._parentNode);
     this._shitCount = 0;
 
     this._stateNode = this._parentNode.getChildByName("chickState");
     this._stateNode.active = false;
-    // this._hpBar = cc.find("hpBar", this._stateNode).getComponent(cc.ProgressBar);
+    // this._hpProgressBar = cc.find("hpProgressBar", this._stateNode).getComponent(cc.ProgressBar);
     // this._hpLabel = cc.find("Value", this._stateNode).getComponent(cc.Label);
 
     //获得小鸡的ID （小鸡列表点击小鸡 把Id赋值过来）
@@ -99,20 +100,26 @@ var Chick = cc.Class({
   },
   //给小鸡状态赋值
   assignChickState: function(sp, hp, hungryState, sickState) {
-    var spBar = cc.find("pd-20/sp/spBar", this._stateNode).getComponent(cc.ProgressBar);
+    var spProgressBar = cc.find("pd-20/sp/spBar", this._stateNode).getComponent(cc.ProgressBar);
+    var spBar = spProgressBar.node.getChildByName("bar");
     var spLabel = cc.find("pd-20/sp/value", this._stateNode).getComponent(cc.Label);
-    var hpBar = cc.find("pd-20/hp/hpBar", this._stateNode).getComponent(cc.ProgressBar);
+    var hpProgressBar = cc.find("pd-20/hp/hpBar", this._stateNode).getComponent(cc.ProgressBar);
+    var hpBar = hpProgressBar.node.getChildByName("bar");
     var hpLabel = cc.find("pd-20/hp/value", this._stateNode).getComponent(cc.Label);
     var spStateLabel = cc.find("pd-20/state/state-box/sp_label", this._stateNode).getComponent(cc.Label);
     var hpStateLabel = cc.find("pd-20/state/state-box/hp_label", this._stateNode).getComponent(cc.Label);
 
-    spBar.progress = sp / 100;
+    spProgressBar.progress = sp / 100;
+    Tool.setBarColor(spBar, sp / 100);
     spLabel.string = sp + "/100";
-    hpBar.progress = hp / 100;
+
+    hpProgressBar.progress = hp / 100;
+    Tool.setBarColor(hpBar, hp / 100);
     hpLabel.string = hp + "/100";
     spStateLabel.string = hungryState ? "饥饿" : "饱腹";
     hpStateLabel.string = sickState ? "生病" : "健康";
   },
+
   onLoad() {
     this.init();
 
@@ -129,20 +136,23 @@ var Chick = cc.Class({
     let words = [
       "我饿了，我要吃饭饭",
       "我可以找朋友玩吗？",
-      "不要吃我不要吃我，我会下蛋！",
+      "不要吃我，我会下蛋！",
       "心情不好，我能吃个烤串吗？",
-      "悄悄告诉你，隔壁老王家的小母鸡好漂亮！",
+
       "主人是大傻瓜！",
       "祝你天天开心，恭喜发财！",
-      "要过节了，我明天吃点什么呢？",
-      "过年了，我好想穿新衣服啊！]"
+      "我明天吃点什么呢？",
+      "过年了，想穿新衣服啦！]"
     ];
     let n = Math.floor(Math.random() * words.length + 1) - 1;
     let str = words[n];
-    Msg.show(str);
+    this.wordNode = cc.find("dialog/word", this._stateNode);
+    let wordLabel = this.wordNode.getComponent(cc.Label);
+    wordLabel.string = str;
   },
   //显示小鸡的状态
   showChickState: function() {
+    this.feedStateNode.active = false;
     Func.GetChickValueById(this._Id)
       .then(data => {
         if (data.Code == 1) {

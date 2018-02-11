@@ -47,6 +47,11 @@ cc.Class({
   _signState: null,
   //点击显示小鸡状态的timer
   timer: null,
+  //点击显示饲料槽的timer
+  timer2: null,
+  feedStateNode: null,
+  arrowNode: null,
+  eggNode: null,
 
   init: function() {
     this._chick = this.Chick.getComponent("Chick");
@@ -56,6 +61,8 @@ cc.Class({
     this.btnMoreSprite = this.btnMoreNode.getComponent(cc.Sprite);
     this.handNode = cc.find("Hand", this.node);
     this.handAnim = this.handNode.getComponent(cc.Animation);
+    this.arrowNode = this.node.getChildByName("icon-arrow");
+    this.eggNode = this.node.getChildByName("egg");
     // var chickState = new Chick();
     this.MenuListNode.active = false;
   },
@@ -77,6 +84,25 @@ cc.Class({
       this._chick.setId(data.ChickenList[0].ID);
       this._chick.initData();
     }
+
+    //初始化鸡蛋
+    this.eggNode.active = data.RanchModel.EggCount > 0 ? true : false;
+  },
+  //收取鸡蛋
+  collectEgg() {
+    Func.CollectEgg().then(data => {
+      if (data.Code == 1) {
+        let action = cc.sequence(
+          cc.fadeOut(0.3),
+          cc.callFunc(() => {
+            this.eggNode.active = false;
+          }, this)
+        );
+        this.eggNode.runAction(action);
+      } else {
+        Msg.show(data.Message);
+      }
+    });
   },
   //点击治疗事件 弹出alert
   showTreatAlert: function() {
@@ -147,13 +173,68 @@ cc.Class({
   },
   //将饲料放入饲料槽中
   putFeed() {
-    let handFeedNode = cc.find("hand_feed", this.node);
-    handFeedNode.active = true;
-    let hanfFeedAnim = handFeedNode.getComponent(cc.Animation);
-    hanfFeedAnim.play("hand_feed");
-    hanfFeedAnim.on("finished", () => {
-      handFeedNode.active = false;
+    Func.AddFeed().then(data => {
+      if (data.Code === 1) {
+        let array = data.Model.split(",");
+        let value = array[0];
+        let capacity = array[1];
+        this.assignFeedState(value, capacity);
+        //动画
+        let handFeedNode = cc.find("hand_feed", this.node);
+        handFeedNode.active = true;
+        let hanfFeedAnim = handFeedNode.getComponent(cc.Animation);
+        hanfFeedAnim.play("hand_feed");
+        hanfFeedAnim.on("finished", () => {
+          handFeedNode.active = false;
+        });
+      } else if (data.Code == "000") {
+        Alert.show(data.Message, this.loadSceneShop, this.feedIcon, "剩余的饲料不足");
+      } else if (data.Code == "333") {
+        Msg.show(data.Message);
+      }
     });
+  },
+  //显示饲料槽状态
+  showFeedState() {
+    this._chick._stateNode.active = false;
+
+    Func.GetFeedData().then(data => {
+      if (data.Code == 1) {
+        this.arrowNode.active = false;
+        let capacity = data.Model.FeedTroughCapacity;
+        let value = data.Model.FeedCount;
+        this.assignFeedState(value, capacity);
+
+        //显示节点（动画）
+        clearTimeout(this.timer2);
+        this.feedStateNode.active = true;
+        this.feedStateNode.opacity = 0;
+        this.feedStateNode.runAction(cc.fadeIn(0.3));
+        var action = cc.sequence(
+          cc.fadeOut(0.3),
+          cc.callFunc(() => {
+            this.feedStateNode.active = false;
+            this.arrowNode.active = true;
+          }, this)
+        );
+        this.timer2 = setTimeout(() => {
+          this.feedStateNode.runAction(action);
+        }, 3000);
+      } else {
+        Alert.show(data.Message);
+      }
+    });
+  },
+  //赋值 饲料槽
+  assignFeedState(value, capacity) {
+    this.feedStateNode = this.node.getChildByName("feedState");
+    let feedProgressBar = cc.find("layout/Bar", this.feedStateNode).getComponent(cc.ProgressBar);
+    let feedBar = feedProgressBar.node.getChildByName("bar");
+    let feedLabel = cc.find("layout/value", this.feedStateNode).getComponent(cc.Label);
+
+    feedLabel.string = value + "/ " + capacity;
+    feedProgressBar.progress = value / capacity;
+    Tool.setBarColor(feedBar, value / capacity);
   },
   showMenu: function() {
     var self = this;
