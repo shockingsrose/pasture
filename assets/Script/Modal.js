@@ -21,6 +21,10 @@ var Modal = cc.Class({
       default: null,
       type: cc.Prefab
     },
+    NameEditModal_Prefab: {
+      default: null,
+      type: cc.Prefab
+    },
     repertoryModal_Prefab: {
       default: null,
       type: cc.Prefab
@@ -93,6 +97,38 @@ var Modal = cc.Class({
           var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
           this._Modal.runAction(action);
         });
+        break;
+      //修改昵称
+      case "edit":
+        this._Modal = cc.instantiate(this.NameEditModal_Prefab);
+        var cancelButton = cc.find("close", this._Modal);
+        var saveButton = cc.find("alertBackground/enterButton", this._Modal);
+        //取消
+        cancelButton.on("click", () => {
+          var action = cc.sequence(cc.fadeOut(0.1), cc.callFunc(this._Modal.removeFromParent, this._Modal));
+          this._Modal.runAction(action);
+        });
+        //保存
+        saveButton.on("click", () => {
+          let name = cc.find("alertBackground/input/editbox", this._Modal);
+          let title = cc.find("alertBackground/intro/detailLabel", this._Modal).getComponent(cc.Label);
+          let intro = cc.find("alertBackground/intro/tel", this._Modal);
+          Data.func.SaveEditName(name.getComponent(cc.EditBox).string).then(data => {
+            if (data.Code == 1 || data.Code == 0) {
+              intro.getComponent(cc.Label).string = "修改成功！";
+            } else if (data.Code == "333") {
+              intro.getComponent(cc.Label).string = "您修改的昵称已经存在！";
+            } else if (data.Code == "000") {
+              intro.getComponent(cc.Label).string = "您的牧场币不足200！无法修改！";
+            }
+            title.string = "温馨提示";
+            intro.getComponent(cc.Label).fontSize = 28;
+            intro.getComponent(cc.Label).lineHeight = 80;
+            saveButton.active = false;
+            name.active = false;
+          });
+        });
+
         break;
       case "repertory":
         this._Modal = cc.instantiate(this.repertoryModal_Prefab);
