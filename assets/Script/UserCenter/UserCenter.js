@@ -20,6 +20,9 @@ cc.Class({
   btnGoTradeEvent() {
     cc.director.loadScene("tradelist");
   },
+  btnGoAddressList() {
+    cc.director.loadScene("AddressList");
+  },
   onLoad() {
     Data.func.GetUserData(1, 4).then(data => {
       this.setData(data);
@@ -142,7 +145,6 @@ cc.Class({
       console.log(data.Message);
     }
   },
-
   start() {}
 
   // update (dt) {},

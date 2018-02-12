@@ -23,6 +23,17 @@ const fn = {
       return "";
     }
   },
+  formatStringToDateTimeAll(value) {
+    try {
+      if (value == "") {
+        return "";
+      }
+      var date = new Date(value);
+      return date.Format("yyyy-MM-dd hh:mm");
+    } catch (ex) {
+      return "";
+    }
+  },
   //时间戳数字转日期字符串
   formatNumToDate(value) {
     try {
@@ -40,6 +51,20 @@ const fn = {
     } catch (ex) {
       return "";
     }
+  },
+  //日期差计算
+  DateDiff(sDate1, sDate2) {
+    //sDate1和sDate2是"2002-12-18"格式
+    var aDate, oDate1, oDate2, iDays;
+    aDate = sDate1.split("-");
+    oDate1 = new Date(aDate[0], aDate[1] - 1, aDate[2]);
+    aDate = sDate2.split("-");
+    oDate2 = new Date(aDate[0], aDate[1] - 1, aDate[2]);
+    iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24);
+    if (oDate1 - oDate2 < 0) {
+      return -iDays;
+    }
+    return iDays;
   }
 };
 Date.prototype.Format = function(fmt) {
