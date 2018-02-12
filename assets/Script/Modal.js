@@ -159,6 +159,7 @@ var Modal = cc.Class({
           var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
           this._Modal.runAction(action);
           this.clearData();
+          this.hasMore = true;
         });
         this.MessageLst();
         break;
@@ -195,7 +196,7 @@ var Modal = cc.Class({
 
     return action;
   },
-  //修改昵称
+  //模态框修改昵称
   EditName() {
     this._Modal = cc.instantiate(this.NameEditModal_Prefab);
     var cancelButton = cc.find("close", this._Modal);
@@ -278,6 +279,7 @@ var Modal = cc.Class({
       }
     });
   },
+  //上拉触底刷新数据
   updataByBottom() {
     if (this.hasMore) {
       this.pageIndex++;
@@ -286,10 +288,13 @@ var Modal = cc.Class({
       this.clearData();
     }
   },
-  //清除数据
+  //清除数据 我们从头再来
   clearData() {
     this.pageIndex = 1;
     this.pageSize = 5;
+    this.today = true;
+    this.yesterday = true;
+    this.more = true;
   },
   onLoad: function() {
     // this.Modal.active = false;
