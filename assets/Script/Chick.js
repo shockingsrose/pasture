@@ -66,7 +66,11 @@ var Chick = cc.Class({
     this._shitCount = 0;
 
     this._stateNode = this._parentNode.getChildByName("chickState");
+    //收取鸡的按钮节点
+    this._collectNode = cc.find("pd-20/state/collect", this._stateNode);
+    this._collectButton = this._collectNode.getComponent(cc.Button);
     this._stateNode.active = false;
+
     // this._hpProgressBar = cc.find("hpProgressBar", this._stateNode).getComponent(cc.ProgressBar);
     // this._hpLabel = cc.find("Value", this._stateNode).getComponent(cc.Label);
 
@@ -99,7 +103,7 @@ var Chick = cc.Class({
     });
   },
   //给小鸡状态赋值
-  assignChickState: function(sp, hp, hungryState, sickState) {
+  assignChickState: function(sp, hp, hungryState, sickState, collected) {
     var spProgressBar = cc.find("pd-20/sp/spBar", this._stateNode).getComponent(cc.ProgressBar);
     var spBar = spProgressBar.node.getChildByName("bar");
     var spLabel = cc.find("pd-20/sp/value", this._stateNode).getComponent(cc.Label);
@@ -118,6 +122,15 @@ var Chick = cc.Class({
     hpLabel.string = hp + "/100";
     spStateLabel.string = hungryState ? "饥饿" : "饱腹";
     hpStateLabel.string = sickState ? "生病" : "健康";
+
+    //
+    if (collected) {
+      this._collectButton.interactable = true;
+      this._collectNode.color = cc.color("#FF4A4A");
+    } else {
+      this._collectButton.interactable = false;
+      this._collectNode.color = cc.color("#d6d6d6");
+    }
   },
 
   onLoad() {
@@ -142,7 +155,7 @@ var Chick = cc.Class({
       "主人是大傻瓜！",
       "祝你天天开心，恭喜发财！",
       "我明天吃点什么呢？",
-      "过年了，想穿新衣服啦！]"
+      "过年了，想穿新衣服啦！"
     ];
     let n = Math.floor(Math.random() * words.length + 1) - 1;
     let str = words[n];
@@ -158,8 +171,10 @@ var Chick = cc.Class({
         if (data.Code == 1) {
           var sp = data.StarvationValue;
           var hp = data.HealthValue;
+          //判断鸡是否能收取
+          let collect = data.CallBack;
           //给小鸡的饥饿度和健康值赋值
-          this.assignChickState(sp, hp, data.Hungry, data.Sick);
+          this.assignChickState(sp, hp, data.Hungry, data.Sick, collect);
           this.sayHello();
           //显示节点（动画）
           clearTimeout(this.timer);

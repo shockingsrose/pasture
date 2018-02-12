@@ -1,7 +1,7 @@
 var Tool = {};
 
 Tool.setBarColor = function(bar, value) {
-  let Node = bar;
+  var Node = bar;
   if (value < 0.6) {
     Node.color = cc.color("#FF4A4A");
   } else if (value < 0.8) {

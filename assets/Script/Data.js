@@ -327,6 +327,28 @@ var func = {
       xhr.send("openID=" + this.openID);
     });
   },
+  //收取贵妃鸡
+  CollectChick(Id) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("获取鸡蛋失败");
+            reject(response);
+          }
+        }
+      };
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_User/CollectChicken", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("cId=" + Id);
+    });
+  },
   //填充饲料槽接口
   AddFeed() {
     return new Promise((resolve, reject) => {
@@ -454,6 +476,32 @@ var func = {
           pageSize,
         true
       );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("openID=" + this.openID);
+    });
+  },
+  //获得饲料总数
+  GetFeedCount() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // POST方法
+
+      xhr.open("POST", "http://www.jingongbao.com:4633/T_Base_User/FeedCount", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });

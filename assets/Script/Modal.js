@@ -82,10 +82,6 @@ var Modal = cc.Class({
   setModal: function(name) {
     this._Modal = {}; //初始化
     switch (name) {
-      case "shop":
-        cc.director.loadScene("shop");
-        break;
-
       case "telModel":
         this._Modal = cc.instantiate(this.AlertTemp_Prefab);
         var cancelButton = cc.find("close", this._Modal);

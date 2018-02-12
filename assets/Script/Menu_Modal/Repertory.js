@@ -71,11 +71,13 @@ cc.Class({
                 Func.HatchEgg().then(data => {
                   if (data.Code === 1) {
                     this.chickNode.active = true;
+                    this.chickNode.setPosition(0, -140);
                     var chickJs = this.chickNode.getComponent("Chick");
                     chickJs.setId(data.Model);
+
+                    this.closeModal();
                     chickJs._chickAnim.play("chick_born");
                     chickJs._chickAnim.on("finished", chickJs.chickFunc.initData, chickJs);
-                    this.closeModal();
                   } else {
                     Msg.show(data.Message);
                   }
@@ -97,6 +99,9 @@ cc.Class({
               });
               break;
             case 3:
+              cc.loader.loadRes("Modal/Repertory/img-hen", cc.SpriteFrame, function(err, spriteFrame) {
+                goodSprite.spriteFrame = spriteFrame;
+              });
               break;
             case 4:
               cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {

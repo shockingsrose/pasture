@@ -63,6 +63,8 @@ cc.Class({
     this.handAnim = this.handNode.getComponent(cc.Animation);
     this.arrowNode = this.node.getChildByName("icon-arrow");
     this.eggNode = this.node.getChildByName("egg");
+    //数量
+    this.feedCountLabel = cc.find("div_action/feed/icon-tip/count", this.node).getComponent(cc.Label);
     // var chickState = new Chick();
     this.MenuListNode.active = false;
   },
@@ -81,9 +83,13 @@ cc.Class({
     this.Chick.active = data.ChickenList.length > 0 ? true : false;
     //调用setId接口 给鸡传Id 默认第一只鸡
     if (this.Chick.active) {
+      this.Chick.setPosition(0, -140);
       this._chick.setId(data.ChickenList[0].ID);
       this._chick.initData();
     }
+
+    //初始化饲料tip的数量
+    this.feedCountLabel.string = data.UserModel.Allfeed == null ? 0 : data.UserModel.Allfeed;
 
     //初始化鸡蛋
     this.eggNode.active = data.RanchModel.EggCount > 0 ? true : false;
@@ -104,7 +110,24 @@ cc.Class({
       }
     });
   },
-  //点击治疗事件 弹出alert
+  //收取贵妃鸡
+  collectChick() {
+    Func.CollectChick(this._chick._Id).then(data => {
+      if (data.Code == 1) {
+        let action = cc.sequence(
+          cc.fadeOut(0.3),
+          cc.callFunc(() => {
+            this.Chick.active = false;
+          }, this)
+        );
+        this.Chick.runAction(action);
+        Msg.show(data.Message);
+      } else {
+        Msg.show(data.Message);
+      }
+    });
+  },
+  //点击治疗事件
   showTreatAlert: function() {
     var self = this;
     //调用接口
@@ -124,7 +147,7 @@ cc.Class({
         Msg.show("failed:" + reason);
       });
   },
-  //点击清理事件 弹出alert
+  //点击清理事件
   showClearAlert: function() {
     var self = this;
     //调用接口
@@ -151,25 +174,25 @@ cc.Class({
         Msg.show("failed:" + reason);
       });
   },
-  //点击喂食事件 弹出alert
+  //点击喂食事件
   showFeedAlert: function() {
     var self = this;
-    Func.PostOwnFeeds(this._chick._Id)
-      .then(data => {
-        if (data.Code === 1) {
-          var anim = self._chick._chickAnim.play("chick_feed");
-          anim.repeatCount = 4;
-          this._chick._chickStatus.hungry = false;
-          this._chick._chickAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
-        } else if (data.Code == "000") {
-          Msg.show(data.Message);
-        } else if (data.Code === 333) {
-          Alert.show(data.Message, this.loadSceneShop, this.feedIcon, "剩余的饲料不足");
-        }
-      })
-      .catch(reason => {
-        Msg.show("failed:" + reason);
-      });
+    Func.PostOwnFeeds(this._chick._Id).then(data => {
+      if (data.Code === 1) {
+        this.updateFeedCount();
+        var anim = self._chick._chickAnim.play("chick_feed");
+        anim.repeatCount = 4;
+        this._chick._chickStatus.hungry = false;
+        this._chick._chickAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
+      } else if (data.Code == "000") {
+        Msg.show(data.Message);
+      } else if (data.Code === 333) {
+        Alert.show(data.Message, this.loadSceneShop, this.feedIcon, "剩余的饲料不足");
+      }
+    });
+    // .catch(reason => {
+    //   Msg.show("failed:" + reason);
+    // });
   },
   //将饲料放入饲料槽中
   putFeed() {
@@ -179,6 +202,7 @@ cc.Class({
         let value = array[0];
         let capacity = array[1];
         this.assignFeedState(value, capacity);
+        this.updateFeedCount();
         //动画
         let handFeedNode = cc.find("hand_feed", this.node);
         handFeedNode.active = true;
@@ -196,7 +220,7 @@ cc.Class({
   },
   //显示饲料槽状态
   showFeedState() {
-    this._chick._stateNode.active = false;
+    if (this._chick._stateNode != null) this._chick._stateNode.active = false;
 
     Func.GetFeedData().then(data => {
       if (data.Code == 1) {
@@ -235,6 +259,16 @@ cc.Class({
     feedLabel.string = value + "/ " + capacity;
     feedProgressBar.progress = value / capacity;
     Tool.setBarColor(feedBar, value / capacity);
+  },
+  //更新 tip的数量
+  updateFeedCount() {
+    Func.GetFeedCount().then(data => {
+      if (data.Code === 1) {
+        this.feedCountLabel.string = data.Model;
+      } else {
+        Msg.show(data.Message);
+      }
+    });
   },
   showMenu: function() {
     var self = this;
