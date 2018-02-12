@@ -483,6 +483,41 @@ var func = {
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send();
     });
+  },
+  //消息列表
+  UserMessage(pageIndex, pageSize) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // POST方法
+
+      xhr.open(
+        "GET",
+        "http://www.jingongbao.com:4633/T_User_Message/GetListByPage?openId=" +
+          this.openID +
+          "&page=" +
+          pageIndex +
+          "&pageSize=" +
+          pageSize,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("openID=" + this.openID);
+    });
   }
 };
 
