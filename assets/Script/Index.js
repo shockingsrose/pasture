@@ -53,7 +53,7 @@ cc.Class({
   arrowNode: null,
   eggNode: null,
 
-  init: function() {
+  init: function () {
     this._chick = this.Chick.getComponent("Chick");
     this.clearLabel = this.clearNode.getChildByName("Value").getComponent(cc.Label);
     this.clearBar = this.clearNode.getChildByName("heath_bar").getComponent(cc.ProgressBar);
@@ -87,6 +87,7 @@ cc.Class({
       this._chick.setId(data.ChickenList[0].ID);
       this._chick.initData();
     } else {
+      Msg.show("您的牧场暂无小鸡")
     }
 
     //初始化饲料tip的数量
@@ -129,7 +130,7 @@ cc.Class({
     });
   },
   //点击治疗事件
-  showTreatAlert: function() {
+  showTreatAlert: function () {
     var self = this;
     //调用接口
     Func.PostTreat(this._chick._Id)
@@ -151,7 +152,7 @@ cc.Class({
       });
   },
   //点击清理事件
-  showClearAlert: function() {
+  showClearAlert: function () {
     var self = this;
     //调用接口
     Func.PostClean()
@@ -178,7 +179,7 @@ cc.Class({
       });
   },
   //点击喂食事件
-  showFeedAlert: function() {
+  showFeedAlert: function () {
     var self = this;
     Func.PostOwnFeeds(this._chick._Id).then(data => {
       if (data.Code === 1) {
@@ -277,12 +278,12 @@ cc.Class({
       }
     });
   },
-  showMenu: function() {
+  showMenu: function () {
     var self = this;
 
     if (!this.MenuListNode.active) {
       //弹出
-      cc.loader.loadRes("btn-retract", cc.SpriteFrame, function(err, spriteFrame) {
+      cc.loader.loadRes("btn-retract", cc.SpriteFrame, function (err, spriteFrame) {
         self.btnMoreSprite.spriteFrame = spriteFrame;
       });
       var fadeIn = cc.fadeIn(0.3);
@@ -293,7 +294,7 @@ cc.Class({
       this.MenuListNode.runAction(action);
     } else {
       //收回
-      cc.loader.loadRes("btn-more", cc.SpriteFrame, function(err, spriteFrame) {
+      cc.loader.loadRes("btn-more", cc.SpriteFrame, function (err, spriteFrame) {
         self.btnMoreSprite.spriteFrame = spriteFrame;
       });
 
@@ -311,7 +312,7 @@ cc.Class({
   },
 
   //点击充值 跳转场景
-  rechargeEvent: function() {
+  rechargeEvent: function () {
     cc.director.loadScene("recharge");
   },
 
@@ -320,47 +321,47 @@ cc.Class({
     cc.director.loadScene("shop");
   },
 
-  showUserCenter: function() {
+  showUserCenter: function () {
     cc.director.loadScene("userCenter");
   },
 
-  showSickAnim: function() {
+  showSickAnim: function () {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.hungry = false;
     this._chick._chickStatus.shit = false;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  showSickHungryAnim: function() {
+  showSickHungryAnim: function () {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.hungry = true;
     this._chick._chickStatus.shit = false;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  showShitSickAnim: function() {
+  showShitSickAnim: function () {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.shit = true;
     this._chick._chickStatus.hungry = false;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  showShitHungryAnim: function() {
+  showShitHungryAnim: function () {
     this._chick._chickStatus.hungry = true;
     this._chick._chickStatus.shit = true;
     this._chick._chickStatus.sick = false;
     this.chickFunc.playChickAnim.call(this._chick);
   },
-  showHungrySickShitAnim: function() {
+  showHungrySickShitAnim: function () {
     this._chick._chickStatus.hungry = true;
     this._chick._chickStatus.shit = true;
     this._chick._chickStatus.sick = true;
     this.chickFunc.playChickAnim.call(this._chick);
   },
 
-  onLoad: function() {
+  onLoad: function () {
     var openID = window.location.href.split("=")[1];
     Func.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
   },
 
-  start: function() {
+  start: function () {
     this.init();
     this.chickFunc = this._chick.chickFunc;
     Func.GetWholeData().then(data => {
