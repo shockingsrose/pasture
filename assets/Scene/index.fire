@@ -1124,7 +1124,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "2222",
+    "_N$string": "",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -5929,7 +5929,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 140,
-      "height": 773
+      "height": 837.5
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -5938,7 +5938,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -51
+      "y": -18.75
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -5983,10 +5983,10 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 44,
+    "_alignFlags": 45,
     "_left": 0,
     "_right": 0,
-    "_top": 203.5,
+    "_top": 0,
     "_bottom": -37.5,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -5997,7 +5997,7 @@
     "_isAbsHorizontalCenter": true,
     "_isAbsVerticalCenter": true,
     "_originalWidth": 137,
-    "_originalHeight": 0
+    "_originalHeight": 773
   },
   {
     "__type__": "cc.Node",
@@ -6419,7 +6419,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 137,
-      "height": 965
+      "height": 865
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -6585,7 +6585,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 1,
-      "y": -106
+      "y": -46
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -6758,7 +6758,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": -270.5
+      "y": -200.5
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -6931,7 +6931,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 1,
-      "y": -438
+      "y": -358
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7104,7 +7104,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": -605
+      "y": -515
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7277,7 +7277,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -774
+      "y": -674
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7411,11 +7411,11 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 45,
+    "_alignFlags": 41,
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": -138,
+    "_bottom": 394,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -7438,7 +7438,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 137,
-      "height": 965
+      "height": 865
     },
     "_resize": 1,
     "_N$layoutType": 2,
@@ -7451,10 +7451,10 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 0,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 60,
+    "_N$paddingTop": 0,
     "_N$paddingBottom": 140,
     "_N$spacingX": 0,
-    "_N$spacingY": 70,
+    "_N$spacingY": 60,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
   },
@@ -7636,10 +7636,10 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 8,
+    "_alignFlags": 9,
     "_left": 0,
     "_right": 0,
-    "_top": 0,
+    "_top": -3,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -9430,7 +9430,14 @@
     "Modal": null,
     "MessageItem_Prefab": {
       "__uuid__": "8215dec7-9ac6-4b58-93fa-f7be0574914e"
-    }
+    },
+    "today": true,
+    "yesterday": true,
+    "more": true,
+    "pageIndex": 1,
+    "pageSize": 5,
+    "itemBox": null,
+    "hasMore": true
   },
   {
     "__type__": "89cb4Xfn6VNPqms1pb4w6pf",

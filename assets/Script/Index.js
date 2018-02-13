@@ -86,6 +86,7 @@ cc.Class({
       this.Chick.setPosition(0, -140);
       this._chick.setId(data.ChickenList[0].ID);
       this._chick.initData();
+    } else {
     }
 
     //初始化饲料tip的数量
@@ -135,12 +136,14 @@ cc.Class({
       .then(data => {
         if (data.Code === 1) {
           var animState = self._chick._chickAnim.play("chick_treat");
-          this._chick._chickStatus.sick = false;
-          this._chick._chickAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
+
+          this._chick._chickAnim.on("finished", this.chickFunc.initData, this._chick);
         } else if (data.Code == "000") {
-          Msg.show(data.Message);
-        } else if (data.Code === 3333) {
           Alert.show(data.Message, this.rechargeEvent, this.treatIcon, "剩余的牧场币不足");
+        } else if (data.Code === 333) {
+          Msg.show(data.Message);
+        } else if (data.Code == 444) {
+          Msg.show(data.Message);
         }
       })
       .catch(reason => {
@@ -160,11 +163,11 @@ cc.Class({
           //清洁动画
           this.handNode.active = true;
           this.handAnim.play("hand_clear");
-          this._chick._chickStatus.shit = false;
+
           this.handAnim.on("finished", () => {
             this.handNode.active = false;
           });
-          this.handAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
+          this.handAnim.on("finished", this.chickFunc.initData, this._chick);
         } else {
           //牧场不脏 弹出提示框
           Msg.show(data.Message);
@@ -182,12 +185,16 @@ cc.Class({
         this.updateFeedCount();
         var anim = self._chick._chickAnim.play("chick_feed");
         anim.repeatCount = 4;
-        this._chick._chickStatus.hungry = false;
-        this._chick._chickAnim.on("finished", this.chickFunc.playChickAnim, this._chick);
+
+        this._chick._chickAnim.on("finished", this.chickFunc.initData, this._chick);
       } else if (data.Code == "000") {
-        Msg.show(data.Message);
-      } else if (data.Code === 333) {
         Alert.show(data.Message, this.loadSceneShop, this.feedIcon, "剩余的饲料不足");
+      } else if (data.Code === 333) {
+        //饥饿度是满的
+        Msg.show(data.Message);
+      } else if (data.Code === 444) {
+        //鸡死了
+        Msg.show(data.Message);
       }
     });
     // .catch(reason => {

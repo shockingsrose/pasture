@@ -73,7 +73,8 @@ var Chick = cc.Class({
 
     // this._hpProgressBar = cc.find("hpProgressBar", this._stateNode).getComponent(cc.ProgressBar);
     // this._hpLabel = cc.find("Value", this._stateNode).getComponent(cc.Label);
-
+    //初始化小鸡Id为-1
+    this._Id = -1;
     //获得小鸡的ID （小鸡列表点击小鸡 把Id赋值过来）
 
     this.assignChickState();
@@ -81,8 +82,6 @@ var Chick = cc.Class({
   },
   setId(Id) {
     this._Id = Id;
-
-    // this.initData();
   },
   //初始化鸡的状态 播放不同的动画
   initData() {

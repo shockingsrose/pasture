@@ -25,6 +25,7 @@ cc.Class({
           let goodSprite = cc.find("pic-box/pic", goodsNode).getComponent(cc.Sprite);
           let goodsLabel = cc.find("price-box/goods_label", goodsNode).getComponent(cc.Label);
           let priceLabel = cc.find("price-box/bg-price/price", goodsNode).getComponent(cc.Label);
+          let count = 1;
           switch (goods.PropName) {
             case "鸡蛋":
               // (function(goodSprite) {
@@ -40,17 +41,17 @@ cc.Class({
               cc.loader.loadRes("Shop/icon-1", cc.SpriteFrame, function(err, spriteFrame) {
                 goodSprite.spriteFrame = spriteFrame;
               });
-
+              count = 10;
               break;
           }
-          goodsLabel.string = goods.PropName;
-          priceLabel.string = goods.PropValue;
+          goodsLabel.string = goods.PropName + "x" + count;
+          priceLabel.string = goods.PropValue * count;
 
           this.goodsListNode.addChild(goodsNode);
 
           goodsNode.on("click", event => {
             Alert.show("是否确认购买该商品？", function() {
-              Func.PostBuy(goods.ID).then(data => {
+              Func.PostBuy(goods.ID, count).then(data => {
                 if (data.Code === 1) {
                   Msg.show("购买成功");
                 } else {

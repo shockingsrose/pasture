@@ -230,7 +230,7 @@ var func = {
       // POST方法
       xhr.open("POST", "http://www.jingongbao.com:4633/T_Chicken_Treatment/POSTOneTreatment", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
-      xhr.send("id=" + Id);
+      xhr.send("id=" + Id + "&openId=" + this.openID);
     });
   },
   //小鸡喂食
@@ -254,7 +254,7 @@ var func = {
       // POST方法
       xhr.open("POST", "http://www.jingongbao.com:4633/T_Chicken_Feed/POSTOwnFeeds", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
-      xhr.send("id=" + Id);
+      xhr.send("id=" + Id + "&openId=" + this.openID);
     });
   },
   //购买商品接口

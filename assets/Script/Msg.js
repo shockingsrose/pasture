@@ -10,7 +10,10 @@ var Msg = {
 
 Msg.show = function(text, animSpeed, timeout) {
   var _this = this;
-  if (_this.MsgNode != undefined) _this.MsgNode.destroy();
+  if (_this.MsgNode != undefined) {
+    _this.MsgNode.destroy();
+    clearTimeout(_this._timer);
+  }
 
   this._animSpeed = animSpeed ? animSpeed : this._animSpeed;
   this._timeout = timeout ? timeout : this._timeout;
