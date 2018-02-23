@@ -79,7 +79,7 @@ var Modal = cc.Class({
 
     var modal_name = this._Modal.name;
     if (modal_name == "default") {
-      Alert.show("该功能还在开发中");
+      Msg.show("该功能还在开发中");
       return;
     }
     if (!this.node.getChildByName(modal_name)) {
@@ -143,21 +143,22 @@ var Modal = cc.Class({
         }
         break;
       case "message":
-        this._Modal = cc.instantiate(this.messageModal_Prefab);
-        //容器
-        this.itemBox = cc.find("alertBackground/scrollview/view/layout", this._Modal);
-        //监听滚动时间
-        const addListenScroll = cc.find("alertBackground/scrollview", this._Modal);
-        addListenScroll.on("scroll-to-bottom", this.updataByBottom, this);
-        var cancelButton = cc.find("close", this._Modal);
-        //关闭模态框
-        cancelButton.on("click", () => {
-          var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
-          this._Modal.runAction(action);
-          this.clearData();
-          this.hasMore = true;
-        });
-        this.MessageLst();
+        this._Modal.name = "default"; //开发中
+        // this._Modal = cc.instantiate(this.messageModal_Prefab);
+        // //容器
+        // this.itemBox = cc.find("alertBackground/scrollview/view/layout", this._Modal);
+        // //监听滚动时间
+        // const addListenScroll = cc.find("alertBackground/scrollview", this._Modal);
+        // addListenScroll.on("scroll-to-bottom", this.updataByBottom, this);
+        // var cancelButton = cc.find("close", this._Modal);
+        // //关闭模态框
+        // cancelButton.on("click", () => {
+        //   var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
+        //   this._Modal.runAction(action);
+        //   this.clearData();
+        //   this.hasMore = true;
+        // });
+        // this.MessageLst();
         break;
       case "me":
         this._Modal.name = "default"; //开发中

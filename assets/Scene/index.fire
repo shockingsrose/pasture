@@ -6884,7 +6884,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "message",
+    "_name": "btn-friend",
     "_objFlags": 0,
     "_parent": {
       "__id__": 176
@@ -6904,7 +6904,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "c82SZ9IVdDUZ1O7fRYZNad",
+    "_id": "c7V5OzqvJEgalQwhvpRLms",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -6921,8 +6921,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 64,
-      "height": 98
+      "width": 72,
+      "height": 102
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -6930,8 +6930,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1,
-      "y": -358
+      "x": 0,
+      "y": -360
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -6949,7 +6949,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "2825e25f-a6e1-4540-9748-1d3b0f5953a5"
+      "__uuid__": "902e9abe-32ea-403f-98d7-248d8b98bd20"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -6976,9 +6976,9 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 8,
-    "_left": 37.5,
-    "_right": -28,
+    "_alignFlags": 0,
+    "_left": 0,
+    "_right": 35.5,
     "_top": 0,
     "_bottom": 0,
     "_verticalCenter": 0,
@@ -7053,11 +7053,11 @@
     },
     "component": "Modal",
     "handler": "showModal",
-    "customEventData": "message"
+    "customEventData": "friend"
   },
   {
     "__type__": "cc.Node",
-    "_name": "activity",
+    "_name": "message",
     "_objFlags": 0,
     "_parent": {
       "__id__": 176
@@ -7077,7 +7077,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "c3cqLdK7VIko7ikabhyTpj",
+    "_id": "c82SZ9IVdDUZ1O7fRYZNad",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -7094,8 +7094,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 61,
-      "height": 96
+      "width": 64,
+      "height": 98
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -7103,8 +7103,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 2,
-      "y": -515
+      "x": 1,
+      "y": -520
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7122,7 +7122,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "abf06a59-d27f-49a1-9943-59d1798669ea"
+      "__uuid__": "2825e25f-a6e1-4540-9748-1d3b0f5953a5"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -7150,8 +7150,8 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 8,
-    "_left": 40,
-    "_right": 0,
+    "_left": 37.5,
+    "_right": -28,
     "_top": 0,
     "_bottom": 0,
     "_verticalCenter": 0,
@@ -7226,11 +7226,11 @@
     },
     "component": "Modal",
     "handler": "showModal",
-    "customEventData": ""
+    "customEventData": "message"
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn-friend",
+    "_name": "activity",
     "_objFlags": 0,
     "_parent": {
       "__id__": 176
@@ -7250,7 +7250,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "c7V5OzqvJEgalQwhvpRLms",
+    "_id": "c3cqLdK7VIko7ikabhyTpj",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -7267,8 +7267,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
-      "height": 102
+      "width": 61,
+      "height": 96
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -7276,8 +7276,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -674
+      "x": 2,
+      "y": -677
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7295,7 +7295,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "902e9abe-32ea-403f-98d7-248d8b98bd20"
+      "__uuid__": "abf06a59-d27f-49a1-9943-59d1798669ea"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -7322,9 +7322,9 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 0,
-    "_left": 0,
-    "_right": 35.5,
+    "_alignFlags": 8,
+    "_left": 40,
+    "_right": 0,
     "_top": 0,
     "_bottom": 0,
     "_verticalCenter": 0,
@@ -7399,7 +7399,7 @@
     },
     "component": "Modal",
     "handler": "showModal",
-    "customEventData": "friend"
+    "customEventData": ""
   },
   {
     "__type__": "cc.Widget",

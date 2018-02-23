@@ -482,12 +482,12 @@
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
+      "x": 0,
       "y": 0.5
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 470,
+      "width": 50,
       "height": 232.66
     },
     "_rotationX": 0,
@@ -496,7 +496,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": -235,
       "y": 8.670000000000002
     },
     "_skewX": 0,
@@ -516,9 +516,9 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 45,
+    "_alignFlags": 13,
     "_left": 0,
-    "_right": 0,
+    "_right": 25,
     "_top": 0,
     "_bottom": 17.34,
     "_verticalCenter": 0,
@@ -542,10 +542,10 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 470,
+      "width": 50,
       "height": 232.66
     },
-    "_resize": 0,
+    "_resize": 1,
     "_N$layoutType": 1,
     "_N$padding": 0,
     "_N$cellSize": {
@@ -1206,7 +1206,9 @@
     },
     "goods_Prefab": {
       "__uuid__": "0babb727-1dc1-4e34-83df-012367425c8c"
-    }
+    },
+    "sceneNode": null,
+    "chickNode": null
   },
   {
     "__type__": "cc.PrefabInfo",
