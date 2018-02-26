@@ -68,7 +68,7 @@ cc.Class({
     cc.director.loadScene("index");
   },
   gotoPage() {
-    cc.director.loadScene("shopP2P");
+    cc.director.loadScene("shop");
   },
   start() {}
 

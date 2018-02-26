@@ -39,6 +39,11 @@ var Modal = cc.Class({
       default: null,
       type: cc.Prefab
     },
+    //交易市场筛选模态框
+    filterGoods_Prefab: {
+      default: null,
+      type: cc.Prefab
+    },
     signInModal_Prefab: {
       default: null,
       type: cc.Prefab
@@ -142,23 +147,31 @@ var Modal = cc.Class({
           this._Modal = this.node.getChildByName("signIn");
         }
         break;
+      case "mygoods":
+        this._Modal = cc.instantiate(this.filterGoods_Prefab);
+        var cancelButton = cc.find("close", this._Modal);
+        cancelButton.on("click", () => {
+          var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
+          this._Modal.runAction(action);
+        });
+        break;
       case "message":
-        this._Modal.name = "default"; //开发中
-        // this._Modal = cc.instantiate(this.messageModal_Prefab);
-        // //容器
-        // this.itemBox = cc.find("alertBackground/scrollview/view/layout", this._Modal);
-        // //监听滚动时间
-        // const addListenScroll = cc.find("alertBackground/scrollview", this._Modal);
-        // addListenScroll.on("scroll-to-bottom", this.updataByBottom, this);
-        // var cancelButton = cc.find("close", this._Modal);
-        // //关闭模态框
-        // cancelButton.on("click", () => {
-        //   var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
-        //   this._Modal.runAction(action);
-        //   this.clearData();
-        //   this.hasMore = true;
-        // });
-        // this.MessageLst();
+        // this._Modal.name = "default"; //开发中
+        this._Modal = cc.instantiate(this.messageModal_Prefab);
+        //容器
+        this.itemBox = cc.find("alertBackground/scrollview/view/layout", this._Modal);
+        //监听滚动时间
+        const addListenScroll = cc.find("alertBackground/scrollview", this._Modal);
+        addListenScroll.on("scroll-to-bottom", this.updataByBottom, this);
+        var cancelButton = cc.find("close", this._Modal);
+        //关闭模态框
+        cancelButton.on("click", () => {
+          var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this._Modal.removeFromParent, this._Modal));
+          this._Modal.runAction(action);
+          this.clearData();
+          this.hasMore = true;
+        });
+        this.MessageLst();
         break;
       case "me":
         this._Modal.name = "default"; //开发中
