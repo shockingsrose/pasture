@@ -333,7 +333,6 @@ cc.Class({
   rechargeEvent: function() {
     cc.director.loadScene("recharge");
   },
-
   //
   loadSceneShop() {
     cc.director.loadScene("shop");
@@ -343,6 +342,9 @@ cc.Class({
   },
   showUserCenter: function() {
     cc.director.loadScene("userCenter");
+  },
+  loadSceneRepertory() {
+    cc.director.loadScene("repertory");
   },
 
   showSickAnim: function() {

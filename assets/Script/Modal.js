@@ -121,9 +121,9 @@ var Modal = cc.Class({
       case "edit":
         this.EditName();
         break;
-      case "repertory":
-        this._Modal = cc.instantiate(this.repertoryModal_Prefab);
-        break;
+      // case "repertory":
+      //   this._Modal = cc.instantiate(this.repertoryModal_Prefab);
+      //   break;
       case "btn-friend":
         // 如果不存在 加载预制资源     存在 this._Modal等于该节点
         if (!this.node.getChildByName("FriendView")) {

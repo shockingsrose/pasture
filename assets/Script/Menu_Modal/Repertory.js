@@ -13,25 +13,19 @@ cc.Class({
   extends: cc.Component,
 
   properties: {
-    btnCloseNode: {
-      default: null,
-      type: cc.Node
-    },
     goods_Prefab: {
+      default: null,
+      type: cc.Prefab
+    },
+    modal_Perfab: {
       default: null,
       type: cc.Prefab
     },
     sceneNode: null,
     chickNode: null
   },
-  closeModal() {
-    var self = this;
-    console.log("close modal");
-    var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(this.node.removeFromParent, this.node));
-    this.node.runAction(action);
-
-    // scrollView.removeFromParent();
-    // this.node.removeChild(Modal);
+  loadSceneIndex() {
+    cc.director.loadScene("index");
   },
   goShop() {
     cc.director.loadScene("shop");
@@ -39,7 +33,7 @@ cc.Class({
   onLoad() {
     this.sceneNode = cc.find("Canvas");
     this.chickNode = cc.find("Chick", this.sceneNode);
-    this.goodsListNode = cc.find("bg-repertory/scrollview/view/goodsList", this.node);
+    this.goodsListNode = cc.find("bg/bg-f3/PageView/view/content/page_1/goodsList", this.node);
     Func.GetRepertoryList().then(data => {
       let list = data.List;
       // var list = [{ Type: 1, Count: 1 }, { Type: 4, Count: 13 }];
@@ -47,10 +41,13 @@ cc.Class({
         const goods = list[i];
         let goodsNode = cc.instantiate(this.goods_Prefab);
         let goodSprite = cc.find("img", goodsNode).getComponent(cc.Sprite);
-        let countLabel = cc.find("count", goodsNode).getComponent(cc.Label);
+        let countLabel = cc.find("icon-tip/count", goodsNode).getComponent(cc.Label);
+        let nameLabel = cc.find("name", goodsNode).getComponent(cc.Label);
         let modalNode = cc.find("img/modal", goodsNode);
         let hatchButton = cc.find("btn-hatch", modalNode);
         let cancelButton = cc.find("btn-cancel", modalNode);
+        let type = goods.Type;
+        let pos = goodsNode.getNodeToWorldTransform();
 
         if (goods.Count > 0) {
           switch (goods.Type) {
@@ -92,25 +89,50 @@ cc.Class({
                 );
                 modalNode.runAction(action);
               });
+
+              nameLabel.string = "鸡蛋(可孵化)";
               break;
             case 2:
               cc.loader.loadRes("Modal/Repertory/img-egg", cc.SpriteFrame, function(err, spriteFrame) {
                 goodSprite.spriteFrame = spriteFrame;
               });
+              nameLabel.string = "鸡蛋";
               break;
+
             case 3:
               cc.loader.loadRes("Modal/Repertory/img-hen", cc.SpriteFrame, function(err, spriteFrame) {
                 goodSprite.spriteFrame = spriteFrame;
               });
+              nameLabel.string = "贵妃鸡";
               break;
             case 4:
               cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {
                 goodSprite.spriteFrame = spriteFrame;
               });
+              nameLabel.string = "饲料";
               break;
           }
 
-          countLabel.string = "x " + goods.Count;
+          countLabel.string = goods.Count;
+
+          goodsNode.on("click", event => {
+            let modalNode = cc.instantiate(this.modal_Perfab);
+            let bgNode = cc.find("bg", modalNode);
+            let imgNode = cc.find("div/img", modalNode);
+            let imgSprite = imgNode.getComponent(cc.Sprite);
+            let modalNameLabel = cc.find("div/name", modalNode).getComponent(cc.Label);
+            //赋值 图片和道具名称
+            imgSprite.spriteFrame = goodSprite.spriteFrame;
+            modalNameLabel.string = nameLabel.string;
+            //fadeIn 进入动画
+            modalNode.opacity = 0;
+            modalNode.runAction(cc.fadeIn(0.3));
+            //关闭模态框
+            bgNode.on("click", () => {
+              Tool.closeModal(modalNode);
+            });
+            this.sceneNode.addChild(modalNode);
+          });
 
           this.goodsListNode.addChild(goodsNode);
         }

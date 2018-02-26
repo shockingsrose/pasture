@@ -10,3 +10,8 @@ Tool.setBarColor = function(bar, value) {
     Node.color = cc.color("#74DA72");
   }
 };
+
+Tool.closeModal = function(node) {
+  var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(node.removeFromParent, node));
+  node.runAction(action);
+};
