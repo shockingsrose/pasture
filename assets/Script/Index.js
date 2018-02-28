@@ -287,6 +287,7 @@ cc.Class({
     Func.GetWetherData(1, 1).then(res => {
       let wetherItem1 = cc.find("soiltem", this.wether).getComponent(cc.Label);
       let wetherItem2 = cc.find("div/date", this.wether).getComponent(cc.Label);
+      let wetherIcon = cc.find("div/icon", this.wether).getComponent(cc.Sprite);
       let bgNode = cc.find("bg", this.node);
       let rainNode = cc.find("ParticleRain", this.node);
 
@@ -300,16 +301,25 @@ cc.Class({
         cc.loader.loadRes("weather/bg-rain", cc.SpriteFrame, function(err, spriteFrame) {
           bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         });
+        cc.loader.loadRes("weather/rain", cc.SpriteFrame, function(err, spriteFrame) {
+          wetherIcon.spriteFrame = spriteFrame;
+        });
         rainNode.active = true;
       } else if (res.data.weatherdata[0].light < 30000) {
         //阴天
         cc.loader.loadRes("weather/bg-cloud", cc.SpriteFrame, function(err, spriteFrame) {
           bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         });
+        cc.loader.loadRes("weather/overcast", cc.SpriteFrame, function(err, spriteFrame) {
+          wetherIcon.spriteFrame = spriteFrame;
+        });
         rainNode.active = false;
       } else {
         cc.loader.loadRes("weather/bg", cc.SpriteFrame, function(err, spriteFrame) {
           bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
+        cc.loader.loadRes("weather/sun", cc.SpriteFrame, function(err, spriteFrame) {
+          wetherIcon.spriteFrame = spriteFrame;
         });
         rainNode.active = false;
       }
@@ -348,7 +358,10 @@ cc.Class({
       this.MenuModal.runAction(cc.fadeOut(0.3));
     }
   },
-
+  //跳转天气数据列表
+  gotoWetherPage() {
+    cc.director.loadScene("weatherInfo");
+  },
   //点击充值 跳转场景
   rechargeEvent: function() {
     cc.director.loadScene("recharge");

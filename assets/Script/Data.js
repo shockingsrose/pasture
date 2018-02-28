@@ -135,7 +135,35 @@ var func = {
       xhr.send();
     });
   },
-  //获得仓库列表
+  //获取仓库系统道具
+  GetSystemListByPage() {
+    // Loading.show();
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("获取仓库数据失败");
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "GET",
+        "http://www.jingongbao.com:4633/T_Base_Warehouse/GetSystemListByPage?openId=" + this.openID + "&page=1",
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
+  //获得仓库流通物品
   GetRepertoryList() {
     // Loading.show();
     return new Promise((resolve, reject) => {
