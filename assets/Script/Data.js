@@ -567,7 +567,7 @@ var func = {
       xhr.send("openID=" + this.openID);
     });
   },
-  //天气更新
+  //获取天气信息
   GetWetherData(index, size) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();

@@ -66,11 +66,11 @@ cc.Class({
     this.eggNode = this.node.getChildByName("egg");
     //天气
     this.wether = this.node.getChildByName("div_wether");
-    //数量
+    //饲料数量
     this.feedCountLabel = cc.find("div_action/feed/icon-tip/count", this.node).getComponent(cc.Label);
     // var chickState = new Chick();
     this.MenuListNode.active = false;
-    this.updataWether();
+    this.updateWether();
   },
   initData(data) {
     //清洁度设置
@@ -272,7 +272,7 @@ cc.Class({
     feedProgressBar.progress = value / capacity;
     Tool.setBarColor(feedBar, value / capacity);
   },
-  //更新 tip的数量
+  //更新 饲料tip的数量
   updateFeedCount() {
     Func.GetFeedCount().then(data => {
       if (data.Code === 1) {
@@ -282,20 +282,40 @@ cc.Class({
       }
     });
   },
-  updataWether() {
+  //更新天气情况
+  updateWether() {
     Func.GetWetherData(1, 1).then(res => {
-      if (res.error_code == 0) {
-        let wetherItem1 = cc.find("wether_data1/label", this.wether).getComponent(cc.Label);
-        let wetherItem2 = cc.find("wether_data2/label", this.wether).getComponent(cc.Label);
-        let wetherItem3 = cc.find("wether_data3/label", this.wether).getComponent(cc.Label);
-        let wetherItem4 = cc.find("wether_data4/label", this.wether).getComponent(cc.Label);
-        wetherItem1.string = res.data.weatherdata[0].light + "Lux";
-        wetherItem2.string = res.data.weatherdata[0].soiltem + " ℃";
-        wetherItem3.string = res.data.weatherdata[0].hum + " RH%";
-        wetherItem4.string = res.data.weatherdata[0].winds + "m/s";
+      let wetherItem1 = cc.find("soiltem", this.wether).getComponent(cc.Label);
+      let wetherItem2 = cc.find("div/date", this.wether).getComponent(cc.Label);
+      let bgNode = cc.find("bg", this.node);
+      let rainNode = cc.find("ParticleRain", this.node);
+
+      let time = res.data.weatherdata[0].intime.split(" ");
+      let date = time[0].split("-");
+      wetherItem1.string = res.data.weatherdata[0].soiltem + "℃";
+      wetherItem2.string = date[1] + "月" + date[2] + "日";
+      //根据天气情况 判断牧场的背景
+      if (res.data.weatherdata[0].rain > 0) {
+        //下雨
+        cc.loader.loadRes("weather/bg-rain", cc.SpriteFrame, function(err, spriteFrame) {
+          bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
+        rainNode.active = true;
+      } else if (res.data.weatherdata[0].light < 30000) {
+        //阴天
+        cc.loader.loadRes("weather/bg-cloud", cc.SpriteFrame, function(err, spriteFrame) {
+          bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
+        rainNode.active = false;
+      } else {
+        cc.loader.loadRes("weather/bg", cc.SpriteFrame, function(err, spriteFrame) {
+          bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
+        rainNode.active = false;
       }
     });
   },
+  //显示菜单栏 动画
   showMenu: function() {
     var self = this;
 
