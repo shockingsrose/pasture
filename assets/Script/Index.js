@@ -162,15 +162,15 @@ cc.Class({
     Func.PostClean()
       .then(data => {
         if (data.Code === 1) {
-          //清洁成功 牧场清洁度=100%
-          this.clearLabel.string = 100 + "%";
-          this.clearBar.progress = 1;
           //清洁动画
           this.handNode.active = true;
           this.handAnim.play("hand_clear");
 
           this.handAnim.on("finished", () => {
             this.handNode.active = false;
+            //清洁成功 牧场清洁度=100%
+            this.clearLabel.string = 100 + "%";
+            this.clearBar.progress = 1;
           });
           this.handAnim.on("finished", this.chickFunc.initData, this._chick);
         } else {

@@ -30,13 +30,24 @@ cc.Class({
   size: null,
   onLoad() {
     this.scrollviewNode = cc.find("ScrollView", this.node);
+    this.titleScrollNode = cc.find("titleScrollView", this.node);
+    //scrollView 组件
+    this.scrollView = this.scrollviewNode.getComponent(cc.ScrollView);
+    this.titleScrollView = this.titleScrollNode.getComponent(cc.ScrollView);
+    //内容节点（插入数据）
     this.contentNode = cc.find("ScrollView/view/content", this.node);
     this.index = 1;
     this.size = 4;
-    this.assignData();
-    this.scrollviewNode.on("bounce-right", this.assignData, this);
+    //加载数据
+    this.updateData();
+    //滑动到最右侧 加载数据
+    this.scrollviewNode.on("bounce-right", this.updateData, this);
+    //同步滑动
+    this.titleScrollNode.on("scrolling", this.titleScrollEvent, this);
+    this.scrollviewNode.on("scrolling", this.scrollEvent, this);
   },
-  assignData() {
+  //加载数据
+  updateData() {
     Func.GetWetherData(this.index, this.size).then(res => {
       let data = res.data.weatherdata;
       for (let i = 0; i < data.length; i++) {
@@ -73,11 +84,25 @@ cc.Class({
       this.index += 1;
     });
   },
-  updateData() {},
+  //title 移动事件
+  titleScrollEvent() {
+    let pos_title = this.titleScrollView.getContentPosition();
+    let pos_content = this.scrollView.getContentPosition();
+
+    this.scrollView.setContentPosition(cc.v2(pos_content.x, pos_title.y));
+  },
+  //右侧数据内容 移动事件
+  scrollEvent() {
+    let pos_title = this.titleScrollView.getContentPosition();
+    let pos_content = this.scrollView.getContentPosition();
+
+    this.titleScrollView.setContentPosition(cc.v2(pos_title.x, pos_content.y));
+  },
   start() {},
   loadSceneIndex() {
     cc.director.loadScene("index");
   }
-
-  // update (dt) {},
+  //   update(dt) {
+  //     //console.log(this.scrollviewNode.getComponent(cc.ScrollView).getContentPosition());
+  //   }
 });
