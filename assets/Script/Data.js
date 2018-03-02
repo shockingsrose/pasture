@@ -112,7 +112,7 @@ var func = {
     });
   },
   //获得商城的商品
-  GetGoodList() {
+  GetGoodList(index, size) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -130,7 +130,11 @@ var func = {
         }
       };
       // GET方法
-      xhr.open("GET", "http://www.jingongbao.com:4633/T_Base_Property/GetListByPage?page=1", true);
+      xhr.open(
+        "GET",
+        "http://www.jingongbao.com:4633/T_Base_Property/GetListByPage?page=" + index + "&size=" + size,
+        true
+      );
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });

@@ -29,6 +29,8 @@ cc.Class({
       this.setRepertory(data);
       this.setBuyPropertyList(data);
     });
+    this.EditName();
+    this.Contact();
   },
   //获取用户参数
   setData(data) {
@@ -145,7 +147,80 @@ cc.Class({
       console.log(data.Message);
     }
   },
-  start() {}
-
+  start() {},
+  //模态框修改昵称
+  EditName() {
+    const fillterButton = cc.find("scrollview/view/layout/info/nameEdit", this.node);
+    fillterButton.on("click", event => {
+      Alert.show("0", null, null, null, null, null, "Prefab/Modal/Usercenter/NameEdit", function() {
+        var self = this;
+        cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
+          if (error) {
+            cc.error(error);
+            return;
+          }
+          // 实例
+          var alert = cc.instantiate(prefab);
+          // Alert 持有
+          Alert._alert = alert;
+          //动画加载
+          self.ready();
+          // 父视图
+          Alert._alert.parent = cc.find("Canvas");
+          // 展现 alert
+          self.startFadeIn();
+          //自定义事件
+          var saveButton = cc.find("alertBackground/enterButton", alert);
+          //保存
+          saveButton.on("click", () => {
+            let name = cc.find("alertBackground/input/editbox", alert);
+            let title = cc.find("alertBackground/intro/detailLabel", alert).getComponent(cc.Label);
+            let intro = cc.find("alertBackground/intro/tel", alert);
+            Data.func.SaveEditName(name.getComponent(cc.EditBox).string).then(data => {
+              if (data.Code == 1 || data.Code == 0) {
+                intro.getComponent(cc.Label).string = "修改成功！";
+              } else if (data.Code == "333") {
+                intro.getComponent(cc.Label).string = "您修改的昵称已经存在！";
+              } else if (data.Code == "000") {
+                intro.getComponent(cc.Label).string = "您的牧场币不足200！无法修改！";
+              }
+              title.string = "温馨提示";
+              intro.getComponent(cc.Label).fontSize = 28;
+              intro.getComponent(cc.Label).lineHeight = 80;
+              saveButton.active = false;
+              name.active = false;
+            });
+          });
+          //取消
+          self.newButtonEvent(alert, "close");
+        });
+      });
+    });
+  },
+  Contact() {
+    const fillterButton = cc.find("scrollview/view/layout/info/tel", this.node);
+    fillterButton.on("click", event => {
+      Alert.show("0", null, null, null, null, null, "Prefab/Modal/AlertTemp", function() {
+        var self = this;
+        cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
+          if (error) {
+            cc.error(error);
+            return;
+          }
+          // 实例
+          var alert = cc.instantiate(prefab);
+          // Alert 持有
+          Alert._alert = alert;
+          //动画加载
+          self.ready();
+          // 父视图
+          Alert._alert.parent = cc.find("Canvas");
+          // 展现 alert
+          self.startFadeIn();
+          self.newButtonEvent(alert, "close");
+        });
+      });
+    });
+  }
   // update (dt) {},
 });
