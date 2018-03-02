@@ -23,6 +23,9 @@ cc.Class({
   btnGoAddressList() {
     cc.director.loadScene("AddressList");
   },
+  outLogin() {
+    window.location = "http://jingongbao.com:4633";
+  },
   onLoad() {
     Data.func.GetUserData(1, 4).then(data => {
       this.setData(data);

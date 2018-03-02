@@ -29,7 +29,9 @@ cc.Class({
     btnMoreNode: {
       default: null,
       type: cc.Node
-    }
+    },
+    //仓库跳转后执行相应操作
+    operate: null
   },
   //Chick.js
   _chick: null,
@@ -162,15 +164,15 @@ cc.Class({
     Func.PostClean()
       .then(data => {
         if (data.Code === 1) {
-          //清洁成功 牧场清洁度=100%
-          this.clearLabel.string = 100 + "%";
-          this.clearBar.progress = 1;
           //清洁动画
           this.handNode.active = true;
           this.handAnim.play("hand_clear");
 
           this.handAnim.on("finished", () => {
             this.handNode.active = false;
+            //清洁成功 牧场清洁度=100%
+            this.clearLabel.string = 100 + "%";
+            this.clearBar.progress = 1;
           });
           this.handAnim.on("finished", this.chickFunc.initData, this._chick);
         } else {
@@ -226,6 +228,21 @@ cc.Class({
       } else if (data.Code == "000") {
         Alert.show(data.Message, this.loadSceneShop, this.feedIcon, "剩余的饲料不足");
       } else if (data.Code == "333") {
+        Msg.show(data.Message);
+      }
+    });
+  },
+  //孵化小鸡
+  hatchEgg() {
+    Func.HatchEgg().then(data => {
+      if (data.Code === 1) {
+        this.Chick.active = true;
+        this.Chick.setPosition(0, -140);
+        this._chick.setId(data.Model);
+        this._chick._chickAnim.play("chick_born");
+        this._chick._chickAnim.on("finished", this._chick.chickFunc.initData, this._chick);
+        Msg.show("孵化成功");
+      } else {
         Msg.show(data.Message);
       }
     });
@@ -296,33 +313,35 @@ cc.Class({
       wetherItem1.string = res.data.weatherdata[0].soiltem + "℃";
       wetherItem2.string = date[1] + "月" + date[2] + "日";
       //根据天气情况 判断牧场的背景
-      if (res.data.weatherdata[0].rain > 0) {
-        //下雨
-        cc.loader.loadRes("weather/bg-rain", cc.SpriteFrame, function(err, spriteFrame) {
-          bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-        });
-        cc.loader.loadRes("weather/rain", cc.SpriteFrame, function(err, spriteFrame) {
-          wetherIcon.spriteFrame = spriteFrame;
-        });
-        rainNode.active = true;
-      } else if (res.data.weatherdata[0].light < 30000) {
-        //阴天
-        cc.loader.loadRes("weather/bg-cloud", cc.SpriteFrame, function(err, spriteFrame) {
-          bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-        });
-        cc.loader.loadRes("weather/overcast", cc.SpriteFrame, function(err, spriteFrame) {
-          wetherIcon.spriteFrame = spriteFrame;
-        });
-        rainNode.active = false;
-      } else {
-        cc.loader.loadRes("weather/bg", cc.SpriteFrame, function(err, spriteFrame) {
-          bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-        });
-        cc.loader.loadRes("weather/sun", cc.SpriteFrame, function(err, spriteFrame) {
-          wetherIcon.spriteFrame = spriteFrame;
-        });
-        rainNode.active = false;
-      }
+      Func.GetCurrentWeather().then(data => {
+        if (data.rain !== 0) {
+          //下雨
+          cc.loader.loadRes("weather/bg-rain", cc.SpriteFrame, function(err, spriteFrame) {
+            bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+          });
+          cc.loader.loadRes("weather/rain", cc.SpriteFrame, function(err, spriteFrame) {
+            wetherIcon.spriteFrame = spriteFrame;
+          });
+          rainNode.active = true;
+        } else if (data.light === 2 || data.light === 3) {
+          //阴天
+          cc.loader.loadRes("weather/bg-cloud", cc.SpriteFrame, function(err, spriteFrame) {
+            bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+          });
+          cc.loader.loadRes("weather/overcast", cc.SpriteFrame, function(err, spriteFrame) {
+            wetherIcon.spriteFrame = spriteFrame;
+          });
+          rainNode.active = false;
+        } else if (data.light === 1) {
+          cc.loader.loadRes("weather/bg", cc.SpriteFrame, function(err, spriteFrame) {
+            bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+          });
+          cc.loader.loadRes("weather/sun", cc.SpriteFrame, function(err, spriteFrame) {
+            wetherIcon.spriteFrame = spriteFrame;
+          });
+          rainNode.active = false;
+        }
+      });
     });
   },
   //显示菜单栏 动画
@@ -366,7 +385,6 @@ cc.Class({
   rechargeEvent: function() {
     cc.director.loadScene("recharge");
   },
-  //
   loadSceneShop() {
     cc.director.loadScene("shop");
   },
@@ -424,11 +442,27 @@ cc.Class({
       if (data.Code === 1) {
         this.initData(data);
         // Loading.hide();
+        //仓库回调
+        this.repertoryCallBack();
       } else {
         console.log("首页数据加载失败");
       }
     });
   },
+  //仓库回调函数（0表示孵化操作）
+  repertoryCallBack() {
+    if (this.operate != null) {
+      switch (this.operate) {
+        case 0:
+          this.hatchEgg();
+          break;
+        case 1:
+          this.putFeed();
+          break;
+      }
+      this.operate = null;
+    }
+  }
 
-  update(dt) {}
+  //update(dt) {}
 });
