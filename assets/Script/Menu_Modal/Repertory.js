@@ -34,7 +34,7 @@ cc.Class({
       default: null,
       type: cc.Prefab
     },
-    node: null,
+
     chickNode: null
   },
   loadSceneIndex() {
@@ -69,7 +69,7 @@ cc.Class({
     this.leftLabelNode = cc.find("label", this.leftNode);
     this.rightLabelNode = cc.find("label", this.rightNode);
 
-    //this.chickNode = cc.find("Chick", this.node);
+    this.chickNode = cc.find("Chick", this.node);
 
     this.leftNode.on("click", this.leftBtnEvent, this);
     this.rightNode.on("click", this.rightBtnEvent, this);
@@ -86,89 +86,8 @@ cc.Class({
       for (let i = 0; i < list.length; i++) {
         const goods = list[i];
         let goodsNode = cc.instantiate(this.goods_Prefab);
-        let goodSprite = cc.find("img", goodsNode).getComponent(cc.Sprite);
-        let countLabel = cc.find("icon-tip/count", goodsNode).getComponent(cc.Label);
-        let nameLabel = cc.find("name", goodsNode).getComponent(cc.Label);
-
-        // let hatchButton = cc.find("btn-hatch", modalNode);
-        // let cancelButton = cc.find("btn-cancel", modalNode);
-        let type = goods.Type;
-        let pos = goodsNode.getNodeToWorldTransform();
-
         if (goods.Count > 0) {
-          goodsNode.on("click", event => {
-            let modalNode = cc.instantiate(this.modal_Perfab);
-            let bgNode = cc.find("bg", modalNode);
-            let imgNode = cc.find("div/img", modalNode);
-            let imgSprite = imgNode.getComponent(cc.Sprite);
-            let modalNameLabel = cc.find("div/name", modalNode).getComponent(cc.Label);
-            let btnGroupNode = cc.find("div/btn-group", modalNode);
-            let btnRedNode = cc.instantiate(this.btnRed_Prefab);
-            let btnWhiteNode = cc.instantiate(this.btnWhite_Prefab);
-            let btnGrayNode = cc.instantiate(this.btnGray_Prefab);
-            //赋值 图片和道具名称
-            imgSprite.spriteFrame = goodSprite.spriteFrame;
-            modalNameLabel.string = nameLabel.string;
-            //fadeIn 进入动画
-            modalNode.opacity = 0;
-            modalNode.runAction(cc.fadeIn(0.3));
-            //关闭模态框
-            bgNode.on("click", () => {
-              Tool.closeModal(modalNode);
-            });
-            this.node.addChild(modalNode);
-          });
-          switch (goods.Type) {
-            //1 代表可孵化的鸡蛋
-            case 1:
-              //加载图片
-              cc.loader.loadRes("Modal/Repertory/img-hatchEgg", cc.SpriteFrame, function(err, spriteFrame) {
-                goodSprite.spriteFrame = spriteFrame;
-              });
-
-              //绑定孵化、取消事件
-              // hatchButton.on("click", event => {
-              //   Func.HatchEgg().then(data => {
-              //     if (data.Code === 1) {
-              //       this.chickNode.active = true;
-              //       this.chickNode.setPosition(0, -140);
-              //       var chickJs = this.chickNode.getComponent("Chick");
-              //       chickJs.setId(data.Model);
-
-              //       this.closeModal();
-              //       chickJs._chickAnim.play("chick_born");
-              //       chickJs._chickAnim.on("finished", chickJs.chickFunc.initData, chickJs);
-              //     } else {
-              //       Msg.show(data.Message);
-              //     }
-              //   });
-              // });
-
-              nameLabel.string = "鸡蛋(可孵化)";
-              break;
-            case 2:
-              cc.loader.loadRes("Modal/Repertory/img-egg", cc.SpriteFrame, function(err, spriteFrame) {
-                goodSprite.spriteFrame = spriteFrame;
-              });
-              nameLabel.string = "鸡蛋";
-              break;
-
-            case 3:
-              cc.loader.loadRes("Modal/Repertory/img-hen", cc.SpriteFrame, function(err, spriteFrame) {
-                goodSprite.spriteFrame = spriteFrame;
-              });
-              nameLabel.string = "贵妃鸡";
-              break;
-            case 4:
-              cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {
-                goodSprite.spriteFrame = spriteFrame;
-              });
-              nameLabel.string = "饲料";
-              break;
-          }
-
-          countLabel.string = goods.Count;
-
+          this.assignData(goods, goodsNode);
           this.goodsListNode.addChild(goodsNode);
         }
       }
@@ -185,89 +104,139 @@ cc.Class({
       for (let i = 0; i < list.length; i++) {
         const goods = list[i];
         let goodsNode = cc.instantiate(this.goods_Prefab);
-        let goodSprite = cc.find("img", goodsNode).getComponent(cc.Sprite);
-        let countLabel = cc.find("icon-tip/count", goodsNode).getComponent(cc.Label);
-        let nameLabel = cc.find("name", goodsNode).getComponent(cc.Label);
-
-        let type = goods.Type;
-        let pos = goodsNode.getNodeToWorldTransform();
 
         if (goods.Count > 0) {
-          switch (goods.Type) {
-            //1 代表可孵化的鸡蛋
-            case 1:
-              //加载图片
-              cc.loader.loadRes("Modal/Repertory/img-hatchEgg", cc.SpriteFrame, function(err, spriteFrame) {
-                goodSprite.spriteFrame = spriteFrame;
-              });
-
-              nameLabel.string = "鸡蛋(可孵化)";
-              break;
-            case 2:
-              cc.loader.loadRes("Modal/Repertory/img-egg", cc.SpriteFrame, function(err, spriteFrame) {
-                goodSprite.spriteFrame = spriteFrame;
-              });
-              nameLabel.string = "鸡蛋";
-              break;
-
-            case 3:
-              cc.loader.loadRes("Modal/Repertory/img-hen", cc.SpriteFrame, function(err, spriteFrame) {
-                goodSprite.spriteFrame = spriteFrame;
-              });
-              nameLabel.string = "贵妃鸡";
-              break;
-            case 4:
-              cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {
-                goodSprite.spriteFrame = spriteFrame;
-              });
-              nameLabel.string = "饲料";
-              break;
-          }
-
-          countLabel.string = goods.Count;
-          //点击商品 弹出模态框
-          goodsNode.on("click", event => {
-            let modalNode = cc.instantiate(this.modal_Perfab);
-            let bgNode = cc.find("bg", modalNode);
-            let imgNode = cc.find("div/img", modalNode);
-            let imgSprite = imgNode.getComponent(cc.Sprite);
-            let modalNameLabel = cc.find("div/name", modalNode).getComponent(cc.Label);
-            let btnGroupNode = cc.find("div/btn-group", modalNode);
-            let btnRedNode = cc.instantiate(this.btnRed_Prefab);
-            let btnWhiteNode = cc.instantiate(this.btnWhite_Prefab);
-            let btnGrayNode = cc.instantiate(this.btnGray_Prefab);
-            //赋值 图片和道具名称
-            imgSprite.spriteFrame = goodSprite.spriteFrame;
-            modalNameLabel.string = nameLabel.string;
-            //fadeIn 进入动画
-            modalNode.opacity = 0;
-            modalNode.runAction(cc.fadeIn(0.3));
-            //加入按钮
-            btnGroupNode.addChild(btnRedNode);
-            btnGroupNode.addChild(btnWhiteNode);
-            btnGroupNode.addChild(btnGrayNode);
-            //绑定上架、下架、兑换事件
-            btnRedNode.on("click", () => {
-              console.log("红色按钮 click");
-            });
-            btnWhiteNode.on("click", () => {
-              console.log("白色按钮 click");
-            });
-            btnGrayNode.on("click", () => {
-              console.log("灰色按钮 click");
-            });
-
-            //关闭模态框
-            bgNode.on("click", () => {
-              Tool.closeModal(modalNode);
-            });
-            this.node.addChild(modalNode);
-          });
-
+          this.assignData(goods, goodsNode);
           this.goodsListNode.addChild(goodsNode);
         }
       }
       //Loading.hide();
+    });
+  },
+  //根据不同的type 加载不同的图片，文字，数量 绑定回调函数
+  assignData(goods, goodsNode) {
+    //获取组件
+    let goodSprite = cc.find("img", goodsNode).getComponent(cc.Sprite);
+    let countLabel = cc.find("icon-tip/count", goodsNode).getComponent(cc.Label);
+    let nameLabel = cc.find("name", goodsNode).getComponent(cc.Label);
+    //获取物品数据
+    let type = goods.Type;
+    let count = goods.Count;
+    switch (type) {
+      //1 代表可孵化的鸡蛋
+      case 1:
+        //加载图片
+        cc.loader.loadRes("Modal/Repertory/img-hatchEgg", cc.SpriteFrame, function(err, spriteFrame) {
+          goodSprite.spriteFrame = spriteFrame;
+        });
+        nameLabel.string = "鸡蛋(可孵化)";
+        this.bindGoodsEvent(goodsNode, this.hatchEgg, "孵化");
+        break;
+      case 2:
+        cc.loader.loadRes("Modal/Repertory/img-egg", cc.SpriteFrame, function(err, spriteFrame) {
+          goodSprite.spriteFrame = spriteFrame;
+        });
+        nameLabel.string = "鸡蛋";
+        this.bindGoodsEvent(goodsNode, () => false, "上架", () => false, "下架", () => false, "兑换");
+        break;
+
+      case 3:
+        cc.loader.loadRes("Modal/Repertory/img-hen", cc.SpriteFrame, function(err, spriteFrame) {
+          goodSprite.spriteFrame = spriteFrame;
+        });
+        nameLabel.string = "贵妃鸡";
+        this.bindGoodsEvent(goodsNode, () => false, "上架", () => false, "下架", () => false, "兑换");
+        break;
+      case 4:
+        cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {
+          goodSprite.spriteFrame = spriteFrame;
+        });
+        nameLabel.string = "饲料";
+        this.bindGoodsEvent(goodsNode, this.feed, "添加饲料槽");
+        break;
+    }
+    countLabel.string = count;
+  },
+  // 绑定点击事件及回调函数(f1,f2,f3表示三个回调函数，name1，name2,name3表示按钮文字)
+  bindGoodsEvent(goodsNode, f1, name1, f2, name2, f3, name3) {
+    goodsNode.on(
+      "click",
+      event => {
+        //绑定this到goodsNode上 （红、白、灰三个按钮的回调）
+        this.goodsEvent.call(goodsNode, [f1, f2, f3], [name1, name2, name3]);
+      },
+      this
+    );
+  },
+  //点击商品事件 绑定模态框回调函数及图片、名字
+  goodsEvent() {
+    //回调函数
+    let f1 = arguments[0][0];
+    let f2 = arguments[0][1];
+    let f3 = arguments[0][2];
+    //按钮名称
+    let name1 = arguments[1][0];
+    let name2 = arguments[1][1];
+    let name3 = arguments[1][2];
+    //this 绑定在goodsNode（该物品上）
+    let spriteFrame = cc.find("img", this).getComponent(cc.Sprite).spriteFrame;
+    let name = cc.find("name", this).getComponent(cc.Label).string;
+    //获得js的上下文
+    let that = cc.find("Canvas").getComponent("Repertory");
+    //获得组件
+    let modalNode = cc.instantiate(that.modal_Perfab);
+    let bgNode = cc.find("bg", modalNode);
+    let imgNode = cc.find("div/img", modalNode);
+    let imgSprite = imgNode.getComponent(cc.Sprite);
+    let modalNameLabel = cc.find("div/name", modalNode).getComponent(cc.Label);
+    let btnGroupNode = cc.find("div/btn-group", modalNode);
+    //赋值 图片和道具名称
+    imgSprite.spriteFrame = spriteFrame;
+    modalNameLabel.string = name;
+    //加入按钮
+    if (f1) {
+      let btnRedNode = cc.instantiate(that.btnRed_Prefab);
+      let btnLabel = cc.find("label", btnRedNode).getComponent(cc.Label);
+      btnLabel.string = name1;
+      btnGroupNode.addChild(btnRedNode);
+      btnRedNode.on("click", f1, that);
+    }
+    if (f2) {
+      let btnWhiteNode = cc.instantiate(that.btnWhite_Prefab);
+      let btnLabel = cc.find("label", btnWhiteNode).getComponent(cc.Label);
+      btnLabel.string = name2;
+      btnGroupNode.addChild(btnWhiteNode);
+      btnWhiteNode.on("click", f2, that);
+    }
+    if (f3) {
+      let btnGrayNode = cc.instantiate(that.btnGray_Prefab);
+      let btnLabel = cc.find("label", btnGrayNode).getComponent(cc.Label);
+      btnLabel.string = name3;
+      btnGroupNode.addChild(btnGrayNode);
+      btnGrayNode.on("click", f3, that);
+    }
+
+    //fadeIn 进入动画
+    modalNode.opacity = 0;
+    modalNode.runAction(cc.fadeIn(0.3));
+    //关闭模态框
+    bgNode.on("click", () => {
+      Tool.closeModal(modalNode);
+    });
+    that.node.addChild(modalNode);
+  },
+  hatchEgg() {
+    cc.director.loadScene("index", () => {
+      let sceneNode = cc.find("Canvas");
+      let indexJs = sceneNode.getComponent("Index");
+      indexJs.operate = 0;
+    });
+  },
+  feed() {
+    cc.director.loadScene("index", () => {
+      let sceneNode = cc.find("Canvas");
+      let indexJs = sceneNode.getComponent("Index");
+      indexJs.operate = 1;
     });
   },
   start() {}
