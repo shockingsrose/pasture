@@ -147,7 +147,7 @@ Alert.show = function(
   self.newButtonEvent = function(prefab, buttonUrl, event) {
     if (!event && prefab && buttonUrl) {
       var cancelButton = cc.find(buttonUrl, prefab);
-      cancelButton.on("click", () => {
+      cancelButton.on("click", function() {
         var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(prefab.removeFromParent, prefab));
         prefab.runAction(action);
       });

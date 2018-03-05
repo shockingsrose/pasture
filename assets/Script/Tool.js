@@ -15,3 +15,14 @@ Tool.closeModal = function(node) {
   var action = cc.sequence(cc.fadeOut(0.3), cc.callFunc(node.removeFromParent, node));
   node.runAction(action);
 };
+
+Tool.once = function(fn) {
+  var result;
+  return function() {
+    if (fn) {
+      result = fn.apply(this, arguments);
+      fn = null;
+    }
+    return result;
+  };
+};

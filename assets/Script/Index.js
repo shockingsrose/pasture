@@ -313,8 +313,8 @@ cc.Class({
       wetherItem1.string = res.data.weatherdata[0].soiltem + "℃";
       wetherItem2.string = date[1] + "月" + date[2] + "日";
       //根据天气情况 判断牧场的背景
-      Func.GetCurrentWeather().then(data => {
-        if (data.rain !== 0) {
+      Func.GetCurrentWeather().then(res => {
+        if (res.data.rain !== 0) {
           //下雨
           cc.loader.loadRes("weather/bg-rain", cc.SpriteFrame, function(err, spriteFrame) {
             bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
@@ -323,7 +323,7 @@ cc.Class({
             wetherIcon.spriteFrame = spriteFrame;
           });
           rainNode.active = true;
-        } else if (data.light === 2 || data.light === 3) {
+        } else if (res.data.light === 2 || res.data.light === 3) {
           //阴天
           cc.loader.loadRes("weather/bg-cloud", cc.SpriteFrame, function(err, spriteFrame) {
             bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
@@ -332,7 +332,7 @@ cc.Class({
             wetherIcon.spriteFrame = spriteFrame;
           });
           rainNode.active = false;
-        } else if (data.light === 1) {
+        } else if (res.data.light === 1) {
           cc.loader.loadRes("weather/bg", cc.SpriteFrame, function(err, spriteFrame) {
             bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
           });

@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>icon_03.jpg</key>
+            <key>icon切图_03.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -15,26 +15,11 @@
                 <key>spriteSourceSize</key>
                 <string>{22,26}</string>
                 <key>textureRect</key>
-                <string>{{0,26},{22,26}}</string>
+                <string>{{0,0},{22,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon_03.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{26,27}</string>
-                <key>spriteSourceSize</key>
-                <string>{26,27}</string>
-                <key>textureRect</key>
-                <string>{{0,105},{26,27}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>icon_05.jpg</key>
+            <key>icon切图_05.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -45,11 +30,11 @@
                 <key>spriteSourceSize</key>
                 <string>{26,22}</string>
                 <key>textureRect</key>
-                <string>{{0,132},{26,22}}</string>
+                <string>{{22,0},{26,22}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon_06.jpg</key>
+            <key>icon切图_06.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -60,11 +45,11 @@
                 <key>spriteSourceSize</key>
                 <string>{26,25}</string>
                 <key>textureRect</key>
-                <string>{{26,154},{26,25}}</string>
+                <string>{{48,0},{26,25}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon_08.jpg</key>
+            <key>icon切图_08.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -75,11 +60,11 @@
                 <key>spriteSourceSize</key>
                 <string>{26,18}</string>
                 <key>textureRect</key>
-                <string>{{26,132},{26,18}}</string>
+                <string>{{74,0},{26,18}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon切图_10.jpg</key>
+            <key>icon切图_10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -90,11 +75,11 @@
                 <key>spriteSourceSize</key>
                 <string>{26,26}</string>
                 <key>textureRect</key>
-                <string>{{0,154},{26,26}}</string>
+                <string>{{100,0},{26,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon切图_13.jpg</key>
+            <key>icon切图_13.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -105,7 +90,7 @@
                 <key>spriteSourceSize</key>
                 <string>{16,26}</string>
                 <key>textureRect</key>
-                <string>{{15,0},{16,26}}</string>
+                <string>{{126,0},{16,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -120,11 +105,11 @@
                 <key>spriteSourceSize</key>
                 <string>{26,27}</string>
                 <key>textureRect</key>
-                <string>{{26,78},{26,27}}</string>
+                <string>{{142,0},{26,27}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon切图_19.jpg</key>
+            <key>icon切图_19.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -135,11 +120,11 @@
                 <key>spriteSourceSize</key>
                 <string>{26,26}</string>
                 <key>textureRect</key>
-                <string>{{26,52},{26,26}}</string>
+                <string>{{168,0},{26,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon切图_29.jpg</key>
+            <key>icon切图_29.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -150,11 +135,11 @@
                 <key>spriteSourceSize</key>
                 <string>{26,20}</string>
                 <key>textureRect</key>
-                <string>{{0,78},{26,20}}</string>
+                <string>{{194,0},{26,20}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon切图_32.jpg</key>
+            <key>icon切图_32.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -165,11 +150,11 @@
                 <key>spriteSourceSize</key>
                 <string>{20,26}</string>
                 <key>textureRect</key>
-                <string>{{31,0},{20,26}}</string>
+                <string>{{220,0},{20,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon切图_34.jpg</key>
+            <key>icon切图_34.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -180,11 +165,11 @@
                 <key>spriteSourceSize</key>
                 <string>{15,26}</string>
                 <key>textureRect</key>
-                <string>{{0,0},{15,26}}</string>
+                <string>{{240,0},{15,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon切图_38.jpg</key>
+            <key>icon切图_38.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -195,11 +180,11 @@
                 <key>spriteSourceSize</key>
                 <string>{26,26}</string>
                 <key>textureRect</key>
-                <string>{{22,26},{26,26}}</string>
+                <string>{{255,0},{26,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>icon切图_39.jpg</key>
+            <key>icon切图_39.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -210,7 +195,7 @@
                 <key>spriteSourceSize</key>
                 <string>{26,26}</string>
                 <key>textureRect</key>
-                <string>{{0,52},{26,26}}</string>
+                <string>{{281,0},{26,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -225,7 +210,7 @@
                 <key>spriteSourceSize</key>
                 <string>{26,26}</string>
                 <key>textureRect</key>
-                <string>{{26,105},{26,26}}</string>
+                <string>{{307,0},{26,26}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -239,13 +224,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>weatherIcon.png</string>
+            <string>icon-weather.png</string>
             <key>size</key>
-            <string>{52,180}</string>
+            <string>{333,27}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:0bf8cbe439244559d910e1f460945605:795f8cc9e2cdf81572a1b56a55f772e1:625e4367296df8b64bdcda9ebcf554c8$</string>
+            <string>$TexturePacker:SmartUpdate:5c6bc2d18b60449b0af5a1de0fd9ac21:2a18701f3e82bc70875ded03563ab4d0:9b753621c9c81b829b1ef2f50be06d57$</string>
             <key>textureFileName</key>
-            <string>weatherIcon.png</string>
+            <string>icon-weather.png</string>
         </dict>
     </dict>
 </plist>

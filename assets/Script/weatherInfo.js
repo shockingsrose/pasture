@@ -14,10 +14,6 @@ cc.Class({
   extends: cc.Component,
 
   properties: {
-    itemList_perfab: {
-      default: null,
-      type: cc.Prefab
-    },
     item_perfab: {
       default: null,
       type: cc.Prefab
@@ -28,76 +24,101 @@ cc.Class({
   //获取天气数据 （index表示当前页 size表示加载多少页）
   index: null,
   size: null,
-  onLoad() {
-    this.scrollviewNode = cc.find("ScrollView", this.node);
-    this.titleScrollNode = cc.find("titleScrollView", this.node);
-    //scrollView 组件
+  //初始化的数据
+  data: null,
+  bindNode() {
+    this.scrollviewNode = cc.find("bg/ScrollView", this.node);
     this.scrollView = this.scrollviewNode.getComponent(cc.ScrollView);
-    this.titleScrollView = this.titleScrollNode.getComponent(cc.ScrollView);
+    //Label节点绑定
+    this.temLabel = cc.find("div-title/tem", this.node).getComponent(cc.Label);
+    this.timeLabel = cc.find("div-title/div-time/time", this.node).getComponent(cc.Label);
+    this.windsLabel = cc.find("div-title/layout/winds/value", this.node).getComponent(cc.Label);
+    this.winddLabel = cc.find("div-title/layout/windd/value", this.node).getComponent(cc.Label);
+    this.humLabel = cc.find("div-title/layout/hum/value", this.node).getComponent(cc.Label);
+    this.lightLabel = cc.find("Grid/light/value", this.node).getComponent(cc.Label);
+    this.rainLabel = cc.find("Grid/rain/value", this.node).getComponent(cc.Label);
+    this.paLabel = cc.find("Grid/pa/value", this.node).getComponent(cc.Label);
+    this.co2Label = cc.find("Grid/co2/value", this.node).getComponent(cc.Label);
+    this.soiltemLabel = cc.find("Grid/soiltem/value", this.node).getComponent(cc.Label);
+    this.soilwaterLabel = cc.find("Grid/soilwater/value", this.node).getComponent(cc.Label);
+    this.ecLabel = cc.find("Grid/ec/value", this.node).getComponent(cc.Label);
+    this.noiLabel = cc.find("Grid/noi/value", this.node).getComponent(cc.Label);
+    this.powerLabel = cc.find("Grid/power/value", this.node).getComponent(cc.Label);
     //内容节点（插入数据）
-    this.contentNode = cc.find("ScrollView/view/content", this.node);
+    this.contentNode = cc.find("bg/ScrollView/view/content", this.node);
+  },
+  onLoad() {
+    this.bindNode();
     this.index = 1;
     this.size = 4;
     //加载数据
-    this.updateData();
+    this.updateData().then(data => {
+      this.assignData(data);
+    });
+
     //滑动到最右侧 加载数据
     this.scrollviewNode.on("bounce-right", this.updateData, this);
     //同步滑动
-    this.titleScrollNode.on("scrolling", this.titleScrollEvent, this);
-    this.scrollviewNode.on("scrolling", this.scrollEvent, this);
+    // this.titleScrollNode.on("scrolling", this.titleScrollEvent, this);
+    // this.scrollviewNode.on("scrolling", this.scrollEvent, this);
   },
   //加载数据
   updateData() {
-    Func.GetWetherData(this.index, this.size).then(res => {
-      let data = res.data.weatherdata;
-      for (let i = 0; i < data.length; i++) {
-        let info = data[i];
-        //筛选数据
-        let array = [
-          info.light,
-          info.rain,
-          info.tem,
-          info.hum,
-          info.winds,
-          info.windd,
-          info.pa,
-          info.co2,
-          info.soiltem,
-          info.soilwater,
-          info.ec,
-          info.noi,
-          info.power,
-          info.intime
-        ];
-        //一列数据加载
-        let itemListNode = cc.instantiate(this.itemList_perfab);
-        for (let value of array) {
+    return new Promise((resolve, reject) => {
+      Func.GetWetherData(this.index, this.size).then(res => {
+        let data = res.data.weatherdata;
+        for (let i = 0; i < data.length; i++) {
+          let info = data[i];
+          //初始化的数据(第一次加载数据时 将第一条数据返回resolve 然后填充数据)
+          resolve(data[0]);
+          //时间item
           let itemNode = cc.instantiate(this.item_perfab);
-          let itemLabel = cc.find("label", itemNode).getComponent(cc.Label);
-          itemLabel.string = value;
-
-          itemListNode.addChild(itemNode);
+          let timeLabel = cc.find("value", itemNode).getComponent(cc.Label);
+          timeLabel.string = info.intime;
+          itemNode.on(
+            "click",
+            event => {
+              this.assignData(info);
+            },
+            this
+          );
+          this.contentNode.addChild(itemNode);
         }
 
-        this.contentNode.addChild(itemListNode);
-      }
-      this.index += 1;
+        this.index += 1;
+      });
     });
   },
-  //title 移动事件
-  titleScrollEvent() {
-    let pos_title = this.titleScrollView.getContentPosition();
-    let pos_content = this.scrollView.getContentPosition();
-
-    this.scrollView.setContentPosition(cc.v2(pos_content.x, pos_title.y));
+  //赋值
+  assignData(data) {
+    this.temLabel.string = data.tem + "℃";
+    this.timeLabel.string = data.intime;
+    this.windsLabel.string = data.winds;
+    this.winddLabel.string = data.windd;
+    this.lightLabel.string = data.light;
+    this.rainLabel.string = data.rain;
+    this.paLabel.string = data.pa;
+    this.co2Label.string = data.co2;
+    this.soiltemLabel.string = data.soiltem;
+    this.soilwaterLabel.string = data.soilwater;
+    this.ecLabel.string = data.ec;
+    this.noiLabel.string = data.noi;
+    this.powerLabel.string = data.power;
   },
-  //右侧数据内容 移动事件
-  scrollEvent() {
-    let pos_title = this.titleScrollView.getContentPosition();
-    let pos_content = this.scrollView.getContentPosition();
+  // //title 移动事件
+  // titleScrollEvent() {
+  //   let pos_title = this.titleScrollView.getContentPosition();
+  //   let pos_content = this.scrollView.getContentPosition();
 
-    this.titleScrollView.setContentPosition(cc.v2(pos_title.x, pos_content.y));
-  },
+  //   this.scrollView.setContentPosition(cc.v2(pos_content.x, pos_title.y));
+  // },
+  // //右侧数据内容 移动事件
+  // scrollEvent() {
+  //   let pos_title = this.titleScrollView.getContentPosition();
+  //   let pos_content = this.scrollView.getContentPosition();
+
+  //   this.titleScrollView.setContentPosition(cc.v2(pos_title.x, pos_content.y));
+  // },
   start() {},
   loadSceneIndex() {
     cc.director.loadScene("index");

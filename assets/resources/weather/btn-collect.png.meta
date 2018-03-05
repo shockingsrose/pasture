@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "883be429-2731-4771-8fbf-3cc01b0f3ce2",
+  "uuid": "1e0473be-6d7c-4569-8240-2d43524e02d7",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "weatherIcon": {
+    "btn-collect": {
       "ver": "1.0.3",
-      "uuid": "2511d179-27ea-4249-8c26-f667ca526e5b",
-      "rawTextureUuid": "883be429-2731-4771-8fbf-3cc01b0f3ce2",
+      "uuid": "bf762e1c-734b-4490-9943-13c3dae20556",
+      "rawTextureUuid": "1e0473be-6d7c-4569-8240-2d43524e02d7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 52,
-      "height": 180,
-      "rawWidth": 52,
-      "rawHeight": 180,
+      "width": 70,
+      "height": 32,
+      "rawWidth": 70,
+      "rawHeight": 32,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

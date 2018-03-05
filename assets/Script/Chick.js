@@ -109,6 +109,9 @@ var Chick = cc.Class({
     var hpProgressBar = cc.find("pd-20/hp/hpBar", this._stateNode).getComponent(cc.ProgressBar);
     var hpBar = hpProgressBar.node.getChildByName("bar");
     var hpLabel = cc.find("pd-20/hp/value", this._stateNode).getComponent(cc.Label);
+    var growProgressBar = cc.find("pd-20/grow/Bar", this._stateNode).getComponent(cc.ProgressBar);
+    var growBar = growProgressBar.node.getChildByName("bar");
+    var growLabel = cc.find("pd-20/grow/value", this._stateNode).getComponent(cc.Label);
     var spStateLabel = cc.find("pd-20/state/state-box/sp_label", this._stateNode).getComponent(cc.Label);
     var hpStateLabel = cc.find("pd-20/state/state-box/hp_label", this._stateNode).getComponent(cc.Label);
 
@@ -119,6 +122,11 @@ var Chick = cc.Class({
     hpProgressBar.progress = hp / 100;
     Tool.setBarColor(hpBar, hp / 100);
     hpLabel.string = hp + "/100";
+
+    growProgressBar.progress = hp / 100;
+    Tool.setBarColor(growBar, hp / 100);
+    growLabel.string = hp + "/100";
+
     spStateLabel.string = hungryState ? "饥饿" : "饱腹";
     hpStateLabel.string = sickState ? "生病" : "健康";
 
