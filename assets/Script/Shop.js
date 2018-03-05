@@ -46,11 +46,6 @@ cc.Class({
             let count = 1;
             switch (goods.PropName) {
               case "鸡蛋":
-                // (function(goodSprite) {
-                //   cc.loader.loadRes("Shop/icon-egg", cc.SpriteFrame, function(err, spriteFrame) {
-                //     goodSprite.spriteFrame = spriteFrame;
-                //   });
-                // })(goodSprite);
                 cc.loader.loadRes("Shop/icon-egg", cc.SpriteFrame, function(err, spriteFrame) {
                   goodSprite.spriteFrame = spriteFrame;
                 });

@@ -26,13 +26,10 @@
       },
       {
         "__id__": 8
-      },
-      {
-        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 10
+      "__id__": 9
     },
     "_id": "",
     "_opacity": 255,
@@ -60,8 +57,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 310,
-      "y": 0
+      "x": 375,
+      "y": 478
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -195,11 +192,11 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 45,
-    "_left": 0,
-    "_right": 0,
-    "_top": 0,
-    "_bottom": 0,
+    "_alignFlags": 0,
+    "_left": 210,
+    "_right": 210,
+    "_top": 403,
+    "_bottom": 403,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -217,9 +214,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9453708b-83ca-417f-b8d0-91aa7aa20a54"
     },
-    "fileId": "44/Ilg+8dLWb98ek1wFd/0",
+    "fileId": "da1tv8NypFFJCcQ8UbJYNR",
     "sync": false
   },
   {
@@ -256,10 +253,10 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 5,
-    "_left": 31,
-    "_right": 1000,
-    "_top": 0,
+    "_alignFlags": 4,
+    "_left": 65,
+    "_right": 65,
+    "_top": 472,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -269,39 +266,8 @@
     "_isAbsBottom": true,
     "_isAbsHorizontalCenter": true,
     "_isAbsVerticalCenter": true,
-    "_originalWidth": 558,
+    "_originalWidth": 620,
     "_originalHeight": 390
-  },
-  {
-    "__type__": "cc.Layout",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_layoutSize": {
-      "__type__": "cc.Size",
-      "width": 620,
-      "height": 956
-    },
-    "_resize": 0,
-    "_N$layoutType": 2,
-    "_N$padding": 0,
-    "_N$cellSize": {
-      "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
-    },
-    "_N$startAxis": 0,
-    "_N$paddingLeft": 0,
-    "_N$paddingRight": 0,
-    "_N$paddingTop": 60,
-    "_N$paddingBottom": 0,
-    "_N$spacingX": 0,
-    "_N$spacingY": 0,
-    "_N$verticalDirection": 1,
-    "_N$horizontalDirection": 0
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -309,9 +275,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9453708b-83ca-417f-b8d0-91aa7aa20a54"
     },
-    "fileId": "d2lGzJA9VIALw/gKvpS1lZ",
+    "fileId": "63kUK9bSpDfpEP7dfOic6A",
     "sync": false
   }
 ]
