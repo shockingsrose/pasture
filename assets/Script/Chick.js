@@ -9,6 +9,8 @@
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 var Data = require("Data");
 var Func = Data.func;
+var ToolJs = require("Tool");
+var Tool = ToolJs.Tool;
 var Chick = cc.Class({
   name: Chick,
   extends: cc.Component,
@@ -71,14 +73,9 @@ var Chick = cc.Class({
     this._collectButton = this._collectNode.getComponent(cc.Button);
     this._stateNode.active = false;
 
-    // this._hpProgressBar = cc.find("hpProgressBar", this._stateNode).getComponent(cc.ProgressBar);
-    // this._hpLabel = cc.find("Value", this._stateNode).getComponent(cc.Label);
     //初始化小鸡Id为-1
     this._Id = -1;
     //获得小鸡的ID （小鸡列表点击小鸡 把Id赋值过来）
-
-    this.assignChickState();
-    // this.playAnim();
   },
   setId(Id) {
     this._Id = Id;
@@ -101,8 +98,8 @@ var Chick = cc.Class({
       }
     });
   },
-  //给小鸡状态赋值
-  assignChickState: function(sp, hp, hungryState, sickState, collected) {
+  //给小鸡状态赋值 (饥饿值，健康值，成长值，饥饿状态，生病状态，是否能被收取，健康状态)
+  assignChickState: function(sp, hp, GrowthValue, hungryState, sickState, collected, status) {
     var spProgressBar = cc.find("pd-20/sp/spBar", this._stateNode).getComponent(cc.ProgressBar);
     var spBar = spProgressBar.node.getChildByName("bar");
     var spLabel = cc.find("pd-20/sp/value", this._stateNode).getComponent(cc.Label);
@@ -123,14 +120,29 @@ var Chick = cc.Class({
     Tool.setBarColor(hpBar, hp / 100);
     hpLabel.string = hp + "/100";
 
-    growProgressBar.progress = hp / 100;
-    Tool.setBarColor(growBar, hp / 100);
-    growLabel.string = hp + "/100";
+    growProgressBar.progress = GrowthValue / 100;
+    Tool.setBarColor(growBar, GrowthValue / 100);
+    growLabel.string = GrowthValue.toFixed(1) + "%";
 
     spStateLabel.string = hungryState ? "饥饿" : "饱腹";
-    hpStateLabel.string = sickState ? "生病" : "健康";
-
-    //
+    Tool.setLabelColor(spStateLabel, sp / 100);
+    //根据status判断健康情况
+    switch (status) {
+      case 1:
+        hpStateLabel.string = "生病";
+        break;
+      case 2:
+        hpStateLabel.string = "健康受损";
+        break;
+      case 3:
+        hpStateLabel.string = "亚健康";
+        break;
+      case 4:
+        hpStateLabel.string = "健康";
+        break;
+    }
+    Tool.setLabelColor(hpStateLabel, hp / 100);
+    //判断是否能呗收取
     if (collected) {
       this._collectButton.interactable = true;
       this._collectNode.color = cc.color("#FF4A4A");
@@ -178,10 +190,11 @@ var Chick = cc.Class({
         if (data.Code == 1) {
           var sp = data.StarvationValue;
           var hp = data.HealthValue;
+          var growth = data.Proportion;
           //判断鸡是否能收取
           let collect = data.CallBack;
           //给小鸡的饥饿度和健康值赋值
-          this.assignChickState(sp, hp, data.Hungry, data.Sick, collect);
+          this.assignChickState(sp, hp, growth, data.Hungry, data.Sick, collect, data.Status);
           this.sayHello();
           //显示节点（动画）
           clearTimeout(this.timer);

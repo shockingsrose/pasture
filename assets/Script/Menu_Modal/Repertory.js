@@ -9,6 +9,8 @@
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 var Data = require("Data");
 var Func = Data.func;
+var ToolJs = require("Tool");
+var Tool = ToolJs.Tool;
 
 cc.Class({
   extends: cc.Component,

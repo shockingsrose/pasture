@@ -4,6 +4,8 @@
 var Chick = require("Chick");
 var Data = require("Data");
 var Func = Data.func;
+var ToolJs = require("Tool");
+var Tool = ToolJs.Tool;
 
 cc.Class({
   extends: cc.Component,
@@ -85,22 +87,38 @@ cc.Class({
     var moneyLabel = cc.find("div_header/gold/money", this.node).getComponent(cc.Label);
     moneyLabel.string = RanchMoney;
 
-    //初始化鸡是否显示
-    this.Chick.active = data.ChickenList.length > 0 ? true : false;
-    //调用setId接口 给鸡传Id 默认第一只鸡
-    if (this.Chick.active) {
-      this.Chick.setPosition(0, -140);
-      this._chick.setId(data.ChickenList[0].ID);
-      this._chick.initData();
-    } else {
-      Msg.show("您的牧场暂无小鸡");
-    }
-
     //初始化饲料tip的数量
     this.feedCountLabel.string = data.UserModel.Allfeed == null ? 0 : data.UserModel.Allfeed;
 
     //初始化鸡蛋
     this.eggNode.active = data.RanchModel.EggCount > 0 ? true : false;
+
+    this.initChick();
+  },
+
+  initChick() {
+    Func.GetChickList().then(data => {
+      //初始化鸡是否显示
+      let length = data.List.length;
+      //最后一只鸡的位置
+      let index = length - 1;
+      this.Chick.active = length > 0 ? true : false;
+      //调用setId接口 给鸡传Id 默认最后那只鸡
+      if (this.Chick.active) {
+        this.Chick.setPosition(0, -140);
+        this._chick.setId(data.List[index].ID);
+
+        if (data.List[index].Status === 0) {
+          cc.loader.loadRes("ChickAlta/Chick_die", cc.SpriteFrame, (err, spriteFrame) => {
+            this.Chick.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+          });
+        } else {
+          this._chick.initData();
+        }
+      } else {
+        Msg.show("您的牧场暂无小鸡");
+      }
+    });
   },
   //收取鸡蛋
   collectEgg() {

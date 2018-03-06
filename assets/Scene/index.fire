@@ -3419,7 +3419,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "5e0e8e1e-9ae0-4817-847c-6dbab6655178"
+      "__uuid__": "9358809f-7973-4a1a-8fef-c6ea51a80209"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -4165,8 +4165,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 116,
-      "g": 218,
-      "b": 114,
+      "g": 136,
+      "b": 116,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -4238,9 +4238,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 183,
-      "b": 11,
+      "r": 87,
+      "g": 78,
+      "b": 56,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -4895,7 +4895,7 @@
         "__uuid__": "c9e6e58b-4156-49f2-b9f5-a498029c3f63"
       }
     ],
-    "playOnLoad": true
+    "playOnLoad": false
   },
   {
     "__type__": "cc.Widget",
