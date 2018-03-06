@@ -137,7 +137,7 @@ cc.Class({
             cc.loader.loadRes("Shop/icon-egg", cc.SpriteFrame, function(err, spriteFrame) {
               goodSprite.spriteFrame = spriteFrame;
             });
-            goodSprite.spriteFrame = "鸡蛋" + "x" + goods.NowCount;
+            goodsLabel.string = "鸡蛋" + "x" + goods.NowCount;
             break;
         }
 
