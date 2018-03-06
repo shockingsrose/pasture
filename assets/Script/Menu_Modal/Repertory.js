@@ -11,6 +11,8 @@ var Data = require("Data");
 var Func = Data.func;
 var ToolJs = require("Tool");
 var Tool = ToolJs.Tool;
+var AlertshelfJs = require("AlertShelf");
+var Alertshelf = AlertshelfJs.Alertshelf;
 
 cc.Class({
   extends: cc.Component,
@@ -157,7 +159,17 @@ cc.Class({
           goodSprite.spriteFrame = spriteFrame;
         });
         nameLabel.string = "贵妃鸡";
-        this.bindGoodsEvent(goodsNode, () => false, "上架", () => false, "下架", () => false, "兑换");
+        this.bindGoodsEvent(
+          goodsNode,
+          () => {
+            this.shelfEvent("贵妃鸡", type);
+          },
+          "上架",
+          () => false,
+          "下架",
+          () => false,
+          "兑换"
+        );
         break;
       case 4:
         cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {
@@ -263,6 +275,9 @@ cc.Class({
       .then(data => {
         if (data.Code === 1) {
           Msg.show(data.Message);
+          setTimeout(() => {
+            cc.director.loadScene("repertory");
+          }, 1000);
         } else {
           Msg.show(data.Message);
         }
