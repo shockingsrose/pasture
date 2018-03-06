@@ -50,6 +50,36 @@ cc.Class({
                   goodSprite.spriteFrame = spriteFrame;
                 });
                 break;
+              case "1级饲料槽":
+                cc.loader.loadRes("Shop/icon-5", cc.SpriteFrame, function(err, spriteFrame) {
+                  goodSprite.spriteFrame = spriteFrame;
+                });
+                break;
+              case "2级饲料槽":
+                cc.loader.loadRes("Shop/icon-11", cc.SpriteFrame, function(err, spriteFrame) {
+                  goodSprite.spriteFrame = spriteFrame;
+                });
+                break;
+              case "3级饲料槽":
+                cc.loader.loadRes("Shop/icon-12", cc.SpriteFrame, function(err, spriteFrame) {
+                  goodSprite.spriteFrame = spriteFrame;
+                });
+                break;
+              case "初级成长剂":
+                cc.loader.loadRes("Shop/icon-8", cc.SpriteFrame, function(err, spriteFrame) {
+                  goodSprite.spriteFrame = spriteFrame;
+                });
+                break;
+              case "中级成长剂":
+                cc.loader.loadRes("Shop/icon-9", cc.SpriteFrame, function(err, spriteFrame) {
+                  goodSprite.spriteFrame = spriteFrame;
+                });
+                break;
+              case "高级成长剂":
+                cc.loader.loadRes("Shop/icon-10", cc.SpriteFrame, function(err, spriteFrame) {
+                  goodSprite.spriteFrame = spriteFrame;
+                });
+                break;
               case "饲料":
                 cc.loader.loadRes("Shop/icon-1", cc.SpriteFrame, function(err, spriteFrame) {
                   goodSprite.spriteFrame = spriteFrame;
@@ -57,6 +87,7 @@ cc.Class({
                 count = 10;
                 break;
             }
+            cc.find("pic-box/pic", goodsNode).getComponent(cc.Widget).bottom = 0;
             goodsLabel.string = goods.PropName + "x" + count;
             priceLabel.string = goods.PropValue * count;
             goodsListNode.addChild(goodsNode);
