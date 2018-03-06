@@ -164,7 +164,7 @@ cc.Class({
   // bindOnSellEvent(obj, type, unitprice, count) {
   //   obj.on("click", event => {
   //     Alert.show("是否上架该商品？", function() {
-  //       Func.OnShlf(type, unitprice, count).then(data => {
+  //       Func.Onshelf(type, unitprice, count).then(data => {
   //         if (data.Code === 1) {
   //           Msg.show("上架成功");
   //         } else {

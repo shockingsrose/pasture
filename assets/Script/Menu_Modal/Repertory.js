@@ -139,7 +139,17 @@ cc.Class({
           goodSprite.spriteFrame = spriteFrame;
         });
         nameLabel.string = "鸡蛋";
-        this.bindGoodsEvent(goodsNode, () => false, "上架", () => false, "下架", () => false, "兑换");
+        this.bindGoodsEvent(
+          goodsNode,
+          () => {
+            this.shelfEvent("鸡蛋", type);
+          },
+          "上架",
+          () => false,
+          "下架",
+          () => false,
+          "兑换"
+        );
         break;
 
       case 3:
@@ -240,6 +250,26 @@ cc.Class({
       let indexJs = sceneNode.getComponent("Index");
       indexJs.operate = 1;
     });
+  },
+  shelfEvent(name, type, price) {
+    Alertshelf.show(name, price, () => {
+      this.OnShelf(type);
+    });
+  },
+  OnShelf(type) {
+    let unitprice = Alertshelf._price;
+    let count = Alertshelf._count;
+    Func.OnShelf(type, unitprice, count)
+      .then(data => {
+        if (data.Code === 1) {
+          Msg.show(data.Message);
+        } else {
+          Msg.show(data.Message);
+        }
+      })
+      .catch(data => {
+        Msg.show(data.Message);
+      });
   },
   start() {}
 

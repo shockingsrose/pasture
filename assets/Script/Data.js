@@ -207,7 +207,7 @@ var func = {
     });
   },
   //上架
-  OnShlf(type, unitprice, count) {
+  OnShelf(type, unitprice, count) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -227,7 +227,7 @@ var func = {
       xhr.open(
         "GET",
         window.Config.apiUrl +
-          "/T_Base_PlayerTrading/OnShlf?openId=" +
+          "/T_Base_PlayerTrading/OnShelf?openId=" +
           this.openID +
           "&type=" +
           type +
@@ -770,6 +770,32 @@ var func = {
       xhr.open("GET", window.Config.apiUrl + "/Curl/CurrentWeather", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send();
+    });
+  },
+  //上架
+  OnShelf(type, unitprice, count) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // POST方法
+
+      xhr.open("POST", window.Config.apiUrl + "/T_Base_PlayerTrading/OnShelf", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("openID=" + this.openID + "&type=" + type + "&unitprice=" + unitprice + "&count=" + count);
     });
   }
 };
