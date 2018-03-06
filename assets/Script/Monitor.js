@@ -34,6 +34,7 @@ cc.Class({
   // onLoad () {},
 
   start() {},
+  bindClickEvent() {},
   btnBackEvent() {
     cc.director.loadScene("index");
   }

@@ -1,6 +1,6 @@
 var func = {
   //获取所有数据（index页面）
-  openID: "dedbc83d62104d6da8d4a3c0188dc419",
+  openID: null,
   GetWholeData() {
     // Loading.show();
     return new Promise((resolve, reject) => {
@@ -439,7 +439,41 @@ var func = {
       xhr.send("openID=" + this.openID + "&count=" + count + "&prId=" + prId);
     });
   },
-
+  //购买商品接口
+  PostBuyP2P(playerid, buyCount) {
+    buyCount = buyCount || 1;
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            console.log("购买成功");
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("购买失败");
+            reject(response);
+          }
+        }
+      };
+      // POST方法
+      xhr.open(
+        "POST",
+        window.Config.apiUrl +
+          "/T_Base_PlayerTrading/UserToUserBuy?openID=" +
+          this.openID +
+          "&playerid=" +
+          playerid +
+          "&buyCount=" +
+          buyCount,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send();
+    });
+  },
   //孵化小鸡
   HatchEgg() {
     return new Promise((resolve, reject) => {
