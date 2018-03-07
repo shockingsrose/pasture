@@ -112,12 +112,14 @@ cc.Class({
         let goodsNode, onSell, goodSprite, goodsLabel, priceLabel, count, clicknode;
 
         if (type == 2) {
+          goodsNode = cc.instantiate(this.goods2_Prefab);
           clicknode = cc.find("xia", goodsNode);
           onSell = cc.find("xia/text", goodsNode);
           onSell.getComponent(cc.Label).string = "下架";
           //绑定我的商品的 点击事件
           self.bindSellEvent(clicknode, goods.OffType, goods.ID);
         } else {
+          // goodsNode = cc.instantiate(self.goods2_Prefab);
           //绑定其余的购买商品的点击事件
           goodsNode = self.bindGoodsEvent(type, goods);
         }
@@ -181,31 +183,27 @@ cc.Class({
     var self = this;
     let goods;
     //选择预置资源类型
-    if (type == 2) {
-      goods = cc.instantiate(this.goods2_Prefab);
-    } else {
-      goods = cc.instantiate(this.goods_Prefab);
-      goods.on("click", event => {
-        Alert.show("0", null, null, null, null, null, "Prefab/Sell", function() {
-          let selfAlert = this;
-          cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
-            if (error) {
-              cc.error(error);
-              return;
-            }
-            // 实例
-            let alert = cc.instantiate(prefab);
-            Alert._alert = alert;
-            //动画
-            selfAlert.ready();
-            Alert._alert.parent = cc.find("Canvas");
-            selfAlert.startFadeIn();
-            selfAlert.newButtonEvent(alert, "bg/btn-group/cancelButton");
-            self.P2PBuyData(alert, data);
-          });
+    goods = cc.instantiate(this.goods_Prefab);
+    goods.on("click", event => {
+      Alert.show("0", null, null, null, null, null, "Prefab/Sell", function() {
+        let selfAlert = this;
+        cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
+          if (error) {
+            cc.error(error);
+            return;
+          }
+          // 实例
+          let alert = cc.instantiate(prefab);
+          Alert._alert = alert;
+          //动画
+          selfAlert.ready();
+          Alert._alert.parent = cc.find("Canvas");
+          selfAlert.startFadeIn();
+          selfAlert.newButtonEvent(alert, "bg/btn-group/cancelButton");
+          self.P2PBuyData(alert, data);
         });
       });
-    }
+    });
     return goods;
   },
   //切换数据接口
