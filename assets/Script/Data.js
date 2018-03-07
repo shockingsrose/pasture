@@ -162,7 +162,7 @@ var func = {
           type +
           "&page=" +
           index +
-          "&size=" +
+          "&pageSize=" +
           size,
         true
       );
@@ -198,7 +198,7 @@ var func = {
           0 +
           "&page=" +
           index +
-          "&size=" +
+          "&pageSize=" +
           size,
         true
       );
