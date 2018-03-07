@@ -2164,7 +2164,10 @@
       "__uuid__": "5d55cc44-5e86-4586-84a8-74c9d1986489"
     },
     "pageIndex": 1,
-    "hasMore": true,
-    "goodsType": 1
+    "hasLoad": 1,
+    "pageSize": 9,
+    "WholeCount": 0,
+    "goodsType": 1,
+    "projectList": []
   }
 ]

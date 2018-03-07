@@ -1843,6 +1843,8 @@
       "__uuid__": "5162367c-188b-4208-8c7e-90fc70c5e36f"
     },
     "pageIndex": 1,
-    "hasMore": true
+    "hasLoad": 1,
+    "pageCount": 9,
+    "WholeCount": 0
   }
 ]

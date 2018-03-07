@@ -55,8 +55,8 @@ Alert.show = function(
       Alert._alert = alert;
       // 获取子节点
       Alert._detailLabel = cc.find("alertBackground/detailLabel", alert).getComponent(cc.Label);
-      Alert._cancelButton = cc.find("alertBackground/cancelButton", alert);
-      Alert._enterButton = cc.find("alertBackground/enterButton", alert);
+      Alert._cancelButton = cc.find("alertBackground/New Node/cancelButton", alert);
+      Alert._enterButton = cc.find("alertBackground/New Node/enterButton", alert);
       Alert._bgButton = cc.find("bg", alert);
       Alert._icon = cc.find("alertBackground/icon", alert).getComponent(cc.Sprite);
       Alert._titleLabel = cc.find("alertBackground/title", alert).getComponent(cc.Label);
@@ -64,7 +64,9 @@ Alert.show = function(
       self.ready();
       //设置图标
       if (iconPic) {
-        Alert._icon.spriteFrame = iconPic;
+        cc.loader.loadRes(iconPic, cc.SpriteFrame, function(err, spriteFrame) {
+          Alert._icon.spriteFrame = spriteFrame;
+        });
       }
 
       // 添加点击事件
