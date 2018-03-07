@@ -11,7 +11,9 @@ var Msg = {
 Msg.show = function(text, animSpeed, timeout) {
   var _this = this;
   if (_this.MsgNode != undefined) {
+    _this.MsgNode.removeFromParent();
     _this.MsgNode.destroy();
+
     clearTimeout(_this._timer);
   }
 
@@ -28,6 +30,7 @@ Msg.show = function(text, animSpeed, timeout) {
     _this.MsgNode.runAction(cc.fadeIn(_this._animSpeed));
     //2秒后移除
     clearTimeout(_this._timer);
+    clearTimeout(_this._timer);
     var action = cc.sequence(
       cc.fadeOut(_this._animSpeed),
       cc.callFunc(function() {
@@ -35,7 +38,6 @@ Msg.show = function(text, animSpeed, timeout) {
       }, _this)
     );
     _this._timer = setTimeout(function() {
-      console.log("20s");
       _this.MsgNode.runAction(action);
     }, _this._timeout);
   });

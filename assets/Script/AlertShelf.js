@@ -12,13 +12,12 @@ var Alertshelf = {
   _price: null, //单价,
   _count: 1, //数量
   _enterCallBack: null, //确定按钮回调
-  show: function(name, price, enterCallBack) {
+  show: function(name, enterCallBack) {
     if (this._Alert != undefined) {
       this._Alert.destroy();
     }
     console.log(this);
 
-    this._price = price;
     this._enterCallBack = enterCallBack || null;
 
     //加载预制资源

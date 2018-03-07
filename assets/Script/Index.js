@@ -98,22 +98,25 @@ cc.Class({
 
   initChick() {
     Func.GetChickList().then(data => {
-      //初始化鸡是否显示
-      let length = data.List.length;
-      //最后一只鸡的位置
-      let index = length - 1;
-      this.Chick.active = length > 0 ? true : false;
-      //调用setId接口 给鸡传Id 默认最后那只鸡
-      if (this.Chick.active) {
-        this.Chick.setPosition(0, -140);
-        this._chick.setId(data.List[index].ID);
+      if (data.Code == 1) {
+        //初始化鸡是否显示
+        let length = data.List.length;
+        //最后一只鸡的位置
+        let index = length - 1;
+        this.Chick.active = length > 0 ? true : false;
+        //调用setId接口 给鸡传Id 默认最后那只鸡
+        if (this.Chick.active) {
+          this.Chick.setPosition(0, -140);
+          this._chick.setId(data.List[index].ID);
 
-        if (data.List[index].Status === 0) {
-          cc.loader.loadRes("ChickAlta/Chick_die", cc.SpriteFrame, (err, spriteFrame) => {
-            this.Chick.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-          });
-        } else {
-          this._chick.initData();
+          if (data.List[index].Status === 0) {
+            cc.loader.loadRes("ChickAlta/Chick_die", cc.SpriteFrame, (err, spriteFrame) => {
+              this.Chick.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+              Msg.show("小鸡已经死亡");
+            });
+          } else {
+            this._chick.initData();
+          }
         }
       } else {
         Msg.show("您的牧场暂无小鸡");

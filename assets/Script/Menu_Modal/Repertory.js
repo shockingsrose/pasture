@@ -144,7 +144,7 @@ cc.Class({
         this.bindGoodsEvent(
           goodsNode,
           () => {
-            this.shelfEvent("鸡蛋", type);
+            this.shelfEvent("鸡蛋", 2, goodsNode);
           },
           "上架",
           () => false,
@@ -162,7 +162,7 @@ cc.Class({
         this.bindGoodsEvent(
           goodsNode,
           () => {
-            this.shelfEvent("贵妃鸡", type);
+            this.shelfEvent("贵妃鸡", 1, goodsNode);
           },
           "上架",
           () => false,
@@ -232,13 +232,13 @@ cc.Class({
       btnGroupNode.addChild(btnWhiteNode);
       btnWhiteNode.on("click", f2, that);
     }
-    if (f3) {
-      let btnGrayNode = cc.instantiate(that.btnGray_Prefab);
-      let btnLabel = cc.find("label", btnGrayNode).getComponent(cc.Label);
-      btnLabel.string = name3;
-      btnGroupNode.addChild(btnGrayNode);
-      btnGrayNode.on("click", f3, that);
-    }
+    // if (f3) {
+    //   let btnGrayNode = cc.instantiate(that.btnGray_Prefab);
+    //   let btnLabel = cc.find("label", btnGrayNode).getComponent(cc.Label);
+    //   btnLabel.string = name3;
+    //   btnGroupNode.addChild(btnGrayNode);
+    //   btnGrayNode.on("click", f3, that);
+    // }
 
     //fadeIn 进入动画
     modalNode.opacity = 0;
@@ -249,6 +249,7 @@ cc.Class({
     });
     that.node.addChild(modalNode);
   },
+  //孵化小鸡回调
   hatchEgg() {
     cc.director.loadScene("index", () => {
       let sceneNode = cc.find("Canvas");
@@ -256,6 +257,7 @@ cc.Class({
       indexJs.operate = 0;
     });
   },
+  //添加饲料槽
   feed() {
     cc.director.loadScene("index", () => {
       let sceneNode = cc.find("Canvas");
@@ -263,21 +265,27 @@ cc.Class({
       indexJs.operate = 1;
     });
   },
-  shelfEvent(name, type, price) {
-    Alertshelf.show(name, price, () => {
-      this.OnShelf(type);
+  //点击上架 弹出模态框
+  shelfEvent(name, type, goodsNode) {
+    Alertshelf.show(name, () => {
+      this.OnShelf(type, goodsNode);
     });
   },
-  OnShelf(type) {
+  //上架事件（点击确定的回调）
+  OnShelf(type, goodsNode) {
+    let countLabel = cc.find("icon-tip/count", goodsNode).getComponent(cc.Label);
+    //获取输入框的价格及数量
     let unitprice = Alertshelf._price;
     let count = Alertshelf._count;
     Func.OnShelf(type, unitprice, count)
       .then(data => {
         if (data.Code === 1) {
           Msg.show(data.Message);
-          setTimeout(() => {
-            cc.director.loadScene("repertory");
-          }, 1000);
+          if (data.Model > 0) {
+            countLabel.string = data.Model;
+          } else {
+            goodsNode.removeFromParent();
+          }
         } else {
           Msg.show(data.Message);
         }

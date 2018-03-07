@@ -137,11 +137,13 @@ cc.Class({
     this.todayNode.getChildByName("item_do").active = true;
     this.todayNode.getChildByName("item_undo").active = false;
     Func.PostSign().then(data => {
-      console.log(data);
-      var signButton = cc.find("btn-sign", this.node.parent);
-      cc.loader.loadRes("btn-hasSign", cc.SpriteFrame, function(err, spriteFrame) {
-        signButton.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-      });
+      if (data.Code === 1) {
+        var signButton = cc.find("btn-sign", this.node.parent);
+        cc.loader.loadRes("btn-hasSign", cc.SpriteFrame, function(err, spriteFrame) {
+          signButton.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
+        Msg.show("签到成功! 积分增加" + data.Point + ",牧场币增加" + data.RachMoney, 0.3, 3000);
+      }
     });
   }
 });
