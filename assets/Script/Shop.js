@@ -94,12 +94,12 @@ cc.Class({
         iconSrc2 = "Shop/icon-5";
         break;
       case "2级饲料槽":
-        iconSrc = "Shop/icon-11";
-        iconSrc2 = "Shop/icon-11";
+        iconSrc = "Shop/icon-6";
+        iconSrc2 = "Shop/icon-6_";
         break;
       case "3级饲料槽":
-        iconSrc = "Shop/icon-11";
-        iconSrc2 = "Shop/icon-11";
+        iconSrc = "Shop/icon-7";
+        iconSrc2 = "Shop/icon-7_";
         break;
       case "初级成长剂":
         iconSrc = "Shop/icon-8";
