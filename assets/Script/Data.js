@@ -21,7 +21,7 @@ var func = {
         }
       };
       // GET方法
-      xhr.open("GET", window.Config.apiUrl + "/T_Base_User/GetWholeData?openID=" + this.openID, true);
+      xhr.open("GET", Config.apiUrl + "/T_Base_User/GetWholeData?openID=" + this.openID, true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
       // POST方法
@@ -51,7 +51,7 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        window.Config.apiUrl +
+        Config.apiUrl +
           "/T_Base_User/GetFriendsList?openID=" +
           this.openID +
           "&startIndex=1&endIndex=9&orderby=Grade desc",
@@ -85,7 +85,7 @@ var func = {
         }
       };
       // POST方法1
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_Chicken/GetModelValue", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_Chicken/GetModelValue", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("cid=" + Id);
     });
@@ -107,7 +107,7 @@ var func = {
         }
       };
       // Get方法
-      xhr.open("GET", window.Config.apiUrl + "/T_Base_SignFlow/GetList?openId=" + this.openID, true);
+      xhr.open("GET", Config.apiUrl + "/T_Base_SignFlow/GetList?openId=" + this.openID, true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
@@ -131,7 +131,7 @@ var func = {
         }
       };
       // GET方法
-      xhr.open("GET", window.Config.apiUrl + "/T_Base_Property/GetListByPage?page=" + index + "&size=" + size, true);
+      xhr.open("GET", Config.apiUrl + "/T_Base_Property/GetListByPage?page=" + index + "&size=" + size, true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
@@ -157,7 +157,7 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        window.Config.apiUrl +
+        Config.apiUrl +
           "/T_Base_PlayerTrading/GetTradetLisByPage?type=" +
           type +
           "&page=" +
@@ -191,7 +191,7 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        window.Config.apiUrl +
+        Config.apiUrl +
           "/T_Base_PlayerTrading/GetListByPage?openId=" +
           this.openID +
           "&type=" +
@@ -226,7 +226,7 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        window.Config.apiUrl +
+        Config.apiUrl +
           "/T_Base_PlayerTrading/OnShelf?openId=" +
           this.openID +
           "&type=" +
@@ -261,7 +261,7 @@ var func = {
       // GET方法
       xhr.open(
         "POST",
-        window.Config.apiUrl + "/T_Base_PlayerTrading/OffShelf?openId=" + this.openID + "&playerid=" + playerid,
+        Config.apiUrl + "/T_Base_PlayerTrading/OffShelf?openId=" + this.openID + "&playerid=" + playerid,
         true
       );
       xhr.setRequestHeader("Content-Type", "json");
@@ -287,11 +287,7 @@ var func = {
         }
       };
       // GET方法
-      xhr.open(
-        "GET",
-        window.Config.apiUrl + "/T_Base_Warehouse/GetSystemListByPage?openId=" + this.openID + "&page=1",
-        true
-      );
+      xhr.open("GET", Config.apiUrl + "/T_Base_Warehouse/GetSystemListByPage?openId=" + this.openID + "&page=1", true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
@@ -315,7 +311,7 @@ var func = {
         }
       };
       // GET方法
-      xhr.open("GET", window.Config.apiUrl + "/T_Base_Warehouse/GetListByPage?openId=" + this.openID + "&page=1", true);
+      xhr.open("GET", Config.apiUrl + "/T_Base_Warehouse/GetListByPage?openId=" + this.openID + "&page=1", true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
@@ -339,7 +335,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_SignFlow/PostSign", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_SignFlow/PostSign", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });
@@ -363,7 +359,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", window.Config.apiUrl + "/T_Ranch_Clean/PostClean", true);
+      xhr.open("POST", Config.apiUrl + "/T_Ranch_Clean/PostClean", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID + "&type=1");
     });
@@ -385,7 +381,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", window.Config.apiUrl + "/T_Chicken_Treatment/POSTOneTreatment", true);
+      xhr.open("POST", Config.apiUrl + "/T_Chicken_Treatment/POSTOneTreatment", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("id=" + Id + "&openId=" + this.openID);
     });
@@ -409,7 +405,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", window.Config.apiUrl + "/T_Chicken_Feed/POSTOwnFeeds", true);
+      xhr.open("POST", Config.apiUrl + "/T_Chicken_Feed/POSTOwnFeeds", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("id=" + Id + "&openId=" + this.openID);
     });
@@ -434,7 +430,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_Property/PostBuy", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_Property/PostBuy", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID + "&count=" + count + "&prId=" + prId);
     });
@@ -461,7 +457,7 @@ var func = {
       // POST方法
       xhr.open(
         "POST",
-        window.Config.apiUrl +
+        Config.apiUrl +
           "/T_Base_PlayerTrading/UserToUserBuy?openID=" +
           this.openID +
           "&playerid=" +
@@ -491,7 +487,7 @@ var func = {
           }
         }
       };
-      xhr.open("POST", window.Config.apiUrl + "/T_Chicken_Egg/EggHatch", true);
+      xhr.open("POST", Config.apiUrl + "/T_Chicken_Egg/EggHatch", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });
@@ -513,7 +509,7 @@ var func = {
           }
         }
       };
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_User/CollectEgg", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_User/CollectEgg", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });
@@ -535,7 +531,7 @@ var func = {
           }
         }
       };
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_User/CollectChicken", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_User/CollectChicken", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("cId=" + Id);
     });
@@ -559,7 +555,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_Ranch/AddFeed", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_Ranch/AddFeed", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });
@@ -583,7 +579,7 @@ var func = {
         }
       };
       // GET方法
-      xhr.open("GET", window.Config.apiUrl + "/T_Base_Ranch/GetModel?openID=" + this.openID, true);
+      xhr.open("GET", Config.apiUrl + "/T_Base_Ranch/GetModel?openID=" + this.openID, true);
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
@@ -607,7 +603,7 @@ var func = {
         }
       };
       // POST方法
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_Chicken/GetModelList", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_Chicken/GetModelList", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });
@@ -631,7 +627,7 @@ var func = {
         }
       };
       // POST方法1
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_Chicken/ChickenAndRanch", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_Chicken/ChickenAndRanch", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("cid=" + Id);
     });
@@ -659,7 +655,7 @@ var func = {
 
       xhr.open(
         "POST",
-        window.Config.apiUrl +
+        Config.apiUrl +
           "/T_Base_User/PersonalCore?openId=" +
           this.openID +
           "&page=" +
@@ -693,7 +689,7 @@ var func = {
       };
       // POST方法
 
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_User/FeedCount", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_User/FeedCount", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });
@@ -717,7 +713,7 @@ var func = {
       // POST方法1
       xhr.open(
         "POST",
-        window.Config.apiUrl + "/T_Base_User/UpdateName?openId=" + this.openID + "&updatename=" + updatename,
+        Config.apiUrl + "/T_Base_User/UpdateName?openId=" + this.openID + "&updatename=" + updatename,
         true
       );
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
@@ -747,7 +743,7 @@ var func = {
 
       xhr.open(
         "GET",
-        window.Config.apiUrl +
+        Config.apiUrl +
           "/T_User_Message/GetListByPage?openId=" +
           this.openID +
           "&page=" +
@@ -778,7 +774,7 @@ var func = {
         }
       };
       // Get方法1
-      xhr.open("GET", window.Config.apiUrl + "/Curl/Weather?page=" + index + "&pagesize=" + size, true);
+      xhr.open("GET", Config.apiUrl + "/Curl/Weather?page=" + index + "&pagesize=" + size, true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send();
     });
@@ -801,7 +797,7 @@ var func = {
         }
       };
       // Get方法1
-      xhr.open("GET", window.Config.apiUrl + "/Curl/CurrentWeather", true);
+      xhr.open("GET", Config.apiUrl + "/Curl/CurrentWeather", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send();
     });
@@ -827,7 +823,7 @@ var func = {
       };
       // POST方法
 
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_PlayerTrading/OnShelf", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_PlayerTrading/OnShelf", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID + "&type=" + type + "&unitprice=" + unitprice + "&count=" + count);
     });
@@ -853,7 +849,7 @@ var func = {
       };
       // POST方法
 
-      xhr.open("POST", window.Config.apiUrl + "/T_Base_Exchange/ChickenExchange", true);
+      xhr.open("POST", Config.apiUrl + "/T_Base_Exchange/ChickenExchange", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send(
         "openID=" +
@@ -904,6 +900,34 @@ var func = {
           "&count=" +
           count
       );
+    });
+  },
+  //获取地址列表
+  getAddressList() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      xhr.open(
+        "GET",
+        Config.apiUrl + "/T_User_Addresses/GetListByPage?openId=" + this.openID + "&page=" + 1 + "&pageSize=" + 16,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send();
     });
   }
 };

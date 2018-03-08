@@ -32,7 +32,7 @@ cc.Class({
     let self = this;
     //商品类型 1全部  2我的商品 3鸡蛋 4 贵妃鸡
     self.fillterClickEvent();
-    self.goodsType = window.Config.shopP2P;
+    self.goodsType = Config.shopP2P;
     self.initfillterButton(self.goodsType);
     self.getInitIndicatorInIt(0, 9, self.goodsType);
   },
@@ -72,7 +72,7 @@ cc.Class({
   bindClickEvent(obj) {
     let self = this;
     obj.on("click", function() {
-      window.Config.shopP2P = Number(obj._name.slice(4));
+      Config.shopP2P = Number(obj._name.slice(4));
       cc.director.loadScene("shopP2P");
     });
   },

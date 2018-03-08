@@ -13,7 +13,7 @@ cc.Class({
 
   properties: {},
   btnBackEvent() {
-    cc.director.loadScene("userCenter");
+    cc.director.loadScene(Config.backUrl);
   },
   btnGoAddressAdd() {
     cc.director.loadScene("AddressEdit");
