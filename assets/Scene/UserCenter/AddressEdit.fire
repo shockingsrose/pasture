@@ -1411,7 +1411,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
+      "width": 500,
       "height": 100
     },
     "_rotationX": 0,
@@ -1463,7 +1463,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 225,
+      "width": 500,
       "height": 100
     },
     "_rotationX": 0,
@@ -1505,12 +1505,12 @@
     "_N$lineHeight": 100,
     "_N$fontColor": {
       "__type__": "cc.Color",
-      "r": 187,
-      "g": 187,
-      "b": 187,
+      "r": 102,
+      "g": 102,
+      "b": 102,
       "a": 255
     },
-    "_N$placeholder": "请输入收件人姓名",
+    "_N$placeholder": "请您输入收件人姓名。",
     "_N$placeholderFontSize": 28,
     "_N$placeholderFontColor": {
       "__type__": "cc.Color",
@@ -1963,7 +1963,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
+      "width": 500,
       "height": 100
     },
     "_rotationX": 0,
@@ -2015,7 +2015,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 225,
+      "width": 500,
       "height": 100
     },
     "_rotationX": 0,
@@ -2052,17 +2052,17 @@
     "_N$backgroundImage": null,
     "_N$returnType": 0,
     "_N$inputFlag": 5,
-    "_N$inputMode": 6,
+    "_N$inputMode": 3,
     "_N$fontSize": 28,
     "_N$lineHeight": 100,
     "_N$fontColor": {
       "__type__": "cc.Color",
-      "r": 187,
-      "g": 187,
-      "b": 187,
+      "r": 102,
+      "g": 102,
+      "b": 102,
       "a": 255
     },
-    "_N$placeholder": "请填写收件人电话",
+    "_N$placeholder": "请您填写正确的收件人电话。",
     "_N$placeholderFontSize": 28,
     "_N$placeholderFontColor": {
       "__type__": "cc.Color",
@@ -2071,7 +2071,7 @@
       "b": 127,
       "a": 255
     },
-    "_N$maxLength": 8,
+    "_N$maxLength": 11,
     "_N$stayOnTop": false
   },
   {
@@ -2515,7 +2515,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
+      "width": 500,
       "height": 100
     },
     "_rotationX": 0,
@@ -2567,7 +2567,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 200,
+      "width": 500,
       "height": 100
     },
     "_rotationX": 0,
@@ -2609,12 +2609,12 @@
     "_N$lineHeight": 100,
     "_N$fontColor": {
       "__type__": "cc.Color",
-      "r": 187,
-      "g": 187,
-      "b": 187,
+      "r": 102,
+      "g": 102,
+      "b": 102,
       "a": 255
     },
-    "_N$placeholder": "请填写收件地址",
+    "_N$placeholder": "请您填写详细的收件地址。",
     "_N$placeholderFontSize": 28,
     "_N$placeholderFontColor": {
       "__type__": "cc.Color",
@@ -2623,7 +2623,7 @@
       "b": 127,
       "a": 255
     },
-    "_N$maxLength": 8,
+    "_N$maxLength": 50,
     "_N$stayOnTop": false
   },
   {
@@ -3067,7 +3067,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
+      "width": 500,
       "height": 100
     },
     "_rotationX": 0,
@@ -3119,7 +3119,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 200,
+      "width": 500,
       "height": 100
     },
     "_rotationX": 0,
@@ -3156,17 +3156,17 @@
     "_N$backgroundImage": null,
     "_N$returnType": 0,
     "_N$inputFlag": 5,
-    "_N$inputMode": 6,
+    "_N$inputMode": 2,
     "_N$fontSize": 28,
     "_N$lineHeight": 100,
     "_N$fontColor": {
       "__type__": "cc.Color",
-      "r": 187,
-      "g": 187,
-      "b": 187,
+      "r": 102,
+      "g": 102,
+      "b": 102,
       "a": 255
     },
-    "_N$placeholder": "请填写邮政编码",
+    "_N$placeholder": "请您填写邮政编码。",
     "_N$placeholderFontSize": 28,
     "_N$placeholderFontColor": {
       "__type__": "cc.Color",
@@ -3175,7 +3175,7 @@
       "b": 127,
       "a": 255
     },
-    "_N$maxLength": 8,
+    "_N$maxLength": 6,
     "_N$stayOnTop": false
   },
   {
@@ -3976,8 +3976,8 @@
       "width": 750,
       "height": 1334
     },
-    "_fitWidth": true,
-    "_fitHeight": false
+    "_fitWidth": false,
+    "_fitHeight": true
   },
   {
     "__type__": "0198fz4rc5NcJYU9EUH9dJC",
