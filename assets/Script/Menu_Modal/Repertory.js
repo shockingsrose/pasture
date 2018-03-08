@@ -140,17 +140,20 @@ cc.Class({
         cc.loader.loadRes("Modal/Repertory/img-egg", cc.SpriteFrame, function(err, spriteFrame) {
           goodSprite.spriteFrame = spriteFrame;
         });
-        nameLabel.string = "鸡蛋";
+        var name = "鸡蛋";
+        nameLabel.string = name;
         this.bindGoodsEvent(
           goodsNode,
           () => {
-            this.shelfEvent("鸡蛋", 2, goodsNode);
+            this.shelfEvent(name, 2, goodsNode);
           },
           "上架",
+          () => {
+            this.exChange(name, 2);
+          },
+          "兑换",
           () => false,
-          "下架",
-          () => false,
-          "兑换"
+          "下架"
         );
         break;
 
@@ -158,17 +161,20 @@ cc.Class({
         cc.loader.loadRes("Modal/Repertory/img-hen", cc.SpriteFrame, function(err, spriteFrame) {
           goodSprite.spriteFrame = spriteFrame;
         });
-        nameLabel.string = "贵妃鸡";
+        var name = "贵妃鸡";
+        nameLabel.string = name;
         this.bindGoodsEvent(
           goodsNode,
           () => {
-            this.shelfEvent("贵妃鸡", 1, goodsNode);
+            this.shelfEvent(name, 1, goodsNode);
           },
           "上架",
+          () => {
+            this.exChange(name, 3);
+          },
+          "兑换",
           () => false,
-          "下架",
-          () => false,
-          "兑换"
+          "下架"
         );
         break;
       case 4:
@@ -293,6 +299,18 @@ cc.Class({
       .catch(data => {
         Msg.show(data.Message);
       });
+  },
+  //兑换事件
+  exChange(name, type) {
+    cc.director.loadScene("exchange", () => {
+      let sceneNode = cc.find("Canvas");
+      let exchangeJs = sceneNode.getComponent("Exchange");
+      exchangeJs._actualName = name;
+      exchangeJs._actualCount = 1;
+      exchangeJs._virtualName = name;
+      exchangeJs._virtualCount = 10;
+      exchangeJs._goodsType = type;
+    });
   },
   start() {}
 

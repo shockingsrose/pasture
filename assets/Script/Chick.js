@@ -130,6 +130,7 @@ var Chick = cc.Class({
     switch (status) {
       case 0:
         hpStateLabel.string = "死亡";
+
         break;
       case 1:
         hpStateLabel.string = "生病";
@@ -237,32 +238,31 @@ var Chick = cc.Class({
   },
   playChickShit: function() {
     this._chickAnim.play("chick_shit");
-    Msg.show("牧场不干净了");
-    Msg.show("牧场不干净了2");
+    // Msg.show("牧场不干净了");
   },
   playChickHungry: function() {
     this._chickAnim.play("chick_hungry");
-    Msg.show("小鸡饿了");
+    // Msg.show("小鸡饿了");
   },
   playChickSick: function() {
     this._chickAnim.play("chick_sick");
-    Msg.show("小鸡生病了");
+    // Msg.show("小鸡生病了");
   },
   playChickSickHungry: function() {
     this._chickAnim.play("chick_sick_hungry");
-    Msg.show("小鸡饿了，小鸡生病了");
+    // Msg.show("小鸡饿了，小鸡生病了");
   },
   playChickSickShit: function() {
     this._chickAnim.play("chick_shit_sick");
-    Msg.show("牧场不干净了，小鸡生病了");
+    // Msg.show("牧场不干净了，小鸡生病了");
   },
   playChickShitHungry: function() {
     this._chickAnim.play("chick_shit_hungry");
-    Msg.show("牧场不干净了，小鸡饿了");
+    // Msg.show("牧场不干净了，小鸡饿了");
   },
   playChickShitHungrySick: function() {
     this._chickAnim.play("chick_hungry_sick_shit");
-    Msg.show("牧场不干净了，小鸡生病了，小鸡饿了");
+    // Msg.show("牧场不干净了，小鸡生病了，小鸡饿了");
   },
 
   //根据小鸡的状态 播放不同的动画
