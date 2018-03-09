@@ -984,6 +984,142 @@ var func = {
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + this.openID);
     });
+  },
+  //添加地址列表
+  addAddress(username, telNumber, addressPostalCode, addressDetailInfo) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      xhr.open(
+        "POST",
+        Config.apiUrl +
+          "/T_User_Addresses/Add?OpenID=" +
+          this.openID +
+          "&username=" +
+          username +
+          "&telNumber=" +
+          telNumber +
+          "&addressPostalCode=" +
+          addressPostalCode +
+          "&addressDetailInfo=" +
+          addressDetailInfo +
+          "&proviceFirstStageName=温州市" +
+          "&addressCitySecondStageName=鹿城区" +
+          "&addressCountiesThirdStageName=龙湾区",
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send();
+    });
+  },
+  //更新地址列表
+  updateAddress(id, username, telNumber, addressPostalCode, addressDetailInfo) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      xhr.open(
+        "POST",
+        Config.apiUrl +
+          "/T_User_Addresses/Update?ID=" +
+          id +
+          "&OpenID=" +
+          this.openID +
+          "&username=" +
+          username +
+          "&telNumber=" +
+          telNumber +
+          "&addressPostalCode=" +
+          addressPostalCode +
+          "&proviceFirstStageName=温州市" +
+          "&addressCitySecondStageName=鹿城区" +
+          "&addressCountiesThirdStageName=龙湾区" +
+          "&addressDetailInfo=" +
+          addressDetailInfo +
+          "&nationalCode=中国" +
+          "&IsDefault=" +
+          0,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send();
+    });
+  },
+  //更新地址列表
+  setDefaultAddress(id) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      xhr.open("POST", Config.apiUrl + "/T_User_Addresses/SetIsDefault?ID=" + id, true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send();
+    });
+  },
+  //获取用户牧场币
+  GetUserMoney() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open("GET", Config.apiUrl + "/T_Base_User/GetUserMoney?openID=" + this.openID, true);
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
   }
 };
 

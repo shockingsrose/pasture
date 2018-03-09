@@ -8,5 +8,6 @@ window.Config = {
     actualCount: null,
     virtualCount: null,
     goodsType: null
-  }
+  },
+  addressId: 0 //地址ID
 };
