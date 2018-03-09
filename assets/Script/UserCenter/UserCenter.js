@@ -21,6 +21,7 @@ cc.Class({
     cc.director.loadScene("tradelist");
   },
   btnGoAddressList() {
+    Config.backUrl = "userCenter";
     cc.director.loadScene("AddressList");
   },
   outLogin() {

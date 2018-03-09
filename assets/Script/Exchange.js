@@ -104,6 +104,7 @@ cc.Class({
     });
   },
   loadAddressListScene() {
+    Config.backUrl = "exchange";
     cc.director.loadScene("UserCenter/AddressList");
   },
   loadRepertory() {
