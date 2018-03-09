@@ -27,6 +27,8 @@ cc.Class({
     window.location = "http://jingongbao.com:4633";
   },
   onLoad() {
+    let self = this;
+
     Data.func.GetUserData(1, 4).then(data => {
       this.setData(data);
       this.setRepertory(data);
@@ -34,6 +36,7 @@ cc.Class({
     });
     this.EditName();
     this.Contact();
+    this.getAddress();
   },
   //获取用户参数
   setData(data) {
@@ -57,7 +60,7 @@ cc.Class({
       console.log(data.Message);
     }
   },
-  //获取仓库数据  类型 1.系统鸡蛋. 2.不可以孵化的蛋 3.贵妃鸡， 4.饲料，5.成长加速剂
+  //获取仓库数据  类型  1.系统鸡蛋. 2.不可以孵化的蛋 3.贵妃鸡， 4.饲料，5.高级成长鸡
   setRepertory(data) {
     if (data.Code == 1) {
       for (let i = 0; i < data.Model.WarehouseList.length; i++) {
@@ -131,6 +134,18 @@ cc.Class({
             imgSrc_ = "Modal/Repertory/icon-asset05";
             break;
           }
+          case "初级成长剂": {
+            imgSrc_ = "Modal/Repertory/icon-8";
+            break;
+          }
+          case "中级成长剂": {
+            imgSrc_ = "Modal/Repertory/icon-9";
+            break;
+          }
+          case "高级成长剂": {
+            imgSrc_ = "Modal/Repertory/icon-10";
+            break;
+          }
         }
 
         cc.loader.loadRes(imgSrc, cc.SpriteFrame, (err, spriteFrame) => {
@@ -200,6 +215,18 @@ cc.Class({
       });
     });
   },
+  getAddress() {
+    Data.func.getAddressList().then(data => {
+      let addressValue = cc
+        .find("scrollview/view/layout/myAssets3/box/flex-right/value", this.node)
+        .getComponent(cc.Label);
+      for (let i = 0; i < data.List.length; i++) {
+        if (data.List[i].IsDefault) {
+          addressValue.string = data.List[i].addressDetailInfo;
+        }
+      }
+    });
+  },
   Contact() {
     const fillterButton = cc.find("scrollview/view/layout/info/tel", this.node);
     fillterButton.on("click", event => {
@@ -224,6 +251,6 @@ cc.Class({
         });
       });
     });
-  }
-  // update (dt) {},
+  },
+  update(dt) {}
 });

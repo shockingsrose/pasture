@@ -60,6 +60,18 @@ cc.Class({
             imgSrc_ = "Modal/Repertory/icon-asset05";
             break;
           }
+          case "初级成长剂": {
+            imgSrc_ = "Modal/Repertory/icon-8";
+            break;
+          }
+          case "中级成长剂": {
+            imgSrc_ = "Modal/Repertory/icon-9";
+            break;
+          }
+          case "高级成长剂": {
+            imgSrc_ = "Modal/Repertory/icon-10";
+            break;
+          }
         }
 
         cc.loader.loadRes(imgSrc, cc.SpriteFrame, (err, spriteFrame) => {
