@@ -309,17 +309,17 @@ cc.Class({
   },
   //兑换事件
   exChange(name, type) {
-    cc.director.loadScene("exchange", () => {
-      Config.exchangeData.actualName = name;
-      Config.exchangeData.actualCount = 1;
-      Config.exchangeData.virtualName = name;
-      if (type == 2) {
-        Config.exchangeData.virtualCount = 2;
-      } else if (type == 3) {
-        Config.exchangeData.virtualCount = 1;
-      }
-      Config.exchangeData.goodsType = type;
-    });
+    //放到Config.js做中转
+    Config.exchangeData.actualName = name;
+    Config.exchangeData.actualCount = 1;
+    Config.exchangeData.virtualName = name;
+    if (type == 2) {
+      Config.exchangeData.virtualCount = 2;
+    } else if (type == 3) {
+      Config.exchangeData.virtualCount = 1;
+    }
+    Config.exchangeData.goodsType = type;
+    cc.director.loadScene("exchange");
   },
   start() {}
 
