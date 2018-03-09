@@ -58,7 +58,7 @@ cc.Class({
   arrowNode: null,
   eggNode: null,
 
-  init: function() {
+  init: function () {
     this._chick = this.Chick.getComponent("Chick");
     this.clearLabel = this.clearNode.getChildByName("Value").getComponent(cc.Label);
     this.clearBar = this.clearNode.getChildByName("heath_bar").getComponent(cc.ProgressBar);
@@ -113,7 +113,9 @@ cc.Class({
           if (data.List[index].Status === 0) {
             cc.loader.loadRes("ChickAlta/Chick_die", cc.SpriteFrame, (err, spriteFrame) => {
               this.Chick.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-              Msg.show("小鸡已经死亡");
+              if (this.operate != -1) {
+                Msg.show("小鸡已经死亡");
+              }
             });
           } else {
             this._chick.initData();
@@ -158,7 +160,7 @@ cc.Class({
     });
   },
   //点击治疗事件
-  showTreatAlert: function() {
+  showTreatAlert: function () {
     var self = this;
     //调用接口
     Func.PostTreat(this._chick._Id)
@@ -180,7 +182,7 @@ cc.Class({
       });
   },
   //点击清理事件
-  showClearAlert: function() {
+  showClearAlert: function () {
     var self = this;
     //调用接口
     Func.PostClean()
@@ -207,7 +209,7 @@ cc.Class({
       });
   },
   //点击喂食事件
-  showFeedAlert: function() {
+  showFeedAlert: function () {
     var self = this;
     Func.PostOwnFeeds(this._chick._Id).then(data => {
       if (data.Code === 1) {
@@ -338,27 +340,27 @@ cc.Class({
       Func.GetCurrentWeather().then(res => {
         if (res.data.rain !== 0) {
           //下雨
-          cc.loader.loadRes("weather/bg-rain", cc.SpriteFrame, function(err, spriteFrame) {
+          cc.loader.loadRes("weather/bg-rain", cc.SpriteFrame, function (err, spriteFrame) {
             bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
           });
-          cc.loader.loadRes("weather/rain", cc.SpriteFrame, function(err, spriteFrame) {
+          cc.loader.loadRes("weather/rain", cc.SpriteFrame, function (err, spriteFrame) {
             wetherIcon.spriteFrame = spriteFrame;
           });
           rainNode.active = true;
         } else if (res.data.light === 2 || res.data.light === 3) {
           //阴天
-          cc.loader.loadRes("weather/bg-cloud", cc.SpriteFrame, function(err, spriteFrame) {
+          cc.loader.loadRes("weather/bg-cloud", cc.SpriteFrame, function (err, spriteFrame) {
             bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
           });
-          cc.loader.loadRes("weather/overcast", cc.SpriteFrame, function(err, spriteFrame) {
+          cc.loader.loadRes("weather/overcast", cc.SpriteFrame, function (err, spriteFrame) {
             wetherIcon.spriteFrame = spriteFrame;
           });
           rainNode.active = false;
         } else if (res.data.light === 1) {
-          cc.loader.loadRes("weather/bg", cc.SpriteFrame, function(err, spriteFrame) {
+          cc.loader.loadRes("weather/bg", cc.SpriteFrame, function (err, spriteFrame) {
             bgNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
           });
-          cc.loader.loadRes("weather/sun", cc.SpriteFrame, function(err, spriteFrame) {
+          cc.loader.loadRes("weather/sun", cc.SpriteFrame, function (err, spriteFrame) {
             wetherIcon.spriteFrame = spriteFrame;
           });
           rainNode.active = false;
@@ -367,12 +369,12 @@ cc.Class({
     });
   },
   //显示菜单栏 动画
-  showMenu: function() {
+  showMenu: function () {
     var self = this;
 
     if (!this.MenuListNode.active) {
       //弹出
-      cc.loader.loadRes("btn-retract", cc.SpriteFrame, function(err, spriteFrame) {
+      cc.loader.loadRes("btn-retract", cc.SpriteFrame, function (err, spriteFrame) {
         self.btnMoreSprite.spriteFrame = spriteFrame;
       });
       var fadeIn = cc.fadeIn(0.3);
@@ -383,7 +385,7 @@ cc.Class({
       this.MenuListNode.runAction(action);
     } else {
       //收回
-      cc.loader.loadRes("btn-more", cc.SpriteFrame, function(err, spriteFrame) {
+      cc.loader.loadRes("btn-more", cc.SpriteFrame, function (err, spriteFrame) {
         self.btnMoreSprite.spriteFrame = spriteFrame;
       });
 
@@ -404,7 +406,7 @@ cc.Class({
     cc.director.loadScene("weatherInfo");
   },
   //点击充值 跳转场景
-  rechargeEvent: function() {
+  rechargeEvent: function () {
     cc.director.loadScene("recharge");
   },
   loadSceneShop() {
@@ -413,50 +415,18 @@ cc.Class({
   loadSceneMonitor() {
     cc.director.loadScene("monitor");
   },
-  showUserCenter: function() {
+  showUserCenter: function () {
     cc.director.loadScene("userCenter");
   },
   loadSceneRepertory() {
     cc.director.loadScene("repertory");
   },
-
-  showSickAnim: function() {
-    this._chick._chickStatus.sick = true;
-    this._chick._chickStatus.hungry = false;
-    this._chick._chickStatus.shit = false;
-    this.chickFunc.playChickAnim.call(this._chick);
-  },
-  showSickHungryAnim: function() {
-    this._chick._chickStatus.sick = true;
-    this._chick._chickStatus.hungry = true;
-    this._chick._chickStatus.shit = false;
-    this.chickFunc.playChickAnim.call(this._chick);
-  },
-  showShitSickAnim: function() {
-    this._chick._chickStatus.sick = true;
-    this._chick._chickStatus.shit = true;
-    this._chick._chickStatus.hungry = false;
-    this.chickFunc.playChickAnim.call(this._chick);
-  },
-  showShitHungryAnim: function() {
-    this._chick._chickStatus.hungry = true;
-    this._chick._chickStatus.shit = true;
-    this._chick._chickStatus.sick = false;
-    this.chickFunc.playChickAnim.call(this._chick);
-  },
-  showHungrySickShitAnim: function() {
-    this._chick._chickStatus.hungry = true;
-    this._chick._chickStatus.shit = true;
-    this._chick._chickStatus.sick = true;
-    this.chickFunc.playChickAnim.call(this._chick);
-  },
-
-  onLoad: function() {
+  onLoad: function () {
     var openID = window.location.href.split("=")[1];
     Func.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
   },
 
-  start: function() {
+  start: function () {
     this.init();
     this.chickFunc = this._chick.chickFunc;
     Func.GetWholeData().then(data => {
@@ -482,9 +452,38 @@ cc.Class({
           this.putFeed();
           break;
       }
-      this.operate = null;
+      this.operate = -1;
     }
-  }
-
+  },
+  showSickAnim: function () {
+    this._chick._chickStatus.sick = true;
+    this._chick._chickStatus.hungry = false;
+    this._chick._chickStatus.shit = false;
+    this.chickFunc.playChickAnim.call(this._chick);
+  },
+  showSickHungryAnim: function () {
+    this._chick._chickStatus.sick = true;
+    this._chick._chickStatus.hungry = true;
+    this._chick._chickStatus.shit = false;
+    this.chickFunc.playChickAnim.call(this._chick);
+  },
+  showShitSickAnim: function () {
+    this._chick._chickStatus.sick = true;
+    this._chick._chickStatus.shit = true;
+    this._chick._chickStatus.hungry = false;
+    this.chickFunc.playChickAnim.call(this._chick);
+  },
+  showShitHungryAnim: function () {
+    this._chick._chickStatus.hungry = true;
+    this._chick._chickStatus.shit = true;
+    this._chick._chickStatus.sick = false;
+    this.chickFunc.playChickAnim.call(this._chick);
+  },
+  showHungrySickShitAnim: function () {
+    this._chick._chickStatus.hungry = true;
+    this._chick._chickStatus.shit = true;
+    this._chick._chickStatus.sick = true;
+    this.chickFunc.playChickAnim.call(this._chick);
+  },
   //update(dt) {}
 });
