@@ -18,21 +18,17 @@ cc.Class({
   _virtualName: null,
   _virtualCount: null,
   _goodsType: null,
-  proportion: null,
   _userName: null,
   _phone: null,
   _address: null,
 
   ctor() {
-    //     this._actualName = "鸡蛋";
-    //     this._actualCount = 1;
-    //     this._virtualName = "鸡蛋";
-    //     this._virtualCount = 10;
-    //     this._goodsType = null;
-    this.proportion = 10;
-    this._userName = "周振攀";
-    this._phone = "17701233212";
-    this._address = "浙江省温州市李山投资集团";
+    //从config文件中初始化
+    this._actualName = Config.exchangeData.actualName;
+    this._actualCount = Config.exchangeData.actualCount;
+    this._virtualName = Config.exchangeData.virtualName;
+    this._virtualCount = Config.exchangeData.virtualCount;
+    this._goodsType = Config.exchangeData.goodsType;
   },
 
   bindNode() {
@@ -54,26 +50,45 @@ cc.Class({
     this.virtualNameLabel.string = this._virtualName;
     this.virtualCountLabel.string = this._virtualCount;
     //收货信息
-    this.infoNameLabel.string = this._userName;
-    this.infoPhoneLabel.string = this._phone;
-    this.addressLabel.string = this._address;
+    Func.getAddressList().then(data => {
+      if (data.Code === 1) {
+        let list = data.List;
+        let info = list.forEach(element => {
+          if (element.IsDefault) {
+            this._userName = element.username;
+            this._phone = element.telNumber;
+            this._address =
+              element.proviceFirstStageName +
+              element.addressCitySecondStageName +
+              element.addressCountiesThirdStageName +
+              element.addressDetailInfo;
+          }
+        });
+
+        this.infoNameLabel.string = this._userName;
+        this.infoPhoneLabel.string = this._phone;
+        this.addressLabel.string = this._address;
+      } else Msg.show(data.Message);
+    });
   },
   bindEvent() {
     //减号按钮事件
     this.minusButton.on("click", () => {
       this._actualCount = this._actualCount - 1 < 0 ? 0 : this._actualCount - 1;
-      this._virtualCount = this._actualCount * 10;
-
-      this.actualCountLabel.string = this._actualCount;
-      this.virtualCountLabel.string = this._virtualCount;
+      Func.GetExchangeCount(this._goodsType, this._actualCount).then(data => {
+        this._virtualCount = data.Model;
+        this.actualCountLabel.string = this._actualCount;
+        this.virtualCountLabel.string = this._virtualCount;
+      });
     });
     //加号按钮事件
     this.addButton.on("click", () => {
       this._actualCount++;
-      this._virtualCount = this._actualCount * this.proportion;
-
-      this.actualCountLabel.string = this._actualCount;
-      this.virtualCountLabel.string = this._virtualCount;
+      Func.GetExchangeCount(this._goodsType, this._actualCount).then(data => {
+        this._virtualCount = data.Model;
+        this.actualCountLabel.string = this._actualCount;
+        this.virtualCountLabel.string = this._virtualCount;
+      });
     });
     //兑换事件
     this.exchangeButton.on("click", () => {

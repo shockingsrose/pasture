@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>1_01.png</key>
+            <key>chick_feed_0000_图层-13.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_02.png</key>
+            <key>chick_feed_0001_图层-12.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -34,7 +34,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_03.png</key>
+            <key>chick_feed_0002_图层-11.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -49,7 +49,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_04.png</key>
+            <key>chick_feed_0003_图层-10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -64,7 +64,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_05.png</key>
+            <key>chick_feed_0004_图层-9.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -79,7 +79,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_06.png</key>
+            <key>chick_feed_0005_图层-8.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -94,7 +94,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_07.png</key>
+            <key>chick_feed_0006_图层-7.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -109,7 +109,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_08.png</key>
+            <key>chick_feed_0007_图层-6.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -124,7 +124,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_09.png</key>
+            <key>chick_feed_0008_图层-5.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -139,7 +139,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_10.png</key>
+            <key>chick_feed_0009_图层-4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -154,7 +154,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_11.png</key>
+            <key>chick_feed_0010_图层-3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -169,7 +169,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_12.png</key>
+            <key>chick_feed_0011_图层-2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -184,7 +184,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>1_13.png</key>
+            <key>chick_feed_0012_图层-1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -213,7 +213,7 @@
             <key>size</key>
             <string>{3350,1260}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4c108ba411044b88f0e2123e9877a08e:4d2cc73df23ef4eb8ac9de0055cc4447:bc9e3ed0b5a06fdd45a46ecaeeebb5c0$</string>
+            <string>$TexturePacker:SmartUpdate:dc987e0855647ed98ad373e4a804a752:7819ea1e8d0ec36c3cb2100d9356cf22:bc9e3ed0b5a06fdd45a46ecaeeebb5c0$</string>
             <key>textureFileName</key>
             <string>Chick_feed.png</string>
         </dict>

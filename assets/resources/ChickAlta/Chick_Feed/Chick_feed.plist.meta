@@ -8,9 +8,9 @@
   },
   "type": "Texture Packer",
   "subMetas": {
-    "1_01.png": {
+    "chick_feed_0000_图层-13.png": {
       "ver": "1.0.3",
-      "uuid": "f09f9e3b-eefb-42a3-876e-c33eed1e8ca8",
+      "uuid": "6a200612-3c52-43f6-920e-844f7476ac4d",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -30,9 +30,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_02.png": {
+    "chick_feed_0001_图层-12.png": {
       "ver": "1.0.3",
-      "uuid": "5b6f2a91-af3f-49c4-bfaf-37b18348e205",
+      "uuid": "b752bf32-8efb-442f-a7e1-1a67c18d57f0",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -52,9 +52,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_03.png": {
+    "chick_feed_0002_图层-11.png": {
       "ver": "1.0.3",
-      "uuid": "01fac0c0-23d0-486c-9335-0a68ace6e2bc",
+      "uuid": "612a96a4-0dab-4bac-b500-c00112c099f3",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -74,9 +74,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_04.png": {
+    "chick_feed_0003_图层-10.png": {
       "ver": "1.0.3",
-      "uuid": "207e7143-f4a8-49c5-b9bd-ff858b4e9321",
+      "uuid": "ec2bc19d-e545-4d2c-869e-7077c348a214",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -96,9 +96,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_05.png": {
+    "chick_feed_0004_图层-9.png": {
       "ver": "1.0.3",
-      "uuid": "0f486f05-ac7e-4e85-b2e5-80c6581b70a2",
+      "uuid": "7ac4c5f2-1654-4887-807c-d180cf953173",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -118,9 +118,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_06.png": {
+    "chick_feed_0005_图层-8.png": {
       "ver": "1.0.3",
-      "uuid": "d026b717-25db-4a2c-8db7-6de482711f98",
+      "uuid": "fc2736ec-f2f0-4022-bb48-b51169179e46",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -140,9 +140,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_07.png": {
+    "chick_feed_0006_图层-7.png": {
       "ver": "1.0.3",
-      "uuid": "afa7bee4-4db0-4988-9347-8fcec98758c3",
+      "uuid": "d6cc1ba3-5f2c-48e7-830e-6e94c2c4b9ed",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -162,9 +162,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_08.png": {
+    "chick_feed_0007_图层-6.png": {
       "ver": "1.0.3",
-      "uuid": "659b0c07-03c1-40e6-bc23-6d9328abeba0",
+      "uuid": "fdb09fda-2895-4ec0-bed7-681678cd2fce",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -184,9 +184,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_09.png": {
+    "chick_feed_0008_图层-5.png": {
       "ver": "1.0.3",
-      "uuid": "460c8726-8bc2-4b24-85f7-fdfc5057c50b",
+      "uuid": "2af2fcc8-156c-439e-9a53-9c0e9e1184eb",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -206,9 +206,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_10.png": {
+    "chick_feed_0009_图层-4.png": {
       "ver": "1.0.3",
-      "uuid": "8b5ff1b8-6c50-4332-9ea5-96492ff0c2f7",
+      "uuid": "c7a3226d-e733-4459-bd6d-4d0dcf9a5274",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -228,9 +228,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_11.png": {
+    "chick_feed_0010_图层-3.png": {
       "ver": "1.0.3",
-      "uuid": "77f23f26-50aa-4bd2-aab9-3b9706eee1ea",
+      "uuid": "7dfd5a64-e4f3-4a67-b3af-894954c0521c",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -250,9 +250,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_12.png": {
+    "chick_feed_0011_图层-2.png": {
       "ver": "1.0.3",
-      "uuid": "0f71a0fd-09e8-4ca4-9c9f-6bdde15af5fe",
+      "uuid": "0df39159-c707-4686-85d8-0f8026fbc1e1",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -272,9 +272,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "1_13.png": {
+    "chick_feed_0012_图层-1.png": {
       "ver": "1.0.3",
-      "uuid": "e0049052-db1b-4b31-8809-31a5a04ecffa",
+      "uuid": "209428e2-2640-49a3-bfef-45f65ab421c5",
       "rawTextureUuid": "0f10c58d-2733-4f26-947a-8b4999f15a1c",
       "trimType": "auto",
       "trimThreshold": 1,
