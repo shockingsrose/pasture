@@ -2231,6 +2231,9 @@
     "_enabled": true,
     "AddressList_Prefab": {
       "__uuid__": "db41310d-4279-4e85-8f17-b76701281a94"
+    },
+    "noTip_Prefab": {
+      "__uuid__": "83a0ea9b-d0aa-4cd3-9cb4-632ed719600e"
     }
   }
 ]

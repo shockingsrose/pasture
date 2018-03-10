@@ -1,7 +1,6 @@
 {
   "ver": "1.2.4",
   "uuid": "4e7243b7-b12e-45b5-92ee-51068140b28c",
-  "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
   "size": {
     "width": 3782,
     "height": 2954
@@ -11,7 +10,6 @@
     "2_05_0000_图层-40.png": {
       "ver": "1.0.3",
       "uuid": "45a9e4ac-2260-488a-814a-3ec314732899",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -33,7 +31,6 @@
     "2_05_0001_图层-39.png": {
       "ver": "1.0.3",
       "uuid": "185d627d-0609-4de5-8118-ca16c220bd76",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -55,7 +52,6 @@
     "2_05_0002_图层-38.png": {
       "ver": "1.0.3",
       "uuid": "7d680225-69cd-47b5-b383-8b1e0bb5cdbc",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -77,7 +73,6 @@
     "2_05_0003_图层-37.png": {
       "ver": "1.0.3",
       "uuid": "baa08382-5e95-4a29-92a3-b5481a28cbf7",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -99,7 +94,6 @@
     "2_05_0004_图层-36.png": {
       "ver": "1.0.3",
       "uuid": "140ef46f-0f2b-42f1-aef6-ca4d90c07ef5",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -121,7 +115,6 @@
     "2_05_0005_图层-35.png": {
       "ver": "1.0.3",
       "uuid": "81373856-d4e9-41b1-89aa-e085b2432ea1",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -143,7 +136,6 @@
     "2_05_0006_图层-34.png": {
       "ver": "1.0.3",
       "uuid": "98322657-6a21-4f22-9820-9bb9c6c6030f",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -165,7 +157,6 @@
     "2_05_0007_图层-33.png": {
       "ver": "1.0.3",
       "uuid": "e1419f90-1d2f-457b-bb8a-22b4f575aebf",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -187,7 +178,6 @@
     "2_05_0008_图层-32.png": {
       "ver": "1.0.3",
       "uuid": "d1d775e2-e84f-42cc-99e9-0d20f244535f",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -209,7 +199,6 @@
     "2_05_0009_图层-31.png": {
       "ver": "1.0.3",
       "uuid": "2c356447-a8fd-464f-8af9-57594389599d",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -231,7 +220,6 @@
     "2_05_0010_图层-30.png": {
       "ver": "1.0.3",
       "uuid": "c5c6edff-d3aa-4706-8f60-6ec246064c95",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -253,7 +241,6 @@
     "2_05_0011_图层-29.png": {
       "ver": "1.0.3",
       "uuid": "dd8a7b66-a95a-42ca-a19e-59bc22d50dae",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -275,7 +262,6 @@
     "2_05_0012_图层-28.png": {
       "ver": "1.0.3",
       "uuid": "e8c00e92-8fbf-41c7-8ef3-981ad64032a1",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -297,7 +283,6 @@
     "2_05_0013_图层-27.png": {
       "ver": "1.0.3",
       "uuid": "d108e088-c8cf-4ee6-820e-af86ff50bce1",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -319,7 +304,6 @@
     "2_05_0014_图层-26.png": {
       "ver": "1.0.3",
       "uuid": "1c69a91f-426d-40bc-824b-d9eff065617f",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -341,7 +325,6 @@
     "2_05_0015_图层-25.png": {
       "ver": "1.0.3",
       "uuid": "211d4d81-cceb-45dc-9abd-79ae9692ed21",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -363,7 +346,6 @@
     "2_05_0016_图层-24.png": {
       "ver": "1.0.3",
       "uuid": "5e628151-f1ec-4e1f-94d3-f56d579403a6",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -385,7 +367,6 @@
     "2_05_0017_图层-23.png": {
       "ver": "1.0.3",
       "uuid": "6e010b1a-449a-4aa2-b6d5-dd9878b34ccc",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -407,7 +388,6 @@
     "2_05_0018_图层-22.png": {
       "ver": "1.0.3",
       "uuid": "c615f3f7-8c5d-48c8-8d49-dab2551060a4",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -429,7 +409,6 @@
     "2_05_0019_图层-21.png": {
       "ver": "1.0.3",
       "uuid": "6422dab2-d84d-428a-b4b3-ab2cde541b84",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -451,7 +430,6 @@
     "2_05_0020_图层-20.png": {
       "ver": "1.0.3",
       "uuid": "ad48cac4-bd03-4406-8d4f-bc58518ba60f",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -473,7 +451,6 @@
     "2_05_0021_图层-19.png": {
       "ver": "1.0.3",
       "uuid": "2acaf2c0-3826-4bf8-a898-389b8aad105f",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -495,7 +472,6 @@
     "2_05_0022_图层-18.png": {
       "ver": "1.0.3",
       "uuid": "3bed2256-1efe-415b-ba66-3b2d48523ba3",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -517,7 +493,6 @@
     "2_05_0023_图层-17.png": {
       "ver": "1.0.3",
       "uuid": "8200ca23-6c47-4878-ad67-bc230bc5bb55",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -539,7 +514,6 @@
     "2_05_0024_图层-16.png": {
       "ver": "1.0.3",
       "uuid": "4b51ec0f-d2df-427b-924b-9c7d0338e216",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -561,7 +535,6 @@
     "2_05_0025_图层-15.png": {
       "ver": "1.0.3",
       "uuid": "179edaaa-0082-4386-b9d0-42d2643ea11a",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -583,7 +556,6 @@
     "2_05_0026_图层-14.png": {
       "ver": "1.0.3",
       "uuid": "fad6ef0d-ecf9-4e66-952c-1f2ee6202660",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -605,7 +577,6 @@
     "2_05_0027_图层-13.png": {
       "ver": "1.0.3",
       "uuid": "90cde587-ec3d-4a2a-a170-77c8e85432cf",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -627,7 +598,6 @@
     "2_05_0028_图层-12.png": {
       "ver": "1.0.3",
       "uuid": "ed3d0e78-07bf-4aac-a78b-4a1d005afdce",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -649,7 +619,6 @@
     "2_05_0029_图层-11.png": {
       "ver": "1.0.3",
       "uuid": "70ab4464-06c0-4cb8-90ef-eeeced4482bf",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -671,7 +640,6 @@
     "2_05_0030_图层-10.png": {
       "ver": "1.0.3",
       "uuid": "32b3e92e-9913-4b41-87c3-ac4eaffb5ee9",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -693,7 +661,6 @@
     "2_05_0031_图层-9.png": {
       "ver": "1.0.3",
       "uuid": "62c00c6a-cd82-470b-ad1b-b2c64ad38049",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -715,7 +682,6 @@
     "2_05_0032_图层-8.png": {
       "ver": "1.0.3",
       "uuid": "a829ef2f-6d22-4fe4-b549-711ba58dfe8a",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -737,7 +703,6 @@
     "2_05_0033_图层-7.png": {
       "ver": "1.0.3",
       "uuid": "6ef017a4-4d5e-4d1d-b55a-66cb1172af55",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -759,7 +724,6 @@
     "2_05_0034_图层-6.png": {
       "ver": "1.0.3",
       "uuid": "cfb98d46-3d76-442c-8ed2-6be98c3239c3",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -781,7 +745,6 @@
     "2_05_0035_图层-5.png": {
       "ver": "1.0.3",
       "uuid": "befe12d7-fedc-40ca-ac2e-06c8965f7db3",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -803,7 +766,6 @@
     "2_05_0036_图层-4.png": {
       "ver": "1.0.3",
       "uuid": "f11a3ce9-337f-48e2-b199-f584c785bce7",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -825,7 +787,6 @@
     "2_05_0037_图层-3.png": {
       "ver": "1.0.3",
       "uuid": "d32f2bca-e7d6-42e9-b08e-d8a214093a0a",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -847,7 +808,6 @@
     "2_05_0038_图层-2.png": {
       "ver": "1.0.3",
       "uuid": "72af58a4-3479-4e96-a677-03f14b598ffd",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -869,7 +829,6 @@
     "2_05_0039_图层-1.png": {
       "ver": "1.0.3",
       "uuid": "16a70fe4-b8a4-48cc-9d16-7f4d2dc6e037",
-      "rawTextureUuid": "9c647485-2815-4d85-bd4d-7b11f02cebb7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

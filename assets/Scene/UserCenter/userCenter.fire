@@ -5880,7 +5880,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 180,
+      "width": 120,
       "height": 30
     },
     "_rotationX": 0,
@@ -5915,7 +5915,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "李山投资集团",
+    "_N$string": "设置地址",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
