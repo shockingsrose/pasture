@@ -218,12 +218,14 @@ cc.Class({
   },
   getAddress() {
     Data.func.getAddressList().then(data => {
-      let addressValue = cc
-        .find("scrollview/view/layout/myAssets3/box/flex-right/value", this.node)
-        .getComponent(cc.Label);
-      for (let i = 0; i < data.List.length; i++) {
-        if (data.List[i].IsDefault) {
-          addressValue.string = data.List[i].addressDetailInfo;
+      if (data.Code == 1) {
+        let addressValue = cc
+          .find("scrollview/view/layout/myAssets3/box/flex-right/value", this.node)
+          .getComponent(cc.Label);
+        for (let i = 0; i < data.List.length; i++) {
+          if (data.List[i].IsDefault) {
+            addressValue.string = data.List[i].addressDetailInfo;
+          }
         }
       }
     });
