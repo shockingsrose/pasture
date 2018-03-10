@@ -184,6 +184,13 @@ cc.Class({
         nameLabel.string = "饲料";
         this.bindGoodsEvent(goodsNode, this.feed, "添加饲料槽");
         break;
+      case 5:
+        cc.loader.loadRes("Modal/Repertory/feed", cc.SpriteFrame, function(err, spriteFrame) {
+          goodSprite.spriteFrame = spriteFrame;
+        });
+        nameLabel.string = "成长剂";
+        this.bindGoodsEvent(goodsNode, () => Msg.show("暂时还未开通该道具功能"), "使用");
+        break;
     }
     countLabel.string = count;
   },
@@ -302,15 +309,17 @@ cc.Class({
   },
   //兑换事件
   exChange(name, type) {
-    cc.director.loadScene("exchange", () => {
-      let sceneNode = cc.find("Canvas");
-      let exchangeJs = sceneNode.getComponent("Exchange");
-      exchangeJs._actualName = name;
-      exchangeJs._actualCount = 1;
-      exchangeJs._virtualName = name;
-      exchangeJs._virtualCount = 10;
-      exchangeJs._goodsType = type;
-    });
+    //放到Config.js做中转
+    Config.exchangeData.actualName = name;
+    Config.exchangeData.actualCount = 1;
+    Config.exchangeData.virtualName = name;
+    if (type == 2) {
+      Config.exchangeData.virtualCount = 2;
+    } else if (type == 3) {
+      Config.exchangeData.virtualCount = 1;
+    }
+    Config.exchangeData.goodsType = type;
+    cc.director.loadScene("exchange");
   },
   start() {}
 

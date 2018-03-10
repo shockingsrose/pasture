@@ -930,6 +930,61 @@ var func = {
       xhr.send();
     });
   },
+  //获取兑换数量
+  GetExchangeCount(type, count) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "GET",
+        Config.apiUrl + "/T_Base_Exchange/GetExchangeCount?openID=" + this.openID + "&type=" + type + "&count=" + count,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
+  //升级饲料槽
+  UpFeedGrade(username, address, phone, count) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // POST方法
+
+      xhr.open("POST", window.Config.apiUrl + "/T_Base_User/UpFeedTroughGrade", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("openID=" + this.openID);
+    });
+  },
   //添加地址列表
   addAddress(username, telNumber, addressPostalCode, addressDetailInfo) {
     return new Promise((resolve, reject) => {
@@ -1062,6 +1117,31 @@ var func = {
       };
       xhr.open("POST", Config.apiUrl + "/T_User_Addresses/Delete?ID=" + id, true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send();
+    });
+  },
+  //获取用户牧场币
+  GetUserMoney() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open("GET", Config.apiUrl + "/T_Base_User/GetUserMoney?openID=" + this.openID, true);
+      xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
   }

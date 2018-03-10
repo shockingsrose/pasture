@@ -1322,8 +1322,8 @@
     },
     "_N$returnType": 0,
     "_N$inputFlag": 5,
-    "_N$inputMode": 6,
-    "_N$fontSize": 29,
+    "_N$inputMode": 3,
+    "_N$fontSize": 30,
     "_N$lineHeight": 40,
     "_N$fontColor": {
       "__type__": "cc.Color",
@@ -1333,7 +1333,7 @@
       "a": 255
     },
     "_N$placeholder": "  输入充值金额",
-    "_N$placeholderFontSize": 20,
+    "_N$placeholderFontSize": 30,
     "_N$placeholderFontColor": {
       "__type__": "cc.Color",
       "r": 127,
