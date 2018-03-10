@@ -10,11 +10,12 @@ cc.Class({
     }
   },
   defaultId: 0,
+  check_Prefab: null,
   btnBackEvent() {
     cc.director.loadScene(Config.backUrl);
   },
   btnGoAddressAdd() {
-    cc.director.loadScene("AddressEdit");
+    cc.director.loadScene("AddressAdd");
   },
   getAddressList() {
     Data.func.getAddressList().then(data => {
@@ -26,15 +27,19 @@ cc.Class({
         let box = cc.find("toggle", PropertyList).getComponent(cc.Toggle);
         let checkButton = cc.find("toggle", PropertyList);
         let rightButton = cc.find("right", PropertyList);
+        PropertyList._name = "toggleItem_" + data.List[i].ID;
+        console.log(PropertyList._name);
         if (data.List[i].IsDefault) {
           self.defaultId = data.List[i].ID;
           box.isChecked = true;
+          self.check_Prefab = PropertyList;
         }
         box.toggleGroup = PrefabParent.getComponent(cc.ToggleGroup);
         UserName.string = data.List[i].username + "  " + data.List[i].telNumber;
         Address.string = data.List[i].addressDetailInfo;
         checkButton.on("click", function() {
           self.defaultId = data.List[i].ID;
+          self.check_Prefab = PropertyList;
         });
         rightButton.on("click", () => {
           Config.addressId = data.List[i].ID;
@@ -50,6 +55,16 @@ cc.Class({
       setTimeout(function() {
         cc.director.loadScene(Config.backUrl);
       }, 2000);
+    });
+  },
+  delDefaultId() {
+    let item = cc.find("scrollview/view/layout/toggleGroup/toggleItem_" + self.defaultId, this.node);
+    Data.func.delDefaultAddress(self.defaultId).then(data => {
+      Msg.show("地址删除成功");
+      item.destroy();
+      // setTimeout(function() {
+      //   cc.director.loadScene("AddressList");
+      // }, 2000);
     });
   },
   onLoad() {
