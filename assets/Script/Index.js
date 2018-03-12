@@ -447,23 +447,23 @@ cc.Class({
   },
 
   start: function() {
-    if (this.getUreString("video") == 1) {
+    if (this.getUreString("video") == 1 && Config.isVideoBack == 0) {
+      Config.isVideoBack = 1;
       cc.director.loadScene("monitor");
-    } else {
-      this.init();
-      this.chickFunc = this._chick.chickFunc;
-      Func.GetWholeData().then(data => {
-        // console.log(data);
-        if (data.Code === 1) {
-          this.initData(data);
-          // Loading.hide();
-          //仓库回调
-          this.repertoryCallBack();
-        } else {
-          console.log("首页数据加载失败");
-        }
-      });
     }
+    this.init();
+    this.chickFunc = this._chick.chickFunc;
+    Func.GetWholeData().then(data => {
+      // console.log(data);
+      if (data.Code === 1) {
+        this.initData(data);
+        // Loading.hide();
+        //仓库回调
+        this.repertoryCallBack();
+      } else {
+        console.log("首页数据加载失败");
+      }
+    });
   },
   //仓库回调函数（0表示孵化操作）
   repertoryCallBack() {
