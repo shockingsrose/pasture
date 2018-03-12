@@ -96,6 +96,12 @@ cc.Class({
 
     this.initChick();
   },
+  getUreString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return 0;
+  },
   //只运行一次
   initChick() {
     Func.GetChickList().then(data => {
@@ -441,19 +447,23 @@ cc.Class({
   },
 
   start: function() {
-    this.init();
-    this.chickFunc = this._chick.chickFunc;
-    Func.GetWholeData().then(data => {
-      // console.log(data);
-      if (data.Code === 1) {
-        this.initData(data);
-        // Loading.hide();
-        //仓库回调
-        this.repertoryCallBack();
-      } else {
-        console.log("首页数据加载失败");
-      }
-    });
+    if (this.getUreString("video") == 1) {
+      cc.director.loadScene("monitor");
+    } else {
+      this.init();
+      this.chickFunc = this._chick.chickFunc;
+      Func.GetWholeData().then(data => {
+        // console.log(data);
+        if (data.Code === 1) {
+          this.initData(data);
+          // Loading.hide();
+          //仓库回调
+          this.repertoryCallBack();
+        } else {
+          console.log("首页数据加载失败");
+        }
+      });
+    }
   },
   //仓库回调函数（0表示孵化操作）
   repertoryCallBack() {
