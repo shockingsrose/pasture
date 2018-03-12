@@ -25,24 +25,25 @@ cc.Class({
     let self = this;
   },
   bindClickEvent() {
-    Alert.show("0", null, null, null, null, null, "Prefab/Modal/Video", function() {
-      let selfAlert = this;
-      cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
-        if (error) {
-          cc.error(error);
-          return;
-        }
-        // 实例
-        let alert = cc.instantiate(prefab);
-        Alert._alert = alert;
-        //动画
-        selfAlert.ready();
-        Alert._alert.parent = cc.find("Canvas");
-        selfAlert.startFadeIn();
-        // 关闭按钮
-        selfAlert.newButtonEvent(alert, "box");
-      });
-    });
+    // Alert.show("0", null, null, null, null, null, "Prefab/Modal/Video", function() {
+    //   let selfAlert = this;
+    //   cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
+    //     if (error) {
+    //       cc.error(error);
+    //       return;
+    //     }
+    //     // 实例
+    //     let alert = cc.instantiate(prefab);
+    //     Alert._alert = alert;
+    //     //动画
+    //     selfAlert.ready();
+    //     Alert._alert.parent = cc.find("Canvas");
+    //     selfAlert.startFadeIn();
+    //     // 关闭按钮
+    //     selfAlert.newButtonEvent(alert, "box");
+    //   });
+    // });
+    location = "http://birthday.zjytny.cn/video.html";
   },
   btnBackEvent() {
     cc.director.loadScene("index");
