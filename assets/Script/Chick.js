@@ -123,7 +123,7 @@ var Chick = cc.Class({
     hpLabel.string = hp + "/100";
 
     growProgressBar.progress = GrowthValue / 100;
-    Tool.setBarColor(growBar, GrowthValue / 100);
+
     growLabel.string = GrowthValue.toFixed(1) + "%";
 
     spStateLabel.string = hungryState ? "饥饿" : "饱腹";
@@ -182,12 +182,49 @@ var Chick = cc.Class({
       "我明天吃点什么呢？",
       "过年了，想穿新衣服啦！"
     ];
-    let n = Math.floor(Math.random() * words.length + 1) - 1;
-    let str = words[n];
     this.wordNode = cc.find("dialog/word", this._stateNode);
     let wordLabel = this.wordNode.getComponent(cc.Label);
-    wordLabel.string = str;
+    if (this._status === 0) {
+      wordLabel.string = "我死了";
+      return;
+    }
+    if (!this._chickStatus.sick && !this._chickStatus.hungry && !this._chickStatus.shit) {
+      let n = Math.floor(Math.random() * words.length + 1) - 1;
+      let str = words[n];
+
+      wordLabel.string = str;
+    } else {
+      if (this._chickStatus.sick && this._chickStatus.hungry && this._chickStatus.shit) {
+        wordLabel.string = "我生病了、又饿了，牧场也不干净了";
+      }
+
+      if (this._chickStatus.sick) {
+        //生病状态
+        !this._chickStatus.hungry && !this._chickStatus.shit ? (wordLabel.string = "我生病了") : false;
+        //生病+饥饿状态
+        this._chickStatus.hungry && !this._chickStatus.shit ? (wordLabel.string = "我生病了,又饿了") : false;
+        //生病+肮脏状态
+        !this._chickStatus.hungry && this._chickStatus.shit ? (wordLabel.string = "我生病了，牧场也不干净了") : false;
+      }
+      if (this._chickStatus.hungry) {
+        //饥饿状态
+        !this._chickStatus.sick && !this._chickStatus.shit ? (wordLabel.string = "我饿了") : false;
+        //饥饿+肮脏状态
+        !this._chickStatus.sick && this._chickStatus.shit ? (wordLabel.string = "我饿了，牧场也不干净了") : false;
+        //饥饿+生病状态
+        this._chickStatus.sick && this._chickStatus.shit ? (wordLabel.string = "我生病了、又饿了") : false;
+      }
+      if (this._chickStatus.shit) {
+        //肮脏状态
+        !this._chickStatus.hungry && !this._chickStatus.sick ? (wordLabel.string = "牧场不干净了") : false;
+        //肮脏+饥饿状态
+        this._chickStatus.hungry && !this._chickStatus.sick ? (wordLabel.string = "我饿了，牧场也不干净了") : false;
+        //肮脏+生病状态
+        !this._chickStatus.hungry && this._chickStatus.sick ? (wordLabel.string = "我生病了，牧场也不干净了") : false;
+      }
+    }
   },
+
   //显示小鸡的状态
   showChickState: function() {
     this.feedStateNode.active = false;

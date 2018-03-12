@@ -51,7 +51,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 460,
+      "width": 750,
       "height": 91
     },
     "_rotationX": 0,
@@ -60,7 +60,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 375,
       "y": -45.5
     },
     "_skewX": 0,
@@ -118,7 +118,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 460,
+      "width": 750,
       "height": 90
     },
     "_rotationX": 0,
@@ -191,7 +191,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -105,
+      "x": -250,
       "y": 0
     },
     "_skewX": 0,
@@ -348,7 +348,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "14gJvCKM1Ir4TAO+VJPcWf",
     "sync": false
@@ -401,7 +401,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "36Ecmahz5OI7eIwG1uQTI0",
     "sync": false
@@ -517,7 +517,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "f03OGzJHFHm5PWETFB8JlG",
     "sync": false
@@ -585,7 +585,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "97DxsRRStDLJuanG7Qk4wM",
     "sync": false
@@ -635,7 +635,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 390,
       "height": 90
     },
     "_rotationX": 0,
@@ -701,7 +701,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -34,
+      "x": -179,
       "y": 0
     },
     "_skewX": 0,
@@ -769,7 +769,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "c0ii+LK49DGKX64SFG80uH",
     "sync": false
@@ -821,7 +821,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 23.095,
+      "x": -121.905,
       "y": 0
     },
     "_skewX": 0,
@@ -885,7 +885,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "4dXidyih1NXYQSwS++WaE3",
     "sync": false
@@ -900,7 +900,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 390,
       "height": 90
     },
     "_resize": 0,
@@ -953,7 +953,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "187p7HmOlBNbFa0zXdbpNu",
     "sync": false
@@ -1005,7 +1005,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 191,
+      "x": 336,
       "y": 0
     },
     "_skewX": 0,
@@ -1073,7 +1073,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "cbTrALaT9NsISwCjmfzDZZ",
     "sync": false
@@ -1114,7 +1114,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 460,
+      "width": 750,
       "height": 90
     },
     "_resize": 0,
@@ -1141,7 +1141,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "94wy1BDwlEQr26e/N/XUDd",
     "sync": false
@@ -1193,7 +1193,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 25,
+      "x": -120,
       "y": -45
     },
     "_skewX": 0,
@@ -1261,7 +1261,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "7dx0UocmlNQ6XLHsbECN37",
     "sync": false
@@ -1276,7 +1276,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 460,
+      "width": 750,
       "height": 91
     },
     "_resize": 1,
@@ -1329,7 +1329,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "17d5f80f-5663-4014-a12d-9d41d3b89fc5"
     },
     "fileId": "bfLo00ILlH4ZaxgOU1ljaq",
     "sync": false

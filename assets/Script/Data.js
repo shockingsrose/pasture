@@ -31,7 +31,7 @@ var func = {
     });
   },
   //获取好友列表
-  GetFriendsList() {
+  GetFriendsList(page) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -51,10 +51,7 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        Config.apiUrl +
-          "/T_Base_User/GetFriendsList?openID=" +
-          this.openID +
-          "&startIndex=1&endIndex=9&orderby=Grade desc",
+        Config.apiUrl + "/T_Base_User/GetFriendsList?openID=" + this.openID + "&orderby=Grade desc" + "&page=" + page,
         true
       );
       xhr.setRequestHeader("Content-Type", "json");
@@ -65,7 +62,35 @@ var func = {
       // xhr.send("openID=o9AgowGKcD5MAuYIhedEX&pageSize=9");
     });
   },
+  //获取非好友列表
+  GetNoFriendList(search, page) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
 
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "GET",
+        Config.apiUrl + "/T_Base_User/GetNoFriendsList?openID=" + this.openID + "&search=" + search + "&page=" + page,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
   //通过Id获取小鸡当前的健康值及饥饿度
   GetChickValueById(Id) {
     return new Promise((resolve, reject) => {
@@ -994,12 +1019,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }

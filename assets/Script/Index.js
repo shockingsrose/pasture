@@ -86,7 +86,7 @@ cc.Class({
     var RanchMoney = data.UserModel.RanchMoney;
     var moneyLabel = cc.find("div_header/gold/money", this.node).getComponent(cc.Label);
     var level = cc.find("div_header/me/levelbg/label", this.node).getComponent(cc.Label);
-    moneyLabel.string = RanchMoney;
+    moneyLabel.string = "￥"+RanchMoney;
     level.string = "V" + data.UserModel.Grade;
     //初始化饲料tip的数量
     this.feedCountLabel.string = data.UserModel.Allfeed == null ? 0 : data.UserModel.Allfeed;

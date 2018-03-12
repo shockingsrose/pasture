@@ -216,7 +216,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 200,
+      "width": 320,
       "height": 40
     },
     "_rotationX": 0,
@@ -251,7 +251,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "气象监测站",
+    "_N$string": "原态牧场气象监测",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
