@@ -96,6 +96,12 @@ cc.Class({
 
     this.initChick();
   },
+  getUreString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return 0;
+  },
   //只运行一次
   initChick() {
     Func.GetChickList().then(data => {
@@ -441,6 +447,10 @@ cc.Class({
   },
 
   start: function() {
+    if (this.getUreString("video") == 1 && Config.isVideoBack == 0) {
+      Config.isVideoBack = 1;
+      cc.director.loadScene("monitor");
+    }
     this.init();
     this.chickFunc = this._chick.chickFunc;
     Func.GetWholeData().then(data => {

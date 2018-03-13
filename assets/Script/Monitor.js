@@ -11,30 +11,40 @@
 cc.Class({
   extends: cc.Component,
 
+  isHover: false,
+
   properties: {
-    // foo: {
-    //     // ATTRIBUTES:
-    //     default: null,        // The default value will be used only when the component attaching
-    //                           // to a node for the first time
-    //     type: cc.SpriteFrame, // optional, default is typeof default
-    //     serializable: true,   // optional, default is true
-    // },
-    // bar: {
-    //     get () {
-    //         return this._bar;
-    //     },
-    //     set (value) {
-    //         this._bar = value;
-    //     }
-    // },
+    Video_Prefab: {
+      default: null,
+      type: cc.Prefab
+    }
   },
-
-  // LIFE-CYCLE CALLBACKS:
-
   // onLoad () {},
 
-  start() {},
-  bindClickEvent() {},
+  start() {
+    let self = this;
+  },
+  bindClickEvent() {
+    // Alert.show("0", null, null, null, null, null, "Prefab/Modal/Video", function() {
+    //   let selfAlert = this;
+    //   cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
+    //     if (error) {
+    //       cc.error(error);
+    //       return;
+    //     }
+    //     // 实例
+    //     let alert = cc.instantiate(prefab);
+    //     Alert._alert = alert;
+    //     //动画
+    //     selfAlert.ready();
+    //     Alert._alert.parent = cc.find("Canvas");
+    //     selfAlert.startFadeIn();
+    //     // 关闭按钮
+    //     selfAlert.newButtonEvent(alert, "box");
+    //   });
+    // });
+    location = "http://birthday.zjytny.cn/video.html";
+  },
   btnBackEvent() {
     cc.director.loadScene("index");
   }
