@@ -25,6 +25,10 @@ cc.Class({
       default: null,
       type: cc.Prefab
     },
+    itemBoth: {
+      default: null,
+      type: cc.Prefab
+    },
     iconBtn01: {
       default: null,
       type: cc.SpriteFrame
@@ -62,43 +66,7 @@ cc.Class({
         var friendList = data.List;
         this.contentNode = cc.find("bg-repertory/friendList/view/content", this.node);
         for (let i = 0; i < friendList.length; i++) {
-          const element = friendList[i];
-          var advisor = element.path;
-          var name = element.RealName;
-          var grade = element.Grade;
-          //排名（字段不确定）
-          var rank = element.Row || i;
-
-          if (rank <= 3) {
-            //Top3
-            var item = cc.instantiate(this.itemTop3);
-            var rankNode = cc.find("item-content/icon-no2", item);
-            switch (rank) {
-              case 1:
-                rankNode.getComponent(cc.Sprite).spriteFrame = this.iconBtn01;
-                break;
-              case 2:
-                rankNode.getComponent(cc.Sprite).spriteFrame = this.iconBtn02;
-                break;
-              case 3:
-                rankNode.getComponent(cc.Sprite).spriteFrame = this.iconBtn03;
-                break;
-            }
-          } else {
-            //大于3 的排名
-            var item = cc.instantiate(this.itemFriend);
-            var rankLabel = cc.find("item-content/rank/text", item).getComponent(cc.Label);
-            rankLabel.string = rank;
-          }
-
-          var advisorSprite = cc.find("item-content/advisor-box/adviosr-mask/advisor", item).getComponent(cc.Sprite);
-          var nameLabel = cc.find("item-content/advisor-box/name", item).getComponent(cc.Label);
-          var gradeLabel = cc.find("item-content/level-box/textbox/label", item).getComponent(cc.Label);
-
-          nameLabel.string = name;
-          gradeLabel.string = "Lv." + grade;
-
-          this.contentNode.addChild(item);
+          this.assignFriendData(friendList[i]);
         }
 
         this.friend_page++;
@@ -117,27 +85,16 @@ cc.Class({
     this.updateSearchData();
   },
   updateSearchData() {
-    Func.GetNoFriendList(this.searchStr, this.search_page).then(data => {
+    Func.GetUserList(this.searchStr, this.search_page).then(data => {
       if (data.Code === 1) {
         var friendList = data.List;
 
         for (let i = 0; i < friendList.length; i++) {
-          const element = friendList[i];
-          var advisor = element.path;
-          var name = element.RealName;
-          var grade = element.Grade;
-          //排名（字段不确定）
-
-          var item = cc.instantiate(this.itemSearch);
-
-          var advisorSprite = cc.find("item-content/advisor-box/adviosr-mask/advisor", item).getComponent(cc.Sprite);
-          var nameLabel = cc.find("item-content/advisor-box/name", item).getComponent(cc.Label);
-          var gradeLabel = cc.find("item-content/level-box/level", item).getComponent(cc.Label);
-
-          nameLabel.string = name;
-          gradeLabel.string = "Lv." + grade;
-
-          this.contentNode.addChild(item);
+          if (friendList[i].IsFriends) {
+            this.assignFriendData(friendList[i], true);
+          } else {
+            this.assignNoFriendData(friendList[i]);
+          }
         }
         this.search_page++;
       } else {
@@ -174,6 +131,98 @@ cc.Class({
       },
       this
     );
+  },
+  //sort = true 显示排名
+  assignFriendData(data, sort) {
+    const element = data;
+    var advisor = element.path;
+    var name = element.RealName;
+    var grade = element.Grade;
+    //排名（字段不确定）
+    var rank = element.Row || i;
+    var clean = element.IsClean;
+    var feed = element.IsFeed;
+
+    // 判断加载哪一个prefab
+    if (!sort) {
+      if (rank <= 3) {
+        //Top3
+        var item = cc.instantiate(this.itemTop3);
+        var rankNode = cc.find("item-content/icon-no2", item);
+        switch (rank) {
+          case 1:
+            rankNode.getComponent(cc.Sprite).spriteFrame = this.iconBtn01;
+            break;
+          case 2:
+            rankNode.getComponent(cc.Sprite).spriteFrame = this.iconBtn02;
+            break;
+          case 3:
+            rankNode.getComponent(cc.Sprite).spriteFrame = this.iconBtn03;
+            break;
+        }
+      } else {
+        //大于3 的排名
+        var item = cc.instantiate(this.itemFriend);
+        var rankLabel = cc.find("item-content/rank/text", item).getComponent(cc.Label);
+        rankLabel.string = rank;
+      }
+
+      var healthNode = cc.find("item-content/status/health", item);
+      var cleanNode = cc.find("item-content/status/clean", item);
+      var feedNode = cc.find("item-content/status/feed", item);
+
+      if (clean) {
+        cleanNode.active = true;
+      }
+      if (feed) {
+        feedNode.active = true;
+      }
+    } else {
+      //搜索好友 排名不显示
+      var item = cc.instantiate(this.itemBoth);
+    }
+
+    var advisorSprite = cc.find("item-content/advisor-box/adviosr-mask/advisor", item).getComponent(cc.Sprite);
+    var nameLabel = cc.find("item-content/advisor-box/name", item).getComponent(cc.Label);
+    var gradeLabel = cc.find("item-content/level-box/textbox/label", item).getComponent(cc.Label);
+
+    nameLabel.string = name;
+    gradeLabel.string = "Lv." + grade;
+
+    this.contentNode.addChild(item);
+  },
+  assignNoFriendData(data) {
+    const element = data;
+    var advisor = element.path;
+    var name = element.RealName;
+    var grade = element.Grade;
+    let openIds = element.OpenID;
+    //排名（字段不确定）
+
+    var item = cc.instantiate(this.itemSearch);
+
+    var advisorSprite = cc.find("item-content/advisor-box/adviosr-mask/advisor", item).getComponent(cc.Sprite);
+    var nameLabel = cc.find("item-content/advisor-box/name", item).getComponent(cc.Label);
+    var gradeLabel = cc.find("item-content/level-box/textbox/label", item).getComponent(cc.Label);
+    let addButton = cc.find("item-content/add", item);
+
+    nameLabel.string = name;
+    gradeLabel.string = "Lv." + grade;
+    addButton.on(
+      "click",
+      () => {
+        Func.AddFriend(openIds).then(data => {
+          if (data.Code === 1) {
+            Msg.show("已发送好友请求");
+          } else {
+            Msg.show(data.Code);
+          }
+        });
+      },
+      this
+    );
+
+    this.contentNode.addChild(item);
   },
   onLoad() {
     this.friendListNode = cc.find("bg-repertory/friendList", this.node);

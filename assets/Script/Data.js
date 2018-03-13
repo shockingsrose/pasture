@@ -63,7 +63,7 @@ var func = {
     });
   },
   //获取非好友列表
-  GetNoFriendList(search, page) {
+  GetUserList(search, page) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -84,11 +84,57 @@ var func = {
       // GET方法
       xhr.open(
         "GET",
-        Config.apiUrl + "/T_Base_User/GetNoFriendsList?openID=" + this.openID + "&search=" + search + "&page=" + page,
+        Config.apiUrl + "/T_Base_User/GetUserListByPage?openID=" + this.openID + "&search=" + search + "&page=" + page,
         true
       );
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
+    });
+  },
+  //添加好友接口
+  AddFriend(openIds) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("获取数据失败");
+            reject(response);
+          }
+        }
+      };
+
+      xhr.open("POST", Config.apiUrl + "/T_Base_FriendsNotice/PostRequestFriends", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send("openId=" + this.openID + "&openIds=" + openIds);
+    });
+  },
+  //同意添加好友
+  ConfirmFriends(messageId, result) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            console.log("获取数据失败");
+            reject(response);
+          }
+        }
+      };
+
+      xhr.open("POST", Config.apiUrl + "/T_Base_FriendsNotice/PostConfirmFriends", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send("openId=" + this.openID + "&messageId=" + messageId + "&result=" + result);
     });
   },
   //通过Id获取小鸡当前的健康值及饥饿度
@@ -284,13 +330,9 @@ var func = {
         }
       };
       // GET方法
-      xhr.open(
-        "POST",
-        Config.apiUrl + "/T_Base_PlayerTrading/OffShelf?openId=" + this.openID + "&playerid=" + playerid,
-        true
-      );
-      xhr.setRequestHeader("Content-Type", "json");
-      xhr.send();
+      xhr.open("POST", Config.apiUrl + "/T_Base_PlayerTrading/OffShelf", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send("openId=" + this.openID + "&playerid=" + playerid);
     });
   },
   //获取仓库系统道具

@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "9b8e102f-6ef6-4978-816a-54610b69ba80",
+  "uuid": "15d1f944-6d70-4671-91ba-7fe93794ef78",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "btn-add": {
+    "icon-friends": {
       "ver": "1.0.3",
-      "uuid": "649dd4fd-bee9-4376-8181-46d905464e80",
-      "rawTextureUuid": "9b8e102f-6ef6-4978-816a-54610b69ba80",
+      "uuid": "18991406-6f14-4e64-874f-cc50d90c2732",
+      "rawTextureUuid": "15d1f944-6d70-4671-91ba-7fe93794ef78",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 34,
-      "height": 34,
-      "rawWidth": 34,
-      "rawHeight": 34,
+      "width": 30,
+      "height": 35,
+      "rawWidth": 30,
+      "rawHeight": 35,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
