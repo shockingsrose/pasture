@@ -55,7 +55,7 @@ cc.Class({
       userName.getComponent(cc.Label).string = data.Model.RealName;
       ExperienceValue.getComponent(cc.ProgressBar).progress =
         data.Model.ExperienceValue / data.Model.GradeExperienceValue;
-      RanchMoney.getComponent(cc.Label).string = data.Model.RanchMoney;
+      RanchMoney.getComponent(cc.Label).string = "￥" + data.Model.RanchMoney;
       PointValue.getComponent(cc.Label).string = data.Model.Point;
     } else {
       console.log(data.Message);
@@ -252,6 +252,28 @@ cc.Class({
           self.startFadeIn();
           self.newButtonEvent(alert, "close");
         });
+      });
+    });
+  },
+  Help() {
+    Alert.show("0", null, null, null, null, null, "Prefab/Modal/levelIntro", function() {
+      var self = this;
+      cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
+        if (error) {
+          cc.error(error);
+          return;
+        }
+        // 实例
+        var alert = cc.instantiate(prefab);
+        // Alert 持有
+        Alert._alert = alert;
+        //动画加载
+        self.ready();
+        // 父视图
+        Alert._alert.parent = cc.find("Canvas");
+        // 展现 alert
+        self.startFadeIn();
+        self.newButtonEvent(alert, "close");
       });
     });
   },

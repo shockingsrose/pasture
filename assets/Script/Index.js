@@ -86,7 +86,7 @@ cc.Class({
     var RanchMoney = data.UserModel.RanchMoney;
     var moneyLabel = cc.find("div_header/gold/money", this.node).getComponent(cc.Label);
     var level = cc.find("div_header/me/levelbg/label", this.node).getComponent(cc.Label);
-    moneyLabel.string = "￥"+RanchMoney;
+    moneyLabel.string = "￥" + RanchMoney;
     level.string = "V" + data.UserModel.Grade;
     //初始化饲料tip的数量
     this.feedCountLabel.string = data.UserModel.Allfeed == null ? 0 : data.UserModel.Allfeed;
@@ -444,6 +444,15 @@ cc.Class({
   onLoad: function() {
     var openID = window.location.href.split("=")[1];
     Func.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
+    // const socket = new WebSocket("ws://localhost:8080");
+
+    // socket.addEventListener("open", function(event) {
+    //   socket.send({ GroupName: "dedbc83d62104d6da8d4a3c0188dc419", AppName: "农场游戏", AppType: 1 });
+    // });
+
+    // socket.addEventListener("message", function(event) {
+    //   console.log("Message from server", event.data);
+    // });
   },
 
   start: function() {
