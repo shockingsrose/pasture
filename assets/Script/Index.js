@@ -456,10 +456,6 @@ cc.Class({
   },
 
   start: function() {
-    if (this.getUreString("video") == 1 && Config.isVideoBack == 0) {
-      Config.isVideoBack = 1;
-      cc.director.loadScene("monitor");
-    }
     this.init();
     this.chickFunc = this._chick.chickFunc;
     Func.GetWholeData().then(data => {
@@ -473,6 +469,10 @@ cc.Class({
         console.log("首页数据加载失败");
       }
     });
+    if (this.getUreString("video") == 1 && Config.isVideoBack == 0) {
+      Config.isVideoBack = 1;
+      cc.director.loadScene("monitor");
+    }
   },
   //仓库回调函数（0表示孵化操作）
   repertoryCallBack() {
