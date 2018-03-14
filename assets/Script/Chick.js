@@ -15,12 +15,7 @@ var Chick = cc.Class({
   name: Chick,
   extends: cc.Component,
 
-  properties: {
-    shitPrefab: {
-      default: null,
-      type: cc.Prefab
-    }
-  },
+  properties: {},
 
   // 鸡的状态
   _Id: null,

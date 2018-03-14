@@ -34,13 +34,21 @@ cc.Class({
         }
         // 实例
         let alert = cc.instantiate(prefab);
+
         Alert._alert = alert;
         //动画
         selfAlert.ready();
         Alert._alert.parent = cc.find("Canvas");
         selfAlert.startFadeIn();
         // 关闭按钮
-        selfAlert.newButtonEvent(alert, "box");
+        var cancelButton = cc.find("box", alert);
+        cancelButton.on("click", function() {
+          alert.destroy();
+          // var action = cc.sequence(cc.fadeOut(0.3),, cc.callFunc(, alert));
+          // // alert.runAction(action);
+          // var video = cc.find("New Node", alert);
+          // video.removeFromParent;
+        });
       });
     });
     // location = "http://birthday.zjytny.cn/video.html";

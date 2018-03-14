@@ -9,6 +9,5 @@ window.Config = {
     virtualCount: null,
     goodsType: null
   },
-  addressId: 0, //地址ID
-  isVideoBack: 0
+  addressId: 0 //地址ID
 };
