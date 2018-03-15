@@ -287,7 +287,8 @@ var Chick = cc.Class({
     // Msg.show("小鸡饿了，小鸡生病了");
   },
   playChickSickShit: function() {
-    this._chickAnim.play("chick_shit_sick");
+    // this._chickAnim.play("chick_shit_sick");
+    this._chickAnim.play("chick_sick");
     // Msg.show("牧场不干净了，小鸡生病了");
   },
   playChickShitHungry: function() {
