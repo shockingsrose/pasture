@@ -123,7 +123,6 @@ var Chick = cc.Class({
     hpLabel.string = hp + "/100";
 
     growProgressBar.progress = GrowthValue / 100;
-
     growLabel.string = GrowthValue.toFixed(1) + "%";
 
     spStateLabel.string = hungryState ? "饥饿" : "饱腹";

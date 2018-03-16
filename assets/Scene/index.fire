@@ -429,7 +429,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "28282558-bf60-42a2-9237-bcff7b543124"
+      "__uuid__": "639a88da-0c42-4f58-b962-b6539ac246a7"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -3741,9 +3741,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 116,
+      "g": 218,
+      "b": 114,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,

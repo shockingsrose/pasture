@@ -257,7 +257,7 @@ cc.Class({
           handFeedNode.active = false;
         });
       } else if (data.Code == "000") {
-        Alert.show(data.Message, this.loadSceneShop, this.feedIcon, "剩余的饲料不足");
+        Alert.show(data.Message, this.loadSceneShop, "icon-feed", "剩余的饲料不足");
       } else if (data.Code == "333") {
         Msg.show(data.Message);
       }
