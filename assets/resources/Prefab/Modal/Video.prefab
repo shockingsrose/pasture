@@ -26,9 +26,13 @@
     ],
     "_tag": -1,
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 21
+      }
+    ],
     "_prefab": {
-      "__id__": 21
+      "__id__": 22
     },
     "_id": "",
     "_opacity": 255,
@@ -56,7 +60,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 375,
       "y": 0
     },
     "_skewX": 0,
@@ -208,9 +212,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -222,7 +226,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 400
+      "height": 500
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -249,7 +253,7 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_url": "http://58.216.103.18/65724F84F3B4883DCE434E4364/03000A01005A6A97E5BE1D4FF40098069AF3E7-1E8D-894E-8FA5-2F0CDA413BB8.mp4?ccode=0512&duration=285&expire=18000&psid=22d57d34cc106b5261ff3adeb2087caa&ups_client_netip=7ae4844e&ups_ts=1520838767&ups_userid=1341391000&utid=q%2FUiEOgdkiECAXrkhE7VtxL7&vid=XMzM1NDE4MjM3Mg%3D%3D&vkey=Aee905dcc5cf85b66517792cef7ea3ce0",
+    "_url": "http://www.jingongbao.com:3334/file.mp4",
     "webviewEvents": []
   },
   {
@@ -649,6 +653,32 @@
     },
     "fileId": "b1BBMKKApLooEJPom/Wgmy",
     "sync": false
+  },
+  {
+    "__type__": "cc.Widget",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "isAlignOnce": true,
+    "_target": null,
+    "_alignFlags": 40,
+    "_left": 0,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 0,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 750,
+    "_originalHeight": 0
   },
   {
     "__type__": "cc.PrefabInfo",
