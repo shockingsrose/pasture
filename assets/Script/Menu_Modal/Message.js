@@ -24,7 +24,7 @@ cc.Class({
     itemBox: null,
     //是否还有数据
     hasMore: true,
-    tabId: 0
+    TabId: 1
   },
 
   // onLoad () {},
@@ -54,15 +54,15 @@ cc.Class({
     this.friendMessage();
   },
 
-  tabToggle(tabId) {
+  tabToggle(TabId) {
     const leftBtn = cc.find("alertBackground/New Node/left", this.node);
     const rightBtn = cc.find("alertBackground/New Node/right", this.node);
     const leftValue = cc.find("alertBackground/New Node/left/label", this.node);
     const righValue = cc.find("alertBackground/New Node/right/label", this.node);
     const leftLine = cc.find("alertBackground/New Node/left/line", this.node);
     const righLine = cc.find("alertBackground/New Node/right/line", this.node);
-    this.tabId = tabId;
-    switch (tabId) {
+    this.TabId = TabId;
+    switch (TabId) {
       case 0: {
         leftValue.color = cc.color("#FE6262");
         righValue.color = cc.color("#999999");
@@ -181,7 +181,7 @@ cc.Class({
   updataByBottom() {
     if (this.hasMore) {
       this.pageIndex++;
-      if (this.tabId == 0) {
+      if (this.TabId == 0) {
         this.MessageLst();
       } else {
         this.friendMessage();

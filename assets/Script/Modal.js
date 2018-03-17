@@ -93,10 +93,8 @@ var Modal = cc.Class({
       case "message":
         // this._Modal.name = "default"; //开发中
         this._Modal = cc.instantiate(this.messageModal_Prefab);
-        //清除未读消息
-        this.clearNotice();
         //容器
-
+        this.clearNotice();
         break;
       case "me":
         this._Modal.name = "default"; //开发中

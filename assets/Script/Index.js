@@ -37,7 +37,7 @@ cc.Class({
   },
   //Chick.js
   _chick: null,
-  newSocket: null,
+
   _clearValue: null,
   clearLabel: null,
   clearBar: null,
@@ -564,6 +564,7 @@ cc.Class({
     this.getStorageCount(); //初始化消息数量
     this.socketNotice(); //socket监听消息变化
   },
+
   start: function() {
     this.init();
     this.chickFunc = this._chick.chickFunc;
