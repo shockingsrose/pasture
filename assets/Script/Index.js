@@ -37,7 +37,7 @@ cc.Class({
   },
   //Chick.js
   _chick: null,
-
+  newSocket: null,
   _clearValue: null,
   clearLabel: null,
   clearBar: null,
@@ -438,8 +438,10 @@ cc.Class({
   onLoad: function() {
     var openID = window.location.href.split("=")[1];
     Func.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
+    Config.newSocket = io.connect("http://service.linedin.cn:5520");
+    this.getStorageCount(); //初始化消息数量
+    this.socketNotice(); //socket监听消息变化
   },
-
   start: function() {
     this.init();
     this.chickFunc = this._chick.chickFunc;
@@ -452,6 +454,38 @@ cc.Class({
         this.repertoryCallBack();
       } else {
         console.log("首页数据加载失败");
+      }
+    });
+  },
+  //读取/暂存消息数量
+  getStorageCount() {
+    var messageCount = cc.find("div_menu/Menu/MenuList/menuScroll/view/content/message/point01", this.node);
+    var messageCount2 = cc.find("div_menu/more/point01", this.node);
+    let StorageCount = cc.sys.localStorage.getItem(Func.openID); //获取缓存
+    if (StorageCount > 0) {
+      cc.find("label", messageCount).getComponent(cc.Label).string = StorageCount;
+      cc.find("label", messageCount2).getComponent(cc.Label).string = StorageCount;
+
+      messageCount.active = true;
+      messageCount2.active = true;
+    } else {
+      StorageCount = 0;
+    }
+  },
+  //socket监听消息变化
+  socketNotice() {
+    Config.newSocket.on(Func.openID, data => {
+      if (data[0]) {
+        Msg.show("您收到一条新消息！");
+        let messageCount = cc.find("div_menu/Menu/MenuList/menuScroll/view/content/message/point01", this.node);
+        let messageCount2 = cc.find("div_menu/more/point01", this.node);
+        let StorageCount = cc.sys.localStorage.getItem(Func.openID); //获取缓存
+        StorageCount++;
+        cc.sys.localStorage.setItem(Func.openID, StorageCount);
+        cc.find("label", messageCount).getComponent(cc.Label).string = StorageCount;
+        cc.find("label", messageCount2).getComponent(cc.Label).string = StorageCount;
+        messageCount.active = true;
+        messageCount2.active = true;
       }
     });
   },

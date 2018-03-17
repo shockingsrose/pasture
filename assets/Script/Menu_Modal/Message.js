@@ -51,7 +51,7 @@ cc.Class({
     rightBtn.on("click", function() {
       self.tabToggle(1);
     });
-    this.MessageLst();
+    this.friendMessage();
   },
 
   tabToggle(tabId) {
@@ -85,27 +85,45 @@ cc.Class({
       }
     }
   },
+
   //好友列表 分页
   friendMessage() {
-    for (let i = 0; i < 5; i++) {
-      let item = cc.instantiate(this.friendMessage_Prefab);
-      let left_icon = cc.find("messageBgf/left/New Node/New Node/messageIcon", item).getComponent(cc.Sprite);
-      let msg_title = cc.find("messageBgf/left/New Node/label", item).getComponent(cc.Label);
-      let acceptBtn = cc.find("messageBgf/right/acc_messageBgf", item);
-      let cancelBtn = cc.find("messageBgf/right/can_messageBgf", item);
-      let rightBox = cc.find("messageBgf/right", item);
-      let hasAdd = cc.find("messageBgf/hasAdd", item);
-      // cc.loader.loadRes(imgSrc, cc.SpriteFrame, (err, spriteFrame) => {
-      //   left_icon.spriteFrame = spriteFrame;
-      // });
-      acceptBtn.on("click", function() {
-        Msg.show("功能开发中");
-      });
-      cancelBtn.on("click", function() {
-        Msg.show("功能开发中");
-      });
-      this.itemBox.addChild(item);
-    }
+    Data.func.GetFriendListByPage(this.pageIndex, this.pageSize).then(data => {
+      console.log(data);
+      if (data.Code) {
+        let imgSrc;
+        if (data.List.length == 0) {
+          return (this.hasMore = false);
+        }
+        for (let i = 0; i < data.List.length; i++) {
+          let item = cc.instantiate(this.friendMessage_Prefab);
+          let left_icon = cc.find("messageBgf/left/New Node/New Node/messageIcon", item).getComponent(cc.Sprite);
+          let msg_title = cc.find("messageBgf/left/New Node/label", item).getComponent(cc.Label);
+          let acceptBtn = cc.find("messageBgf/right/acc_messageBgf", item);
+          let isNotic = cc.find("messageBgf/right/label", item);
+          let rightBox = cc.find("messageBgf/right", item);
+          let hasAdd = cc.find("messageBgf/hasAdd", item);
+          if (data.List[i].IsNotice) {
+            isNotic.active = true;
+            acceptBtn.active = false;
+          } else {
+            acceptBtn.active = true;
+            isNotic.active = false;
+          }
+          msg_title.string = data.List[i].RealName;
+          acceptBtn.on("click", function() {
+            Data.func.PostConfirmFriends(data.List[i].ID).then(msg => {
+              Msg.show(msg.Message);
+              isNotic.active = true;
+              acceptBtn.active = false;
+            });
+          });
+          this.itemBox.addChild(item);
+        }
+      } else {
+        console.log(data.Message);
+      }
+    });
   },
   //信息列表 分页
   MessageLst() {
@@ -168,8 +186,6 @@ cc.Class({
       } else {
         this.friendMessage();
       }
-    } else {
-      this.clearData();
     }
   },
   //清除数据 我们从头再来
@@ -179,6 +195,7 @@ cc.Class({
     this.today = true;
     this.yesterday = true;
     this.more = true;
+    this.hasMore = true;
   }
   // update (dt) {},
 });

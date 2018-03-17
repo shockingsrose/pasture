@@ -38,12 +38,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("成功获取数据");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取数据失败");
             reject(response);
           }
         }
@@ -103,7 +101,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取数据失败");
             reject(response);
           }
         }
@@ -126,7 +123,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取数据失败");
             reject(response);
           }
         }
@@ -145,12 +141,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("清理成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("签到失败");
             reject(response);
           }
         }
@@ -196,7 +190,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取商城数据失败");
             reject(response);
           }
         }
@@ -220,7 +213,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取商城数据失败");
             reject(response);
           }
         }
@@ -254,7 +246,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取商城数据失败");
             reject(response);
           }
         }
@@ -289,7 +280,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取数据失败");
             reject(response);
           }
         }
@@ -324,7 +314,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取数据失败");
             reject(response);
           }
         }
@@ -348,7 +337,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取仓库数据失败");
             reject(response);
           }
         }
@@ -372,7 +360,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取仓库数据失败");
             reject(response);
           }
         }
@@ -391,12 +378,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("签到成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("签到失败");
             reject(response);
           }
         }
@@ -415,12 +400,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("清理成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("签到失败");
             reject(response);
           }
         }
@@ -461,12 +444,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("喂食成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("喂食失败");
             reject(response);
           }
         }
@@ -486,12 +467,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("购买成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("购买失败");
             reject(response);
           }
         }
@@ -511,12 +490,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("购买成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("购买失败");
             reject(response);
           }
         }
@@ -549,7 +526,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取仓库数据失败");
             reject(response);
           }
         }
@@ -571,7 +547,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取鸡蛋失败");
             reject(response);
           }
         }
@@ -593,7 +568,6 @@ var func = {
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("获取鸡蛋失败");
             reject(response);
           }
         }
@@ -659,12 +633,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("清理成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("签到失败");
             reject(response);
           }
         }
@@ -683,12 +655,10 @@ var func = {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
           if (xhr.status == 200) {
             var response = xhr.responseText;
-            console.log("清理成功");
             response = JSON.parse(response);
             resolve(response);
           } else {
             var response = xhr.responseText;
-            console.log("签到失败");
             reject(response);
           }
         }
@@ -878,12 +848,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }
@@ -978,12 +946,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }
@@ -1006,12 +972,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }
@@ -1035,12 +999,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }
@@ -1100,12 +1062,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }
@@ -1146,12 +1106,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }
@@ -1170,12 +1128,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }
@@ -1194,12 +1150,10 @@ var func = {
           if (xhr.status == 200) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             resolve(response);
           } else {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             reject(response);
           }
         }
@@ -1207,6 +1161,73 @@ var func = {
       // GET方法
       xhr.open("GET", Config.apiUrl + "/T_Base_User/GetUserMoney?openID=" + this.openID, true);
       xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
+  //好友消息列表
+  GetFriendListByPage(pageIndex, pageSize) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "GET",
+        Config.apiUrl +
+          "/T_Base_FriendsNotice/GetRequestListByPage?openID=" +
+          this.openID +
+          "&page=" +
+          pageIndex +
+          "&pageSize=" +
+          pageSize,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
+  //是否同意添加好友
+  //好友消息列表
+  PostConfirmFriends(id) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "POST",
+        Config.apiUrl +
+          "/T_Base_FriendsNotice/PostConfirmFriends?openID=" +
+          this.openID +
+          "&Id=" +
+          id +
+          "&result=" +
+          true,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send();
     });
   }

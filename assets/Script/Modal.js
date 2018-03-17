@@ -93,6 +93,8 @@ var Modal = cc.Class({
       case "message":
         // this._Modal.name = "default"; //开发中
         this._Modal = cc.instantiate(this.messageModal_Prefab);
+        //清除未读消息
+        this.clearNotice();
         //容器
 
         break;
@@ -103,6 +105,15 @@ var Modal = cc.Class({
         this._Modal.name = "default"; //开发中
         break;
     }
+  },
+  clearNotice() {
+    cc.sys.localStorage.setItem(Func.openID, 0);
+    var messageCount = cc.find("div_menu/Menu/MenuList/menuScroll/view/content/message/point01", this.node);
+    var messageCount2 = cc.find("div_menu/more/point01", this.node);
+    cc.find("label", messageCount).getComponent(cc.Label).string = 0;
+    cc.find("label", messageCount2).getComponent(cc.Label).string = 0;
+    messageCount.active = false;
+    messageCount2.active = false;
   },
   //弹出动画 （默认fadeIn）
   RunAction(type) {
