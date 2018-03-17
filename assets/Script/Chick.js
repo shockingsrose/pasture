@@ -118,7 +118,6 @@ var Chick = cc.Class({
     hpLabel.string = hp + "/100";
 
     growProgressBar.progress = GrowthValue / 100;
-
     growLabel.string = GrowthValue.toFixed(1) + "%";
 
     spStateLabel.string = hungryState ? "饥饿" : "饱腹";
@@ -287,8 +286,8 @@ var Chick = cc.Class({
     // Msg.show("小鸡饿了，小鸡生病了");
   },
   playChickSickShit: function() {
-    // this._chickAnim.play("chick_shit_sick");
-    this._chickAnim.play("chick_sick");
+    this._chickAnim.play("chick_shit_sick");
+    //this._chickAnim.play("chick_sick");
     // Msg.show("牧场不干净了，小鸡生病了");
   },
   playChickShitHungry: function() {

@@ -1,7 +1,7 @@
 //Chick.js
 
 // 节点不带_   私有变量_
-var Chick = require("Chick");
+
 var Data = require("Data");
 var Func = Data.func;
 var ToolJs = require("Tool");
@@ -53,6 +53,8 @@ cc.Class({
   timer: null,
   //点击显示饲料槽的timer
   timer2: null,
+  //房屋升级状态的timer
+  timer3: null,
   feedStateNode: null,
   wether: null,
   arrowNode: null,
@@ -68,6 +70,9 @@ cc.Class({
     this.handAnim = this.handNode.getComponent(cc.Animation);
     this.arrowNode = this.node.getChildByName("icon-arrow");
     this.eggNode = this.node.getChildByName("egg");
+    this.houseNode = cc.find("bg/house", this.node);
+    this.moneyLabel = cc.find("div_header/gold/money", this.node).getComponent(cc.Label);
+
     //天气
     this.wether = this.node.getChildByName("div_wether");
     //饲料数量
@@ -84,6 +89,7 @@ cc.Class({
 
     //金币设置
     var RanchMoney = data.UserModel.RanchMoney;
+    let RanchRank = data.RanchModel.RanchRank;
     var moneyLabel = cc.find("div_header/gold/money", this.node).getComponent(cc.Label);
     var level = cc.find("div_header/me/levelbg/label", this.node).getComponent(cc.Label);
     moneyLabel.string = "￥" + RanchMoney;
@@ -93,6 +99,24 @@ cc.Class({
 
     //初始化鸡蛋
     this.eggNode.active = data.RanchModel.EggCount > 0 ? true : false;
+    //初始化房子
+    switch (RanchRank) {
+      case 1:
+        cc.loader.loadRes("house/house_1", cc.SpriteFrame, (err, spriteFrame) => {
+          this.houseNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
+        break;
+      case 2:
+        cc.loader.loadRes("house/house_2", cc.SpriteFrame, (err, spriteFrame) => {
+          this.houseNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
+        break;
+      case 3:
+        cc.loader.loadRes("house/house_3", cc.SpriteFrame, (err, spriteFrame) => {
+          this.houseNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
+        break;
+    }
 
     this.initChick();
   },
@@ -251,7 +275,7 @@ cc.Class({
           handFeedNode.active = false;
         });
       } else if (data.Code == "000") {
-        Alert.show(data.Message, this.loadSceneShop, this.feedIcon, "剩余的饲料不足");
+        Alert.show(data.Message, this.loadSceneShop, "icon-feed", "剩余的饲料不足");
       } else if (data.Code == "333") {
         Msg.show(data.Message);
       }
@@ -300,9 +324,9 @@ cc.Class({
         clearTimeout(this.timer2);
         this.feedStateNode.active = true;
         this.feedStateNode.opacity = 0;
-        this.feedStateNode.runAction(cc.fadeIn(0.3));
+        this.feedStateNode.runAction(cc.fadeIn(0.5));
         var action = cc.sequence(
-          cc.fadeOut(0.3),
+          cc.fadeOut(0.5),
           cc.callFunc(() => {
             this.feedStateNode.active = false;
             this.arrowNode.active = true;
@@ -326,6 +350,95 @@ cc.Class({
     feedLabel.string = value + "/ " + capacity;
     feedProgressBar.progress = value / capacity;
     Tool.setBarColor(feedBar, value / capacity);
+  },
+  //显示房屋升级弹出框
+  showHouseUpgrade() {
+    this.houseStateNode = cc.find("bg/house/houseState", this.node);
+    Func.GetRanchUpGradeMoney().then(data => {
+      if (data.Code === 1) {
+        let length = data.List.length || 0;
+        let button0 = cc.find("button0", this.houseStateNode);
+        let button1 = cc.find("button1", this.houseStateNode);
+        for (let i = 0; i < length; i++) {
+          if (data.List[i].Type === 0) {
+            button0.active = true;
+            this.upgradeByPointInfo = data.List[i];
+          } else {
+            button1.active = true;
+            this.upgradeByMoneyInfo = data.List[i];
+          }
+        }
+      } else {
+        this.upgradeByPointInfo.RanchGrade = "S";
+        this.upgradeByMoneyInfo.RanchGrade = "S";
+      }
+      clearTimeout(this.timer3);
+      this.houseStateNode.active = true;
+      this.houseStateNode.opacity = 0;
+      this.houseStateNode.runAction(cc.fadeIn(0.3));
+
+      var action = cc.sequence(
+        cc.fadeOut(0.3),
+        cc.callFunc(() => {
+          this.houseStateNode.active = false;
+        }, this)
+      );
+      this.timer3 = setTimeout(() => {
+        this.houseStateNode.runAction(action);
+        // this.houseStateNode.active = false;
+      }, 2000);
+    });
+  },
+  upgradeByPoint() {
+    if (this.upgradeByPointInfo.RanchGrade === "S") {
+      Msg.show("已经升到满级");
+    } else {
+      Alert.show(
+        "是否使用" + this.upgradeByPointInfo.Money + "积分将牧场升级到" + this.upgradeByPointInfo.RanchGrade + "级",
+        () => {
+          this.upgradeHouse(this.upgradeByPointInfo.Type);
+          this.updateMoney();
+        },
+        null,
+        "升级"
+      );
+    }
+  },
+  upgradeByMoney() {
+    if (this.upgradeByPointInfo.RanchGrade === "S") {
+      Msg.show("已经升到满级");
+    } else {
+      Alert.show(
+        "是否使用" + this.upgradeByMoneyInfo.Money + "个牧场币将牧场升级到" + this.upgradeByMoneyInfo.RanchGrade + "级",
+        () => {
+          this.upgradeHouse(this.upgradeByMoneyInfo.Type);
+          this.updateMoney();
+        },
+        null,
+        "升级"
+      );
+    }
+  },
+  //升级房屋操作
+  upgradeHouse(payType) {
+    Func.UpgradeHouse(payType).then(data => {
+      if (data.Code === 1) {
+        switch (data.Model) {
+          case "B":
+            cc.loader.loadRes("house/house_2", cc.SpriteFrame, (err, spriteFrame) => {
+              this.houseNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+              Msg.show(data.Message);
+            });
+            break;
+          case "A":
+            cc.loader.loadRes("house/house_3", cc.SpriteFrame, (err, spriteFrame) => {
+              this.houseNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+              Msg.show(data.Message);
+            });
+            break;
+        }
+      }
+    });
   },
   //更新 饲料tip的数量
   updateFeedCount() {
@@ -414,6 +527,15 @@ cc.Class({
       //菜单栏 半透明背景
       this.MenuModal.runAction(cc.fadeOut(0.3));
     }
+  },
+  updateMoney() {
+    Func.GetUserMoney().then(data => {
+      if (data.Code === 1) {
+        this.moneyLabel.string = data.Model;
+      } else {
+        Msg.show(data.Message);
+      }
+    });
   },
   //跳转天气数据列表
   gotoWetherPage() {
