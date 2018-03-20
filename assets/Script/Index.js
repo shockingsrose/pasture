@@ -584,31 +584,34 @@ cc.Class({
   getStorageCount() {
     var messageCount = cc.find("div_menu/Menu/MenuList/menuScroll/view/content/message/point01", this.node);
     var messageCount2 = cc.find("div_menu/more/point01", this.node);
-    let StorageCount = cc.sys.localStorage.getItem(Func.openID); //获取缓存
-    if (StorageCount > 0) {
-      cc.find("label", messageCount).getComponent(cc.Label).string = StorageCount;
-      cc.find("label", messageCount2).getComponent(cc.Label).string = StorageCount;
+    // let StorageCount = cc.sys.localStorage.getItem(Func.openID); //获取缓存
+    Func.GetRecordCount().then(data => {
+      if (data.Code === 1) {
+        if (data.Model > 0) {
+          cc.find("label", messageCount).getComponent(cc.Label).string = data.Model;
+          cc.find("label", messageCount2).getComponent(cc.Label).string = data.Model;
 
-      messageCount.active = true;
-      messageCount2.active = true;
-    } else {
-      StorageCount = 0;
-    }
+          messageCount.active = true;
+          messageCount2.active = true;
+        }
+      } else {
+        console.log("首页数据加载失败");
+      }
+    });
   },
   //socket监听消息变化
   socketNotice() {
+    var self = this;
     Config.newSocket.on(Func.openID, data => {
-      if (data[0]) {
+      //两种状态，相等是更新好数量  不相等是收到信息 更新好友信息数
+      console.log(data);
+      if (data[0] != data[1]) {
         Msg.show("您收到一条新消息！");
-        let messageCount = cc.find("div_menu/Menu/MenuList/menuScroll/view/content/message/point01", this.node);
-        let messageCount2 = cc.find("div_menu/more/point01", this.node);
-        let StorageCount = cc.sys.localStorage.getItem(Func.openID); //获取缓存
-        StorageCount++;
-        cc.sys.localStorage.setItem(Func.openID, StorageCount);
-        cc.find("label", messageCount).getComponent(cc.Label).string = StorageCount;
-        cc.find("label", messageCount2).getComponent(cc.Label).string = StorageCount;
-        messageCount.active = true;
-        messageCount2.active = true;
+        // let StorageCount = cc.sys.localStorage.getItem(Func.openID); //获取缓存
+        // cc.sys.localStorage.setItem(Func.openID, StorageCount);
+        self.getStorageCount();
+      } else {
+        self.getStorageCount();
       }
     });
   },

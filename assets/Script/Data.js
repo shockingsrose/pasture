@@ -1292,7 +1292,33 @@ var func = {
       xhr.send();
     });
   },
-  //是否同意添加好友
+  //未读好友消息数量
+  GetRecordCount(pageIndex, pageSize) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "GET",
+        Config.apiUrl + "/T_Base_FriendsNotice/GetRecordCount?openID=" + this.openID + "&type=" + 0,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
   //好友消息列表
   PostConfirmFriends(id, result) {
     return new Promise((resolve, reject) => {

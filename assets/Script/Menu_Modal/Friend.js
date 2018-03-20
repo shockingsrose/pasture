@@ -214,9 +214,9 @@ cc.Class({
         Func.AddFriend(openIds).then(data => {
           if (data.Code === 1) {
             Msg.show(data.Message);
-            Config.newSocket.emit("add", [Func.openID, openIds]);
+
             if (data.Message == "请求成功！") {
-              // Config.newSocket.emit("add", [Func.openID, openIds]);
+              Config.newSocket.emit("add", [Func.openID, openIds]);
             }
           } else {
             Msg.show(data.Code);

@@ -132,16 +132,18 @@ cc.Class({
               acceptBtn.active = false;
               rejuseptBtn.active = false;
             });
+            Config.newSocket.emit("add", [Func.openID, Func.openID]);
           });
           //拒绝
           rejuseptBtn.on("click", function() {
             Data.func.PostConfirmFriends(data.List[i].ID, false).then(msg => {
-              Msg.show(msg.Message);
+              Msg.show("拒绝好友成功");
               isNotic.active = false;
               isNotic2.active = true;
               acceptBtn.active = false;
               rejuseptBtn.active = false;
             });
+            Config.newSocket.emit("add", [Func.openID, Func.openID]);
           });
           this.itemBox.addChild(item);
         }
