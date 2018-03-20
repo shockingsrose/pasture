@@ -563,6 +563,7 @@ cc.Class({
     Config.newSocket = io.connect("http://service.linedin.cn:5520");
     this.getStorageCount(); //初始化消息数量
     this.socketNotice(); //socket监听消息变化
+    setInterval(function() {});
   },
 
   start: function() {
@@ -579,6 +580,10 @@ cc.Class({
         console.log("首页数据加载失败");
       }
     });
+    new Msg.show("1");
+    new Msg.show("2");
+    new Msg.show("3");
+    new Msg.show("4");
   },
   //读取/暂存消息数量
   getStorageCount() {
@@ -590,9 +595,11 @@ cc.Class({
         if (data.Model > 0) {
           cc.find("label", messageCount).getComponent(cc.Label).string = data.Model;
           cc.find("label", messageCount2).getComponent(cc.Label).string = data.Model;
-
           messageCount.active = true;
           messageCount2.active = true;
+        } else {
+          messageCount.active = false;
+          messageCount2.active = false;
         }
       } else {
         console.log("首页数据加载失败");
@@ -603,16 +610,7 @@ cc.Class({
   socketNotice() {
     var self = this;
     Config.newSocket.on(Func.openID, data => {
-      //两种状态，相等是更新好数量  不相等是收到信息 更新好友信息数
-      console.log(data);
-      if (data[0] != data[1]) {
-        Msg.show("您收到一条新消息！");
-        // let StorageCount = cc.sys.localStorage.getItem(Func.openID); //获取缓存
-        // cc.sys.localStorage.setItem(Func.openID, StorageCount);
-        self.getStorageCount();
-      } else {
-        self.getStorageCount();
-      }
+      self.getStorageCount();
     });
   },
   //仓库回调函数（0表示孵化操作）
