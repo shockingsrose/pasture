@@ -86,7 +86,7 @@ cc.Class({
     }
   },
 
-  //好友列表 分页
+  //好友列表 分页  IsNotice 0, 请求   1.已通过  2.拒绝的
   friendMessage() {
     Data.func.GetFriendListByPage(this.pageIndex, this.pageSize).then(data => {
       console.log(data);
@@ -100,22 +100,47 @@ cc.Class({
           let left_icon = cc.find("messageBgf/left/New Node/New Node/messageIcon", item).getComponent(cc.Sprite);
           let msg_title = cc.find("messageBgf/left/New Node/label", item).getComponent(cc.Label);
           let acceptBtn = cc.find("messageBgf/right/acc_messageBgf", item);
+          let rejuseptBtn = cc.find("messageBgf/right/can_messageBgf", item);
           let isNotic = cc.find("messageBgf/right/label", item);
+          let isNotic2 = cc.find("messageBgf/right/label2", item);
           let rightBox = cc.find("messageBgf/right", item);
           let hasAdd = cc.find("messageBgf/hasAdd", item);
-          if (data.List[i].IsNotice) {
-            isNotic.active = true;
-            acceptBtn.active = false;
-          } else {
-            acceptBtn.active = true;
+          //未操作的请求
+          if (data.List[i].IsNotice == 0) {
             isNotic.active = false;
+            isNotic2.active = false;
+            acceptBtn.active = true;
+            rejuseptBtn.active = true;
+          } else if (data.List[i].IsNotice == 1) {
+            isNotic.active = true;
+            isNotic2.active = false;
+            acceptBtn.active = false;
+            rejuseptBtn.active = false;
+          } else {
+            isNotic.active = false;
+            isNotic2.active = true;
+            acceptBtn.active = false;
+            rejuseptBtn.active = false;
           }
           msg_title.string = data.List[i].RealName;
+          //接受
           acceptBtn.on("click", function() {
-            Data.func.PostConfirmFriends(data.List[i].ID).then(msg => {
+            Data.func.PostConfirmFriends(data.List[i].ID, true).then(msg => {
               Msg.show(msg.Message);
               isNotic.active = true;
+              isNotic2.active = false;
               acceptBtn.active = false;
+              rejuseptBtn.active = false;
+            });
+          });
+          //拒绝
+          rejuseptBtn.on("click", function() {
+            Data.func.PostConfirmFriends(data.List[i].ID, false).then(msg => {
+              Msg.show(msg.Message);
+              isNotic.active = false;
+              isNotic2.active = true;
+              acceptBtn.active = false;
+              rejuseptBtn.active = false;
             });
           });
           this.itemBox.addChild(item);

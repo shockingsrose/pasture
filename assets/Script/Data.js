@@ -1259,8 +1259,8 @@ var func = {
       xhr.send();
     });
   },
-   //好友消息列表
-   GetFriendListByPage(pageIndex, pageSize) {
+  //好友消息列表
+  GetFriendListByPage(pageIndex, pageSize) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -1294,7 +1294,7 @@ var func = {
   },
   //是否同意添加好友
   //好友消息列表
-  PostConfirmFriends(id) {
+  PostConfirmFriends(id, result) {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -1319,7 +1319,7 @@ var func = {
           "&Id=" +
           id +
           "&result=" +
-          true,
+          result,
         true
       );
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
