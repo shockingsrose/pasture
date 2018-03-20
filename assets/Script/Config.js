@@ -10,5 +10,6 @@ window.Config = {
     virtualCount: null,
     goodsType: null
   },
+  messageCount: 0,
   addressId: 0 //地址ID
 };
