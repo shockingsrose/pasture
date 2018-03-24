@@ -256,7 +256,7 @@ var Chick = cc.Class({
         Alert.show("failed:" + reason);
       });
   },
-  update(dt) {},
+  //update(dt) {},
 
   //小鸡的动画
   playChickMove: function() {

@@ -80,6 +80,8 @@ cc.Class({
     // var chickState = new Chick();
     this.MenuListNode.active = false;
     this.updateWether();
+    //新手指引step
+    this.step = 0;
   },
   initData(data) {
     //清洁度设置
@@ -120,6 +122,7 @@ cc.Class({
 
     this.initChick();
   },
+
   //只运行一次
   initChick() {
     Func.GetChickList().then(data => {
@@ -130,7 +133,8 @@ cc.Class({
         let index = length - 1;
         this.Chick.active = length > 0 ? true : false;
         //调用setId接口 给鸡传Id 默认最后那只鸡
-        if (this.Chick.active) {
+
+        if (this.Chick.active && !data.List[index].IsCallBack) {
           this.Chick.setPosition(0, -140);
           this._chick.setId(data.List[index].ID);
           this._chick._status = data.List[index].Status;
@@ -144,6 +148,8 @@ cc.Class({
           } else {
             this._chick.initData();
           }
+        } else {
+          Msg.show("您的牧场暂无小鸡");
         }
       } else {
         Msg.show("您的牧场暂无小鸡");
@@ -368,9 +374,12 @@ cc.Class({
             this.upgradeByMoneyInfo = data.List[i];
           }
         }
-      } else {
+      } else if (data.Code === 2) {
         this.upgradeByPointInfo.RanchGrade = "S";
         this.upgradeByMoneyInfo.RanchGrade = "S";
+      } else {
+        Msg.show(data.Message);
+        return;
       }
       clearTimeout(this.timer3);
       this.houseStateNode.active = true;
@@ -499,34 +508,41 @@ cc.Class({
   showMenu: function() {
     var self = this;
 
-    if (!this.MenuListNode.active) {
-      //弹出
-      cc.loader.loadRes("btn-retract", cc.SpriteFrame, function(err, spriteFrame) {
-        self.btnMoreSprite.spriteFrame = spriteFrame;
-      });
-      var fadeIn = cc.fadeIn(0.3);
-      this.MenuModal.runAction(fadeIn);
-      this.MenuListNode.active = !this.MenuListNode.active;
-      var action = cc.moveTo(0.3, cc.p(0, -50));
+    return new Promise((resolve, reject) => {
+      if (!this.MenuListNode.active) {
+        //弹出
+        cc.loader.loadRes("btn-retract", cc.SpriteFrame, function(err, spriteFrame) {
+          self.btnMoreSprite.spriteFrame = spriteFrame;
+        });
+        var fadeIn = cc.fadeIn(0.3);
+        this.MenuModal.runAction(fadeIn);
+        this.MenuListNode.active = !this.MenuListNode.active;
+        var action = cc.sequence(
+          cc.moveTo(0.3, cc.p(0, -50)),
+          cc.callFunc(() => {
+            resolve(1);
+          })
+        );
 
-      this.MenuListNode.runAction(action);
-    } else {
-      //收回
-      cc.loader.loadRes("btn-more", cc.SpriteFrame, function(err, spriteFrame) {
-        self.btnMoreSprite.spriteFrame = spriteFrame;
-      });
+        this.MenuListNode.runAction(action);
+      } else {
+        //收回
+        cc.loader.loadRes("btn-more", cc.SpriteFrame, function(err, spriteFrame) {
+          self.btnMoreSprite.spriteFrame = spriteFrame;
+        });
 
-      var action = cc.sequence(
-        cc.moveTo(0.3, cc.p(0, -800)),
-        cc.callFunc(() => {
-          this.MenuListNode.active = !this.MenuListNode.active;
-        }, this)
-      );
-      this.MenuListNode.runAction(action);
+        var action = cc.sequence(
+          cc.moveTo(0.3, cc.p(0, -800)),
+          cc.callFunc(() => {
+            this.MenuListNode.active = !this.MenuListNode.active;
+          }, this)
+        );
+        this.MenuListNode.runAction(action);
 
-      //菜单栏 半透明背景
-      this.MenuModal.runAction(cc.fadeOut(0.3));
-    }
+        //菜单栏 半透明背景
+        this.MenuModal.runAction(cc.fadeOut(0.3));
+      }
+    });
   },
   updateMoney() {
     Func.GetUserMoney().then(data => {
@@ -557,9 +573,17 @@ cc.Class({
   loadSceneRepertory() {
     cc.director.loadScene("repertory");
   },
+
   onLoad: function() {
     var openID = window.location.href.split("=")[1];
-    Func.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
+    window.Config.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
+    Func.openID = window.Config.openID;
+
+    this.func = {
+      showMenu: this.showMenu,
+      loadSceneShop: this.loadSceneShop,
+      loadSceneRepertory: this.loadSceneRepertory
+    };
   },
 
   start: function() {
@@ -569,8 +593,10 @@ cc.Class({
       // console.log(data);
       if (data.Code === 1) {
         this.initData(data);
-        // Loading.hide();
+        // 新手指引
+        if (Config.firstLogin) GuideSystem.guide();
         //仓库回调
+
         this.repertoryCallBack();
       } else {
         console.log("首页数据加载失败");

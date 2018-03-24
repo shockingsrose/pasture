@@ -86,9 +86,17 @@ cc.Class({
     this.goodsListNode.removeAllChildren();
     Func.GetSystemListByPage().then(data => {
       let list = data.List;
-
+      let chickItem;
       for (let i = 0; i < list.length; i++) {
         const goods = list[i];
+        if (goods.Type === 1) {
+          chickItem = list.splice(i, 1);
+        }
+      }
+      list.unshift(...chickItem);
+      for (let i = 0; i < list.length; i++) {
+        const goods = list[i];
+
         let goodsNode = cc.instantiate(this.goods_Prefab);
         if (goods.Count > 0) {
           this.assignData(goods, goodsNode);
@@ -96,6 +104,8 @@ cc.Class({
         }
       }
       //Loading.hide();
+      //新手指引
+      if (Config.firstLogin) GuideSystem.guide();
     });
   },
   //流通物品
@@ -204,6 +214,14 @@ cc.Class({
       },
       this
     );
+    goodsNode.on(
+      "maskClick",
+      event => {
+        //绑定this到goodsNode上 （红、白、灰三个按钮的回调）
+        this.goodsEvent.call(goodsNode, [f1, f2, f3], [name1, name2, name3]);
+      },
+      this
+    );
   },
   //点击商品事件 绑定模态框回调函数及图片、名字
   goodsEvent() {
@@ -237,6 +255,7 @@ cc.Class({
       btnLabel.string = name1;
       btnGroupNode.addChild(btnRedNode);
       btnRedNode.on("click", f1, that);
+      btnRedNode.on("maskClick", f1, that);
     }
     if (f2) {
       let btnWhiteNode = cc.instantiate(that.btnWhite_Prefab);

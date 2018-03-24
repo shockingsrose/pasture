@@ -70,6 +70,28 @@ cc.Class({
             });
           });
         });
+
+        goodsNode.on("maskClick", event => {
+          Alert.show("0", null, null, null, null, null, "Prefab/Sell", function() {
+            let selfAlert = this;
+            cc.loader.loadRes(Alert._newPrefabUrl, cc.Prefab, function(error, prefab) {
+              if (error) {
+                cc.error(error);
+                return;
+              }
+              // 实例
+              let alert = cc.instantiate(prefab);
+              Alert._alert = alert;
+              //动画
+              selfAlert.ready();
+              Alert._alert.parent = cc.find("Canvas");
+              selfAlert.startFadeIn();
+              // 关闭按钮
+              selfAlert.newButtonEvent(alert, "bg/btn-group/cancelButton");
+              self.P2PBuyData(alert, goods);
+            });
+          });
+        });
       }
     }
   },
@@ -186,6 +208,8 @@ cc.Class({
           self.getList(indexNum, 9);
         }
       });
+      //新手指引
+      if (Config.firstLogin) GuideSystem.guide();
     });
   },
 
@@ -198,7 +222,7 @@ cc.Class({
     cc.director.loadScene("shopP2P");
   },
   start() {
-    var self = this;
+    // 新手指引
   }
 
   // update (dt) {},
