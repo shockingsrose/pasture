@@ -94,7 +94,6 @@ var Modal = cc.Class({
         // this._Modal.name = "default"; //开发中
         this._Modal = cc.instantiate(this.messageModal_Prefab);
         //容器
-
         break;
       case "me":
         this._Modal.name = "default"; //开发中

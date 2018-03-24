@@ -213,7 +213,11 @@ cc.Class({
       () => {
         Func.AddFriend(openIds).then(data => {
           if (data.Code === 1) {
-            Msg.show("已发送好友请求");
+            Msg.show(data.Message);
+
+            if (data.Message == "请求成功！") {
+              Config.newSocket.emit("add", [Func.openID, openIds]);
+            }
           } else {
             Msg.show(data.Code);
           }

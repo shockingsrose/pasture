@@ -4,6 +4,7 @@ window.Config = {
   backUrl: "userCenter",
   openID: null,
   //兑换物品的数据
+  newSocket: null,
   exchangeData: {
     actualName: null,
     virtualName: null,
@@ -12,5 +13,7 @@ window.Config = {
     goodsType: null
   },
   addressId: 0, //地址ID，
-  firstLogin: true
+  firstLogin: true,
+  messageCount: 0,
+  addressId: 0 //地址ID
 };

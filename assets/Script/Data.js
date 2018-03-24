@@ -1258,6 +1258,99 @@ var func = {
       xhr.setRequestHeader("Content-Type", "json");
       xhr.send();
     });
+  },
+  //好友消息列表
+  GetFriendListByPage(pageIndex, pageSize) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "GET",
+        Config.apiUrl +
+          "/T_Base_FriendsNotice/GetRequestListByPage?openID=" +
+          this.openID +
+          "&page=" +
+          pageIndex +
+          "&pageSize=" +
+          pageSize,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
+  //未读好友消息数量
+  GetRecordCount(pageIndex, pageSize) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "GET",
+        Config.apiUrl + "/T_Base_FriendsNotice/GetRecordCount?openID=" + this.openID + "&type=" + 0,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "json");
+      xhr.send();
+    });
+  },
+  //好友消息列表
+  PostConfirmFriends(id, result) {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open(
+        "POST",
+        Config.apiUrl +
+          "/T_Base_FriendsNotice/PostConfirmFriends?openID=" +
+          this.openID +
+          "&Id=" +
+          id +
+          "&result=" +
+          result,
+        true
+      );
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send();
+    });
   }
 };
 

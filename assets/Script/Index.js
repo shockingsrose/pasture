@@ -578,7 +578,9 @@ cc.Class({
     var openID = window.location.href.split("=")[1];
     window.Config.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
     Func.openID = window.Config.openID;
-
+    Config.newSocket = io.connect("http://service.linedin.cn:5520");
+    this.getStorageCount(); //初始化消息数量
+    this.socketNotice(); //socket监听消息变化
     this.func = {
       showMenu: this.showMenu,
       loadSceneShop: this.loadSceneShop,
@@ -601,6 +603,38 @@ cc.Class({
       } else {
         console.log("首页数据加载失败");
       }
+    });
+    new Msg.show("1");
+    new Msg.show("2");
+    new Msg.show("3");
+    new Msg.show("4");
+  },
+  //读取/暂存消息数量
+  getStorageCount() {
+    var messageCount = cc.find("div_menu/Menu/MenuList/menuScroll/view/content/message/point01", this.node);
+    var messageCount2 = cc.find("div_menu/more/point01", this.node);
+    // let StorageCount = cc.sys.localStorage.getItem(Func.openID); //获取缓存
+    Func.GetRecordCount().then(data => {
+      if (data.Code === 1) {
+        if (data.Model > 0) {
+          cc.find("label", messageCount).getComponent(cc.Label).string = data.Model;
+          cc.find("label", messageCount2).getComponent(cc.Label).string = data.Model;
+          messageCount.active = true;
+          messageCount2.active = true;
+        } else {
+          messageCount.active = false;
+          messageCount2.active = false;
+        }
+      } else {
+        console.log("首页数据加载失败");
+      }
+    });
+  },
+  //socket监听消息变化
+  socketNotice() {
+    var self = this;
+    Config.newSocket.on(Func.openID, data => {
+      self.getStorageCount();
     });
   },
   //仓库回调函数（0表示孵化操作）

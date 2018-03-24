@@ -157,9 +157,9 @@ Alert.show = function(
   };
   // 销毁 alert (内存管理还没搞懂，暂且这样写吧~v~)
   self.onDestory = function() {
-    //let sceneNode = cc.find("Canvas");
+    // var sceneNode = cc.find("Canvas");
     Alert._alert.destroy();
-    //cc.find("Alert1", sceneNode).removeFromParent();
+    // cc.find("Alert1", sceneNode).removeFromParent();
     Alert._enterCallBack = null;
     Alert._alert = null;
     Alert._detailLabel = null;
