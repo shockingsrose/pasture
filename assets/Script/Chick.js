@@ -146,6 +146,7 @@ var Chick = cc.Class({
     if (collected) {
       this._collectButton.interactable = true;
       this._collectNode.color = cc.color("#FF4A4A");
+      let collectLabel = cc.fin;
     } else {
       this._collectButton.interactable = false;
       this._collectNode.color = cc.color("#d6d6d6");
