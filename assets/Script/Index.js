@@ -579,7 +579,8 @@ cc.Class({
     var openID = window.location.href.split("=")[1];
     window.Config.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
     Func.openID = window.Config.openID;
-    Config.newSocket = io.connect("http://service.linedin.cn:5520");
+    Config.newSocket = new WebSocket("ws://service.linedin.cn:5520");
+    // Config.newSocket = io.connect("http://service.linedin.cn:5520");
     this.getStorageCount(); //初始化消息数量
     this.socketNotice(); //socket监听消息变化
     this.func = {
@@ -605,10 +606,6 @@ cc.Class({
         console.log("首页数据加载失败");
       }
     });
-    new Msg.show("1");
-    new Msg.show("2");
-    new Msg.show("3");
-    new Msg.show("4");
   },
   //读取/暂存消息数量
   getStorageCount() {
@@ -634,8 +631,16 @@ cc.Class({
   //socket监听消息变化
   socketNotice() {
     var self = this;
-    Config.newSocket.on(Func.openID, data => {
-      self.getStorageCount();
+    // Config.newSocket.on(Func.openID, data => { self.getStorageCount();});
+
+    // Connection opened
+    Config.newSocket.addEventListener("open", function(event) {
+      Config.newSocket.send("Hello Server!");
+    });
+
+    // Listen for messages
+    Config.newSocket.addEventListener("message", function(event) {
+      console.log("Message from server", event.data);
     });
   },
   //仓库回调函数（0表示孵化操作）
