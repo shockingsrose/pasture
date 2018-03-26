@@ -69,7 +69,7 @@ cc.Class({
     this.handNode = cc.find("Hand", this.node);
     this.handAnim = this.handNode.getComponent(cc.Animation);
     this.arrowNode = this.node.getChildByName("icon-arrow");
-    this.eggNode = this.node.getChildByName("egg");
+    this.eggNode = cc.find("bg/house/egg", this.node);
     this.houseNode = cc.find("bg/house", this.node);
     this.moneyLabel = cc.find("div_header/gold/money", this.node).getComponent(cc.Label);
 
