@@ -53,7 +53,7 @@ cc.Class({
         PlantNodesTip.runAction(action);
       }
       //除虫
-      if (this.dataList.List[id].除虫 && this.dataList.toolType == 2) {
+      if (this.dataList.List[id].chuchong && this.dataList.toolType == 5) {
         var action = cc.fadeOut(0.6);
         PlantNodesTip.runAction(action);
       }
