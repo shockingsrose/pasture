@@ -69,7 +69,7 @@ cc.Class({
     this.handNode = cc.find("Hand", this.node);
     this.handAnim = this.handNode.getComponent(cc.Animation);
     this.arrowNode = this.node.getChildByName("icon-arrow");
-    this.eggNode = this.node.getChildByName("egg");
+    this.eggNode = cc.find("bg/house/egg", this.node);
     this.houseNode = cc.find("bg/house", this.node);
     this.moneyLabel = cc.find("div_header/gold/money", this.node).getComponent(cc.Label);
 
@@ -605,10 +605,6 @@ cc.Class({
         console.log("首页数据加载失败");
       }
     });
-    new Msg.show("1");
-    new Msg.show("2");
-    new Msg.show("3");
-    new Msg.show("4");
   },
   //读取/暂存消息数量
   getStorageCount() {

@@ -295,6 +295,7 @@ var GuideSystem = {
 
   //朕已阅
   guideStep8: function guideStep8(guideNode, guideMaskNode, modalSprite, circleNode) {
+    var _this8 = this;
     var guideMask = guideMaskNode.getComponent(cc.Mask);
     guideMask.type = 0;
     var button = cc.find("btn", guideNode);
@@ -310,6 +311,7 @@ var GuideSystem = {
       Config.firstLogin = false;
       guideNode.removeFromParent();
       Msg.show("恭喜你，完成了新手指引！");
+      _this8.UpdateUserLoginTime();
     });
   },
   PostBuy: function PostBuy(prId, count) {
@@ -334,6 +336,28 @@ var GuideSystem = {
       xhr.open("POST", Config.apiUrl + "/T_Base_Property/PostBuy", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
       xhr.send("openID=" + Config.openID + "&count=" + count + "&prId=" + prId);
+    });
+  },
+  UpdateUserLoginTime: function() {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+          if (xhr.status == 200) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            resolve(response);
+          } else {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            reject(response);
+          }
+        }
+      };
+      // GET方法
+      xhr.open("POST", Config.apiUrl + "/T_Base_User/UpdateUserLoginTime");
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //缺少这句，后台无法获取参数
+      xhr.send("OpenID=" + Config.openID);
     });
   }
 };
