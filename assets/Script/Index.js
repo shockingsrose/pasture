@@ -85,6 +85,7 @@ cc.Class({
   },
   initData(data) {
     //清洁度设置
+    Config.firstLogin = data.UserModel.FirstLanding;
     this._clearValue = data.RanchModel.RanchCleanliness;
     this.clearLabel.string = this._clearValue + "%";
     this.clearBar.progress = this._clearValue / 100;
@@ -149,10 +150,10 @@ cc.Class({
             this._chick.initData();
           }
         } else {
-          Msg.show("您的牧场暂无小鸡");
+          !Config.firstLogin ? Msg.show("您的牧场暂无小鸡") : false;
         }
       } else {
-        Msg.show("您的牧场暂无小鸡");
+        !Config.firstLogin ? Msg.show("您的牧场暂无小鸡") : false;
       }
     });
   },

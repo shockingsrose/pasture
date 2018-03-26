@@ -13,7 +13,7 @@ window.Config = {
     goodsType: null
   },
   addressId: 0, //地址ID，
-  firstLogin: true,
+  firstLogin: false,
   messageCount: 0,
   addressId: 0 //地址ID
 };
