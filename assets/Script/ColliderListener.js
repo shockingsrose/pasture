@@ -24,14 +24,7 @@ cc.Class({
   onCollisionEnter: function(other) {
     this.node.color = cc.Color.GREEN;
     this.touchingNumber++;
-  },
 
-  onCollisionStay: function(other) {
-    // console.log('on collision stay');
-  },
-
-  onCollisionExit: function() {
-    //碰撞后的状态显示
     this.dataList = JSON.parse(cc.sys.localStorage.getItem("FarmData")); //缓存机制
     this.touchingNumber--;
     if (this.touchingNumber === 0) {
@@ -65,6 +58,14 @@ cc.Class({
         PlantNodesTip.runAction(action);
       }
     }
+  },
+
+  onCollisionStay: function(other) {
+    // console.log('on collision stay');
+  },
+
+  onCollisionExit: function() {
+    //碰撞后的状态显示
   }
 
   // called every frame, uncomment this function to activate update callback
