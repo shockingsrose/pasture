@@ -648,6 +648,9 @@ cc.Class({
       this.operate = -1;
     }
   },
+  gotoFarm() {
+    cc.director.loadScene("farm");
+  },
   showSickAnim: function() {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.hungry = false;
