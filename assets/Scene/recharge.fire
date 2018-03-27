@@ -931,9 +931,7 @@
     "_fontSize": 26,
     "_lineHeight": 40,
     "_enableWrapText": false,
-    "_N$file": {
-      "__uuid__": "1f27e5fb-6894-48e7-b24c-cab3e68ec90b"
-    },
+    "_N$file": null,
     "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "2222",
