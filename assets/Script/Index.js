@@ -580,7 +580,7 @@ cc.Class({
     window.Config.openID = openID || "dedbc83d62104d6da8d4a3c0188dc419";
     Func.openID = window.Config.openID;
     //Config.newSocket = new WebSocket("wss://service.linedin.cn:5520");
-    Config.newSocket = io.connect("http://service.linedin.cn:5520");
+    Config.newSocket = new WebSocket("ws://service.linedin.cn:5530/");
     this.getStorageCount(); //初始化消息数量
     this.socketNotice(); //socket监听消息变化
     this.func = {
@@ -631,9 +631,12 @@ cc.Class({
   //socket监听消息变化
   socketNotice() {
     var self = this;
-    Config.newSocket.on(Func.openID, data => {
-      self.getStorageCount();
-    });
+    Config.newSocket.onmessage = function(evt) {
+      var obj = eval("(" + evt.data + ")");
+      if (obj.name == Func.openID) {
+        self.getStorageCount();
+      }
+    };
 
     // // Connection opened
     // Config.newSocket.addEventListener("open", function(event) {
@@ -659,9 +662,7 @@ cc.Class({
       this.operate = -1;
     }
   },
-  gotoFarm() {
-    cc.director.loadScene("farm");
-  },
+
   showSickAnim: function() {
     this._chick._chickStatus.sick = true;
     this._chick._chickStatus.hungry = false;

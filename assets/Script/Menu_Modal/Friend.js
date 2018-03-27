@@ -216,10 +216,8 @@ cc.Class({
             Msg.show(data.Message);
 
             if (data.Message == "请求成功！") {
-              Config.newSocket.emit("add", [Func.openID, openIds]);
-              // Config.newSocket.addEventListener("message", function(event) {
-              //   console.log("Message from server", event.data);
-              // });
+              let str = "{name:'" + openIds + "'}";
+              Config.newSocket.send(str);
             }
           } else {
             Msg.show(data.Code);

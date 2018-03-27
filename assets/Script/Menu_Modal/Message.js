@@ -132,7 +132,8 @@ cc.Class({
               acceptBtn.active = false;
               rejuseptBtn.active = false;
             });
-            Config.newSocket.emit("add", [Func.openID, Func.openID]);
+            let str = "{name:'" + Func.openID + "'}";
+            Config.newSocket.send(str);
           });
           //拒绝
           rejuseptBtn.on("click", function() {
@@ -143,7 +144,8 @@ cc.Class({
               acceptBtn.active = false;
               rejuseptBtn.active = false;
             });
-            Config.newSocket.emit("add", [Func.openID, Func.openID]);
+            let str = "{name:'" + Func.openID + "'}";
+            Config.newSocket.send(str);
           });
           this.itemBox.addChild(item);
         }
