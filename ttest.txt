@@ -1,1 +1,2 @@
 clone项目 并提交远程
+删除了known_host 再试一次
